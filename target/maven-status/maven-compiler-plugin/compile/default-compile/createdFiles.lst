@@ -6,6 +6,7 @@ com/integrador/library_management_system/modelo/Libro_.class
 com/integrador/library_management_system/servicios/ServicioMiembro.class
 com/integrador/library_management_system/controlador/ViewLoginController.class
 com/integrador/library_management_system/modelo/Miembro.class
+com/integrador/library_management_system/servicios/ServicioLibro.class
 com/integrador/library_management_system/modelo/exceptions/PreexistingEntityException.class
 com/integrador/library_management_system/controlador/ViewLibroController.class
 com/integrador/library_management_system/App.class
