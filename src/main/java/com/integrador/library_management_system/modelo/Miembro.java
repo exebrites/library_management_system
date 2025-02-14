@@ -18,31 +18,39 @@ import javax.persistence.Table;
  */
 @Entity
 @Table
-public class Usuario implements Serializable {
+public class Miembro implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @Column
-    private String nombre;
+    private String clave;
     @Column
-    private String contrasenia;
+    private boolean estadoMiembro;
 
-    public Usuario() {
+    public Miembro() {
     }
 
-    public Usuario(int id, String nombre, String contrasenia) {
+    public Miembro(int id, String clave, boolean estadoMiembro) {
         this.id = id;
-        this.nombre = nombre;
-        this.contrasenia = contrasenia;
+        this.clave = clave;
+        this.estadoMiembro = estadoMiembro;
     }
 
-    public String getContrasenia() {
-        return contrasenia;
+    public String getClave() {
+        return clave;
     }
 
-    public void setContrasenia(String contrasenia) {
-        this.contrasenia = contrasenia;
+    public void setClave(String clave) {
+        this.clave = clave;
+    }
+
+    public boolean isEstadoMiembro() {
+        return estadoMiembro;
+    }
+
+    public void setEstadoMiembro(boolean estadoMiembro) {
+        this.estadoMiembro = estadoMiembro;
     }
 
     public int getId() {
@@ -53,17 +61,9 @@ public class Usuario implements Serializable {
         this.id = id;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
     @Override
     public String toString() {
-        return "Usuario{" + "id=" + id + ", nombre=" + nombre + '}';
+        return "Miembro{" + "id=" + id + ", clave=" + clave + ", estadoMiembro=" + estadoMiembro + '}';
     }
 
 }

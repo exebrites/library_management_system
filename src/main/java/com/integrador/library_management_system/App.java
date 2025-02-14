@@ -1,7 +1,7 @@
 package com.integrador.library_management_system;
 
-import com.integrador.library_management_system.modelo.Usuario;
-import com.integrador.library_management_system.modelo.UsuarioJpaController;
+import com.integrador.library_management_system.modelo.Miembro;
+ 
 import com.integrador.library_management_system.repositorio.Repositorio;
 import com.integrador.library_management_system.servicios.ServicioUsuario;
 import javafx.application.Application;
@@ -26,11 +26,12 @@ public class App extends Application {
         //  EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.integradorLMS_PU");
 
         // Crear Repositorio
-        Repositorio repositorio = new Repositorio();
-        Usuario u = new Usuario(3, "exequiel");
-        ServicioUsuario su = new ServicioUsuario(repositorio);
-        su.agregarUsuario(u);
-        scene = new Scene(loadFXML("primary"), 640, 480);
+        //Repositorio repositorio = new Repositorio();
+        //Usuario u = new Miembro(1, "exequiel", "123");
+        //ServicioUsuario su = new ServicioUsuario(repositorio);
+        //su.agregarUsuario(u);
+        //   su.consulta2(3);
+        scene = new Scene(loadFXML("ViewLogin"), 640, 480);
         stage.setScene(scene);
         stage.show();
     }
@@ -39,7 +40,7 @@ public class App extends Application {
         scene.setRoot(loadFXML(fxml));
     }
 
-    private static Parent loadFXML(String fxml) throws IOException {
+    public static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }

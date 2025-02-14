@@ -1,0 +1,13 @@
+com/integrador/library_management_system/modelo/exceptions/IllegalOrphanException.class
+com/integrador/library_management_system/modelo/exceptions/NonexistentEntityException.class
+com/integrador/library_management_system/modelo/Usuario.class
+com/integrador/library_management_system/SecondaryController.class
+com/integrador/library_management_system/repositorio/Repositorio.class
+com/integrador/library_management_system/controlador/ViewLoginController.class
+com/integrador/library_management_system/modelo/UsuarioJpaController.class
+com/integrador/library_management_system/PrimaryController.class
+com/integrador/library_management_system/modelo/exceptions/PreexistingEntityException.class
+com/integrador/library_management_system/App.class
+com/integrador/library_management_system/controlador/ViewPrincipalController.class
+com/integrador/library_management_system/servicios/ServicioUsuario.class
+com/integrador/library_management_system/modelo/Usuario_.class

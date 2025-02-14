@@ -4,9 +4,10 @@
  */
 package com.integrador.library_management_system.servicios;
 
-import com.integrador.library_management_system.modelo.Usuario;
+import com.integrador.library_management_system.modelo.Miembro;
 import com.integrador.library_management_system.repositorio.Repositorio;
 import java.util.List;
+import javax.persistence.NoResultException;
 
 /**
  *
@@ -20,25 +21,49 @@ public class ServicioUsuario {
         this.repositorio = p;
     }
 
-    public void agregarUsuario(Usuario usuario) {
+    public void agregarUsuario(Miembro usuario) {
         this.repositorio.iniciarTransaccion();
         this.repositorio.insertar(usuario);
         this.repositorio.confirmarTransaccion();
     }
 
-    public void editarUsuario(Usuario usuario) {
+    public void editarUsuario(Miembro usuario) {
         this.repositorio.iniciarTransaccion();
         this.repositorio.modificar(usuario);
         this.repositorio.confirmarTransaccion();
     }
 
-    public void eliminarUsuario(Usuario usuario) {
+    public void eliminarUsuario(Miembro usuario) {
         this.repositorio.iniciarTransaccion();
         this.repositorio.eliminar(usuario);
         this.repositorio.confirmarTransaccion();
     }
 
-    public List<Usuario> obtenerTodos() {
-        return this.repositorio.buscarTodos(Usuario.class);
+    public List<Miembro> obtenerTodos() {
+        return this.repositorio.buscarTodos(Miembro.class);
     }
+
+    public void consulta() {
+        this.repositorio.consultaSQL();
+    }
+
+    public void consulta2(int id) {
+        this.repositorio.consultaSQL2(id);
+    }
+
+    //El servicio se encarga del login
+    public boolean login(int id, String pass) {
+
+        //buscarUsuario();
+        var lista = this.repositorio.buscarUsuario(id, pass);
+
+        if (!lista.isEmpty()) {
+         
+            return true;
+        }
+
+        return false;
+    }
+    //El servicio se encarga del logout
+
 }

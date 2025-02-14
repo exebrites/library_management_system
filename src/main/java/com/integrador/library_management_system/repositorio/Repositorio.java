@@ -4,12 +4,14 @@
  */
 package com.integrador.library_management_system.repositorio;
 
+import com.integrador.library_management_system.modelo.Miembro;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.persistence.metamodel.SingularAttribute;
 
@@ -94,4 +96,72 @@ public class Repositorio {
         // ejecuto y obtengo el resultado
         return em.createQuery(consulta).getResultList();
     }
+    //creacion de select para login
+
+    public void consultaSQL() {
+
+        try {
+            // Consulta JPQL para obtener todos los registros de la entidad Miembro
+            List<Miembro> usuarios = em.createQuery("SELECT u FROM Usuario u", Miembro.class).getResultList();
+
+            // Mostrar resultados
+            for (Miembro u : usuarios) {
+                System.out.println(u);
+            }
+        } finally {
+            em.close();
+
+        }
+    }
+
+    public void consultaSQL2(int id) {
+        try {
+            // Crear el constructor de CriteriaQuery
+            CriteriaBuilder cb = em.getCriteriaBuilder();
+            CriteriaQuery<Miembro> cq = cb.createQuery(Miembro.class);
+            Root<Miembro> root = cq.from(Miembro.class);
+
+            // Seleccionar todos los registros
+            //cq.select(root);
+            cq.select(root).where(cb.equal(root.get("id"), id));
+
+            // Ejecutar la consulta
+            List<Miembro> usuarios = em.createQuery(cq).getResultList();
+            // Mostrar resultados
+            usuarios.forEach(System.out::println);
+        } finally {
+            em.close();
+            //emf.close();
+        }
+    }
+
+    //el repositorio me va a dar los metodos para complementar el login 
+    public List<Miembro> buscarUsuario(int id, String pass) {
+        //Usuario usuario = null;
+     
+        try {
+            // Crear el constructor de CriteriaQuery
+            CriteriaBuilder cb = em.getCriteriaBuilder();
+            CriteriaQuery<Miembro> cq = cb.createQuery(Miembro.class);
+            Root<Miembro> root = cq.from(Miembro.class);
+
+            // Seleccionar todos los registros
+            //cq.select(root);
+            Predicate condicionId = cb.equal(root.get("id"), id);
+            Predicate condicionNombre = cb.equal(root.get("contrasenia"), pass);
+
+            cq.where(cb.and(condicionId, condicionNombre));
+
+            // Ejecutar la consulta
+            List<Miembro> usuarios = em.createQuery(cq).getResultList();
+            // Mostrar resultados
+            //    usuarios.forEach(System.out::println);
+            return usuarios;
+        } finally {
+            em.close();
+            //emf.close();
+        }
+
+    }
+    //el repositorio me va a dar los metodos para complementar el logout
 }
