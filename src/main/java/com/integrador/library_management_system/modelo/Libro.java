@@ -41,15 +41,37 @@ public class Libro implements Serializable {
 
     public Libro(int id, String editorial, String autores, String categoriaTematica, String isbn, String idioma, String titulo) {
         this.id = id;
-        this.editorial = editorial;
-        this.autores = autores;
-        this.categoriaTematica = categoriaTematica;
-        this.isbn = isbn;
-        this.idioma = idioma;
-        this.titulo = titulo;
-    }
 
-    
+        if (editorial.trim().isEmpty()) {
+            throw new IllegalArgumentException("El campo editor no puede estar vacío.");
+        }
+
+        if (autores.trim().isEmpty()) {
+            throw new IllegalArgumentException("El campo autores no puede estar vacío.");
+        }
+
+        if (categoriaTematica.trim().isEmpty()) {
+            throw new IllegalArgumentException("El campo categoria tematica no puede estar vacío.");
+        }
+
+        if (isbn.trim().isEmpty()) {
+            throw new IllegalArgumentException("El campo isbn no puede estar vacío.");
+        }
+
+        if (idioma.trim().isEmpty()) {
+            throw new IllegalArgumentException("El campo idioma no puede estar vacío.");
+        }
+
+        if (titulo.trim().isEmpty()) {
+            throw new IllegalArgumentException("El campo titulo no puede estar vacío.");
+        }
+        this.editorial = editorial.toUpperCase();
+        this.autores = autores.toUpperCase();
+        this.categoriaTematica = categoriaTematica.toUpperCase();
+        this.isbn = isbn.toUpperCase();
+        this.idioma = idioma.toUpperCase();
+        this.titulo = titulo.toUpperCase();
+    }
 
     public int getId() {
         return id;
@@ -111,7 +133,5 @@ public class Libro implements Serializable {
     public String toString() {
         return "Libro{" + "id=" + id + ", editorial=" + editorial + ", autores=" + autores + ", categoriaTematica=" + categoriaTematica + ", isbn=" + isbn + ", idioma=" + idioma + ", titulo=" + titulo + '}';
     }
-
-     
 
 }
