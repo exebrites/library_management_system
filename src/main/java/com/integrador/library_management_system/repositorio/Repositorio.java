@@ -148,7 +148,7 @@ public class Repositorio {
             // Seleccionar todos los registros
             //cq.select(root);
             Predicate condicionId = cb.equal(root.get("id"), id);
-            Predicate condicionNombre = cb.equal(root.get("contrasenia"), pass);
+            Predicate condicionNombre = cb.equal(root.get("clave"), pass);
 
             cq.where(cb.and(condicionId, condicionNombre));
 

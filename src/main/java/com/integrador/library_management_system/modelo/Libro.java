@@ -33,18 +33,23 @@ public class Libro implements Serializable {
     private String isbn;
     @Column
     private String idioma;
+    @Column
+    private String titulo;
 
     public Libro() {
     }
 
-    public Libro(int id, String editorial, String autores, String categoriaTematica, String isbn, String idioma) {
+    public Libro(int id, String editorial, String autores, String categoriaTematica, String isbn, String idioma, String titulo) {
         this.id = id;
         this.editorial = editorial;
         this.autores = autores;
         this.categoriaTematica = categoriaTematica;
         this.isbn = isbn;
         this.idioma = idioma;
+        this.titulo = titulo;
     }
+
+    
 
     public int getId() {
         return id;
@@ -94,10 +99,19 @@ public class Libro implements Serializable {
         this.idioma = idioma;
     }
 
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
     @Override
     public String toString() {
-        return "Libro{" + "id=" + id + ", editorial=" + editorial + ", autores=" + autores + ", categoriaTematica=" + categoriaTematica + ", isbn=" + isbn + ", idioma=" + idioma + '}';
+        return "Libro{" + "id=" + id + ", editorial=" + editorial + ", autores=" + autores + ", categoriaTematica=" + categoriaTematica + ", isbn=" + isbn + ", idioma=" + idioma + ", titulo=" + titulo + '}';
     }
-    
-    
+
+     
+
 }

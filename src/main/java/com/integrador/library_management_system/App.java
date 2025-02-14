@@ -1,9 +1,9 @@
 package com.integrador.library_management_system;
 
 import com.integrador.library_management_system.modelo.Miembro;
- 
+
 import com.integrador.library_management_system.repositorio.Repositorio;
-import com.integrador.library_management_system.servicios.ServicioUsuario;
+import com.integrador.library_management_system.servicios.ServicioMiembro;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -26,11 +26,15 @@ public class App extends Application {
         //  EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.integradorLMS_PU");
 
         // Crear Repositorio
-        //Repositorio repositorio = new Repositorio();
-        //Usuario u = new Miembro(1, "exequiel", "123");
-        //ServicioUsuario su = new ServicioUsuario(repositorio);
-        //su.agregarUsuario(u);
         //   su.consulta2(3);
+
+        /*
+          Repositorio repositorio = new Repositorio();
+        Miembro u = new Miembro(1, "123", true, "exequiel", "brites");
+        ServicioMiembro su = new ServicioMiembro(repositorio);
+        su.agregarUsuario(u);
+      
+         */
         scene = new Scene(loadFXML("ViewLogin"), 640, 480);
         stage.setScene(scene);
         stage.show();

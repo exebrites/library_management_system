@@ -23,43 +23,18 @@ import javafx.stage.Stage;
  *
  * @author exe
  */
-public class ViewPrincipalController implements Initializable {
+public class ViewLibroController implements Initializable {
 
     /**
      * Initializes the controller class.
      */
-    @FXML
-    private Button btnGestionarLibro;
+   
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
 
-    @FXML
-    private void eventAction(ActionEvent event) throws IOException {
-
-        try {
-            // Cargo la vista
-            Object evt = event.getSource();
-            if (evt.equals(btnGestionarLibro)) {
-
-                loadStage("ViewIndexLibro", event);
-            }
-
-        } catch (IOException ex) {
-            Logger.getLogger(ViewLibroController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
-
-    private void loadStage(String url, ActionEvent event) throws IOException {
-        ((Node) (event.getSource())).getScene().getWindow().hide();
-
-        Scene scene = new Scene(loadFXML(url));
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.show();
-    }
+   
 
 }

@@ -27,14 +27,20 @@ public class Miembro implements Serializable {
     private String clave;
     @Column
     private boolean estadoMiembro;
+    @Column
+    private String nombre;
+    @Column
+    private String apellido;
 
     public Miembro() {
     }
 
-    public Miembro(int id, String clave, boolean estadoMiembro) {
+    public Miembro(int id, String clave, boolean estadoMiembro, String nombre, String apellido) {
         this.id = id;
         this.clave = clave;
         this.estadoMiembro = estadoMiembro;
+        this.nombre = nombre;
+        this.apellido = apellido;
     }
 
     public String getClave() {
@@ -61,9 +67,30 @@ public class Miembro implements Serializable {
         this.id = id;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public String getFullName() {
+
+        return nombre + " " + apellido;
+    }
+
     @Override
     public String toString() {
-        return "Miembro{" + "id=" + id + ", clave=" + clave + ", estadoMiembro=" + estadoMiembro + '}';
+        return "Miembro{" + "id=" + id + ", clave=" + clave + ", estadoMiembro=" + estadoMiembro + ", nombre=" + nombre + ", apellido=" + apellido + '}';
     }
 
 }

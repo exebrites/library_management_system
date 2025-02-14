@@ -6,7 +6,7 @@ package com.integrador.library_management_system.controlador;
 
 import static com.integrador.library_management_system.App.loadFXML;
 import com.integrador.library_management_system.repositorio.Repositorio;
-import com.integrador.library_management_system.servicios.ServicioUsuario;
+import com.integrador.library_management_system.servicios.ServicioMiembro;
 import java.io.IOException;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -61,7 +61,7 @@ public class ViewLoginController implements Initializable {
     private void eventAction(ActionEvent event) throws IOException {
         Repositorio repositorio = new Repositorio();
         // Usuario u = new Usuario(3, "exequiel");
-        ServicioUsuario su = new ServicioUsuario(repositorio);
+        ServicioMiembro su = new ServicioMiembro(repositorio);
 
         Object evt = event.getSource();
 

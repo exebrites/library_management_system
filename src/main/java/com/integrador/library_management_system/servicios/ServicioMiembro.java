@@ -13,11 +13,11 @@ import javax.persistence.NoResultException;
  *
  * @author exe
  */
-public class ServicioUsuario {
+public class ServicioMiembro {
 
     private final Repositorio repositorio;
 
-    public ServicioUsuario(Repositorio p) {
+    public ServicioMiembro(Repositorio p) {
         this.repositorio = p;
     }
 
