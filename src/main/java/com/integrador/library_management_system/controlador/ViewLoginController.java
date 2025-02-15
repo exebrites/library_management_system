@@ -39,6 +39,7 @@ public class ViewLoginController implements Initializable {
     @FXML
     private Button btnLogin;
 
+    
     @FXML
     private void eventKey(KeyEvent event) {
         Object evt = event.getSource();
@@ -56,8 +57,10 @@ public class ViewLoginController implements Initializable {
         }
 
     }
+     
 
-    @FXML
+ 
+      @FXML
     private void eventAction(ActionEvent event) throws IOException {
         Repositorio repositorio = new Repositorio();
         // Usuario u = new Usuario(3, "exequiel");
@@ -85,10 +88,9 @@ public class ViewLoginController implements Initializable {
 
         }
 
-        /**
-         * Initializes the controller class.
-         */
+       
     }
+    
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {

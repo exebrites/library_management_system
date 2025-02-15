@@ -28,20 +28,20 @@ public class App extends Application {
         //  EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.integradorLMS_PU");
 
         // Crear Repositorio
-     
         //Repositorio repositorio = new Repositorio();
         //   Miembro u = new Miembro(1, "123", true, "exequiel", "brites");
         //   ServicioMiembro su = new ServicioMiembro(repositorio);
         //  su.agregarUsuario(u);
 
-       /*
+        /*
         
          Libro l = new Libro(2, "ed1", "aut1", "cat1", "isb1", "id1", "ti1");
         ServicioLibro sl = new ServicioLibro(repositorio);
         sl.agregarLibro(l);
-     */
-        scene = new Scene(loadFXML("ViewLogin"), 640, 480);
+         */
+        scene = new Scene(loadFXML("ViewLogin"), 1280, 800);
         stage.setScene(scene);
+        stage.setTitle("Library Manager System");
         stage.show();
     }
 
