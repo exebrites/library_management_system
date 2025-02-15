@@ -23,6 +23,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -31,64 +32,65 @@ import javafx.stage.Stage;
  *
  * @author exe
  */
-public class ViewLibroController implements Initializable {
+public class ViewCreateLibroController implements Initializable {
 
     /**
      * Initializes the controller class.
      */
-    @FXML
-    private TableView<Libro> tableLibros;
-    @FXML
-    private TableColumn<Libro, String> colIsbn;
-    @FXML
-    private TableColumn<Libro, String> colTitulo;
-    @FXML
-    private TableColumn<Libro, String> colAutores;
-    @FXML
-    private TableColumn<Libro, String> colCategoria;
-    @FXML
-    private TableColumn<Libro, String> colIdioma;
-
-    private ObservableList<Libro> listaLibros;
-
     //navegacion
     @FXML
     private Button btnNuevoLibro;
-    
+//create
+
+    @FXML
+    private TextField txtTitulo;
+    @FXML
+    private TextField txtIsbn;
+    @FXML
+    private TextField txtIdioma;
+    @FXML
+    private TextField txtEditorial;
+    @FXML
+    private TextField txtCategoria;
+    @FXML
+    private TextField txtAutores;
+
+    @FXML
+    private Button btnGuardar;
+    @FXML
+    private Button btnCancelar;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        
-        colIsbn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
-        colTitulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
-        colAutores.setCellValueFactory(new PropertyValueFactory<>("autores"));
-        colCategoria.setCellValueFactory(new PropertyValueFactory<>("categoriaTematica"));
-        colIdioma.setCellValueFactory(new PropertyValueFactory<>("idioma"));
 
-        // Cargar datos
-        Repositorio r = new Repositorio();
-        ServicioLibro sl = new ServicioLibro(r);
-        listaLibros = FXCollections.observableArrayList(sl.obtenerTodos());
-
-        tableLibros.setItems(listaLibros);
     }
-    
-    
+
     @FXML
     private void eventAction(ActionEvent event) throws IOException {
+        Object evt = event.getSource();
 
-        try {
-            // Cargo la vista
-            Object evt = event.getSource();
-            if (evt.equals(btnNuevoLibro)) {
+        if (evt.equals(btnGuardar)) {
+            var titulo = txtTitulo.getText();
+            var isbn = txtIsbn.getText();
+            var idioma = txtIdioma.getText();
+            var editorial = txtEditorial.getText();
+            var autores = txtAutores.getText();
+            var categoriaTematica = txtCategoria.getText();
 
-                loadStage("ViewCreateLibro", event);
+            try {
+
+                Libro libro = new Libro(editorial, autores, categoriaTematica, isbn, idioma, titulo);
+                // Cargar datos
+                Repositorio r = new Repositorio();
+                ServicioLibro sl = new ServicioLibro(r);
+                sl.agregarLibro(libro);
+                loadStage("ViewIndexLibro", event);
+            } catch (Exception e) {
+                System.out.println(e);
             }
-
-        } catch (IOException ex) {
-            Logger.getLogger(ViewLibroController.class.getName()).log(Level.SEVERE, null, ex);
+        } else if (evt.equals(btnCancelar)) {
+            loadStage("ViewIndexLibro", event);
         }
-
     }
 
     private void loadStage(String url, ActionEvent event) throws IOException {

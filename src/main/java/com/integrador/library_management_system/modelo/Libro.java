@@ -22,7 +22,7 @@ public class Libro implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
     @Column
     private String editorial;
     @Column
@@ -39,8 +39,7 @@ public class Libro implements Serializable {
     public Libro() {
     }
 
-    public Libro(int id, String editorial, String autores, String categoriaTematica, String isbn, String idioma, String titulo) {
-        this.id = id;
+    public Libro(String editorial, String autores, String categoriaTematica, String isbn, String idioma, String titulo) {
 
         if (editorial.trim().isEmpty()) {
             throw new IllegalArgumentException("El campo editor no puede estar vacío.");
@@ -73,12 +72,8 @@ public class Libro implements Serializable {
         this.titulo = titulo.toUpperCase();
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getEditorial() {

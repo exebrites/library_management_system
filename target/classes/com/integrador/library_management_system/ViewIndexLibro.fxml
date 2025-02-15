@@ -10,8 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="613.0" prefWidth="830.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/22" fx:controller="com.integrador.library_management_system.controlador.ViewLibroController">
+<AnchorPane id="AnchorPane" prefHeight="613.0" prefWidth="830.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.integrador.library_management_system.controlador.ViewLibroController">
    <children>
       <HBox prefHeight="112.0" prefWidth="830.0">
          <children>
@@ -61,18 +60,18 @@
                         <Font size="45.0" />
                      </font>
                   </Label>
-                  <Button mnemonicParsing="false" prefHeight="24.0" prefWidth="134.0" text="Nuevo libro">
+                  <Button fx:id="btnNuevoLibro" mnemonicParsing="false" onAction="#eventAction" prefHeight="24.0" prefWidth="134.0" text="Nuevo libro">
                      <VBox.margin>
                         <Insets bottom="20.0" />
                      </VBox.margin>
                   </Button>
-                  <TableView prefHeight="330.0" prefWidth="616.0">
+                  <TableView fx:id="tableLibros" prefHeight="330.0" prefWidth="616.0">
                     <columns>
-                      <TableColumn prefWidth="75.0" text="Isbn" />
-                      <TableColumn prefWidth="75.0" text="Titulo" />
-                        <TableColumn prefWidth="75.0" text="Autores" />
-                        <TableColumn prefWidth="106.0" text="Categoria" />
-                        <TableColumn prefWidth="111.0" text="Idioma" />
+                      <TableColumn fx:id="colIsbn" prefWidth="75.0" text="Isbn" />
+                      <TableColumn fx:id="colTitulo" prefWidth="75.0" text="Titulo" />
+                        <TableColumn fx:id="colAutores" prefWidth="75.0" text="Autores" />
+                        <TableColumn fx:id="colCategoria" prefWidth="106.0" text="Categoria" />
+                        <TableColumn fx:id="colIdioma" prefWidth="111.0" text="Idioma" />
                         <TableColumn prefWidth="173.0" text="Acciones" />
                     </columns>
                   </TableView>
