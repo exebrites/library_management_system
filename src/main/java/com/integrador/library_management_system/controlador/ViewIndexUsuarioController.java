@@ -23,6 +23,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -31,30 +32,8 @@ import javafx.stage.Stage;
  *
  * @author exe
  */
-public class ViewLibroController implements Initializable {
+public class ViewIndexUsuarioController implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
-    @FXML
-    private TableView<Libro> tableLibros;
-    @FXML
-    private TableColumn<Libro, String> colIsbn;
-    @FXML
-    private TableColumn<Libro, String> colTitulo;
-    @FXML
-    private TableColumn<Libro, String> colAutores;
-    @FXML
-    private TableColumn<Libro, String> colCategoria;
-    @FXML
-    private TableColumn<Libro, String> colIdioma;
-
-    private ObservableList<Libro> listaLibros;
-
-    //navegacion
-    @FXML
-    private Button btnNuevoLibro;
-    //panel
     @FXML
     private Button btnGestionarLibro;
     @FXML
@@ -67,30 +46,14 @@ public class ViewLibroController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        colIsbn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
-        colTitulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
-        colAutores.setCellValueFactory(new PropertyValueFactory<>("autores"));
-        colCategoria.setCellValueFactory(new PropertyValueFactory<>("categoriaTematica"));
-        colIdioma.setCellValueFactory(new PropertyValueFactory<>("idioma"));
-
-        // Cargar datos
-        Repositorio r = new Repositorio();
-        ServicioLibro sl = new ServicioLibro(r);
-        listaLibros = FXCollections.observableArrayList(sl.obtenerTodos());
-
-        tableLibros.setItems(listaLibros);
     }
 
     @FXML
     private void eventAction(ActionEvent event) throws IOException {
-
         try {
             // Cargo la vista
             Object evt = event.getSource();
-            if (evt.equals(btnNuevoLibro)) {
-
-                loadStage("ViewCreateLibro", event);
-            } else if (evt.equals(btnGestionarLibro)) {
+            if (evt.equals(btnGestionarLibro)) {
                 loadStage("ViewIndexLibro", event);
             } else if (evt.equals(btnGestionarUsuario)) {
                 loadStage("ViewIndexUsuario", event);

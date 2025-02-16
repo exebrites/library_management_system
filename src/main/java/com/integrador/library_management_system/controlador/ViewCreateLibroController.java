@@ -99,6 +99,7 @@ public class ViewCreateLibroController implements Initializable {
         Scene scene = new Scene(loadFXML(url));
         Stage stage = new Stage();
         stage.setScene(scene);
+        stage.setTitle("Library Manager System");
         stage.show();
     }
 

@@ -39,7 +39,6 @@ public class ViewLoginController implements Initializable {
     @FXML
     private Button btnLogin;
 
-    
     @FXML
     private void eventKey(KeyEvent event) {
         Object evt = event.getSource();
@@ -57,10 +56,8 @@ public class ViewLoginController implements Initializable {
         }
 
     }
-     
 
- 
-      @FXML
+    @FXML
     private void eventAction(ActionEvent event) throws IOException {
         Repositorio repositorio = new Repositorio();
         // Usuario u = new Usuario(3, "exequiel");
@@ -88,9 +85,7 @@ public class ViewLoginController implements Initializable {
 
         }
 
-       
     }
-    
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -100,10 +95,11 @@ public class ViewLoginController implements Initializable {
     private void loadStage(String url, Event event) throws IOException {
         ((Node) (event.getSource())).getScene().getWindow().hide();
 
-        Scene scene = new Scene(loadFXML(url), 640, 480);
+        Scene scene = new Scene(loadFXML(url), 1280, 800);
 
         Stage stage = new Stage();
         stage.setScene(scene);
+        stage.setTitle("Library Manager System");
         stage.show();
     }
 }
