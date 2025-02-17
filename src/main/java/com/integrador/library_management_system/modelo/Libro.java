@@ -5,11 +5,15 @@
 package com.integrador.library_management_system.modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -35,6 +39,9 @@ public class Libro implements Serializable {
     private String idioma;
     @Column
     private String titulo;
+
+    @OneToMany(mappedBy = "libro", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CopiaLibro> copias = new ArrayList<>();
 
     public Libro() {
     }
@@ -127,6 +134,20 @@ public class Libro implements Serializable {
     @Override
     public String toString() {
         return "Libro{" + "id=" + id + ", editorial=" + editorial + ", autores=" + autores + ", categoriaTematica=" + categoriaTematica + ", isbn=" + isbn + ", idioma=" + idioma + ", titulo=" + titulo + '}';
+    }
+
+    public void addCopia(CopiaLibro copia) {
+        copia.setLibro(this);  // Establece la relación en la copia
+        copias.add(copia);
+    }
+
+    public void removeCopia(CopiaLibro copia) {
+        copias.remove(copia);
+        copia.setLibro(null);  // Rompe la relación
+    }
+
+    public List<CopiaLibro> getCopias() {
+        return copias;
     }
 
 }

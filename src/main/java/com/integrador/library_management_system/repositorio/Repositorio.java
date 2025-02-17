@@ -4,6 +4,8 @@
  */
 package com.integrador.library_management_system.repositorio;
 
+import com.integrador.library_management_system.modelo.CopiaLibro;
+import com.integrador.library_management_system.modelo.Libro;
 import com.integrador.library_management_system.modelo.Miembro;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -138,7 +140,7 @@ public class Repositorio {
     //el repositorio me va a dar los metodos para complementar el login 
     public List<Miembro> buscarUsuario(int id, String pass) {
         //Usuario usuario = null;
-     
+
         try {
             // Crear el constructor de CriteriaQuery
             CriteriaBuilder cb = em.getCriteriaBuilder();
@@ -163,5 +165,49 @@ public class Repositorio {
         }
 
     }
-    //el repositorio me va a dar los metodos para complementar el logout
+
+    public List<Libro> buscarLibro(Long id) {
+        //Usuario usuario = null;
+
+        try {
+            // Crear el constructor de CriteriaQuery
+            CriteriaBuilder cb = em.getCriteriaBuilder();
+            CriteriaQuery<Libro> cq = cb.createQuery(Libro.class);
+            Root<Libro> root = cq.from(Libro.class);
+
+            // Seleccionar todos los registros
+            //cq.select(root);
+            cq.where(cb.equal(root.get("id"), id));
+
+            // Ejecutar la consulta
+            List<Libro> libros = em.createQuery(cq).getResultList();
+            // Mostrar resultados
+            //    usuarios.forEach(System.out::println);
+            return libros;
+        } finally {
+            em.close();
+            //emf.close();
+        }
+
+    }
+
+    public List<CopiaLibro> obtenerCopiasPorLibroId(Long libroId) {
+        try {
+            if (libroId == null) {
+                throw new IllegalArgumentException("El ID del libro no puede ser null");
+            }
+
+            CriteriaBuilder cb = em.getCriteriaBuilder();
+            CriteriaQuery<CopiaLibro> cq = cb.createQuery(CopiaLibro.class);
+            Root<CopiaLibro> copiaRoot = cq.from(CopiaLibro.class);
+
+            //cq.select(copiaRoot).where(cb.equal(copiaRoot.get("libro").get("id"), libroId));
+            cq.select(copiaRoot).where(cb.equal(copiaRoot.get("libro_id"), libroId));
+            
+            return em.createQuery(cq).getResultList();
+        } finally {
+            em.close();
+            //emf.close();
+        }
+    }
 }

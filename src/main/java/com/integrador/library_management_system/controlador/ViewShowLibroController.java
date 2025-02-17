@@ -6,6 +6,8 @@ package com.integrador.library_management_system.controlador;
 
 import static com.integrador.library_management_system.App.loadFXML;
 import com.integrador.library_management_system.modelo.Libro;
+import com.integrador.library_management_system.repositorio.Repositorio;
+import com.integrador.library_management_system.servicios.ServicioLibro;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -53,10 +55,24 @@ public class ViewShowLibroController implements Initializable {
 
     public void setData(Object nombre) {
         Libro libro = (Libro) nombre;
+
+        /*
         var titulo = libro.getTitulo();
         var editorial = libro.getEditorial();
         txtTitulo.setText(titulo);
         txtEditorial.setText(editorial);
+         */
+        Repositorio r = new Repositorio();
+        ServicioLibro sl = new ServicioLibro(r);
+        var librodb = sl.findLibro(libro);
+
+        var l = librodb.get(0);
+
+        if (l.getId() instanceof Long) {
+            System.out.println("El objeto es una instancia de la clase String");
+            sl.obtenerTodos();
+        }
+
     }
 
     @FXML

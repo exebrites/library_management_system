@@ -1,5 +1,6 @@
 package com.integrador.library_management_system;
 
+import com.integrador.library_management_system.modelo.CopiaLibro;
 import com.integrador.library_management_system.modelo.Libro;
 import com.integrador.library_management_system.modelo.Miembro;
 
@@ -13,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Arrays;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
@@ -28,16 +30,27 @@ public class App extends Application {
         //  EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.integradorLMS_PU");
 
         // Crear Repositorio
-        //Repositorio repositorio = new Repositorio();
+        Repositorio repositorio = new Repositorio();
         //   Miembro u = new Miembro(1, "123", true, "exequiel", "brites");
         //   ServicioMiembro su = new ServicioMiembro(repositorio);
         //  su.agregarUsuario(u);
 
         /*
         
-         Libro l = new Libro(2, "ed1", "aut1", "cat1", "isb1", "id1", "ti1");
+        Libro libro = new Libro("ed1", "aut1", "cat1", "isb1", "id1", "ti1");
         ServicioLibro sl = new ServicioLibro(repositorio);
-        sl.agregarLibro(l);
+
+        CopiaLibro copia1 = new CopiaLibro();
+
+        copia1.setLibro(libro);
+
+        CopiaLibro copia2 = new CopiaLibro();
+        copia2.setLibro(libro);
+
+        libro.addCopia(copia1);
+        libro.addCopia(copia2);
+
+        sl.agregarLibro(libro);
          */
         scene = new Scene(loadFXML("ViewLogin"), 1280, 800);
         stage.setScene(scene);
