@@ -4,6 +4,8 @@
  */
 package com.integrador.library_management_system.controlador;
 
+import com.integrador.library_management_system.App;
+import static com.integrador.library_management_system.App.FXML;
 import static com.integrador.library_management_system.App.loadFXML;
 import com.integrador.library_management_system.modelo.Libro;
 import com.integrador.library_management_system.repositorio.Repositorio;
@@ -17,8 +19,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -64,6 +68,11 @@ public class ViewLibroController implements Initializable {
     @FXML
     private Button btnGestionarCopias;
 
+    @FXML
+    private Button btnShow;
+
+    private Object fila;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -79,6 +88,12 @@ public class ViewLibroController implements Initializable {
         listaLibros = FXCollections.observableArrayList(sl.obtenerTodos());
 
         tableLibros.setItems(listaLibros);
+
+        // Listen for selection changes and show the person details when changed.
+        tableLibros.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue)
+                -> this.fila = newValue
+        );
     }
 
     @FXML
@@ -104,6 +119,27 @@ public class ViewLibroController implements Initializable {
             Logger.getLogger(ViewLibroController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+
+    @FXML
+    private void eventShow(ActionEvent event) throws IOException {
+        System.out.println(fila);
+
+        //Cargar la vista
+        var fxml = "ViewShowLibro";
+
+        FXMLLoader loader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+        Parent root = loader.load();
+
+        // Obtener el controlador y pasarle los datos
+        ViewShowLibroController detalleController = loader.getController();
+        detalleController.setData(fila);
+
+        //ocultar la escena anterior y generar una nueva
+        ((Node) (event.getSource())).getScene().getWindow().hide();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
     private void loadStage(String url, ActionEvent event) throws IOException {

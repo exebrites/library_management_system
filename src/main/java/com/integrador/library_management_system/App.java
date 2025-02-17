@@ -54,6 +54,12 @@ public class App extends Application {
         return fxmlLoader.load();
     }
 
+    public static Object FXML(String fxml) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+        Parent root = fxmlLoader.load(); // 🔥 Cargar el FXML antes de obtener el controlador
+        return fxmlLoader.getController();
+    }
+
     public static void main(String[] args) {
         launch();
     }

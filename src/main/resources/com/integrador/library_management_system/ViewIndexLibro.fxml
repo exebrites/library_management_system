@@ -45,6 +45,7 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </TableView>
+                  <Button fx:id="btnShow" mnemonicParsing="false" onAction="#eventShow" text="ver libro" />
                </children>
             </VBox>
          </children>

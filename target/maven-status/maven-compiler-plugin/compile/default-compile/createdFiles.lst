@@ -5,6 +5,7 @@ com/integrador/library_management_system/repositorio/Repositorio.class
 com/integrador/library_management_system/servicios/ServicioMiembro.class
 com/integrador/library_management_system/controlador/ViewLoginController.class
 com/integrador/library_management_system/controlador/ViewIndexUsuarioController.class
+com/integrador/library_management_system/controlador/ViewShowLibroController.class
 com/integrador/library_management_system/controlador/ViewPrincipalController.class
 com/integrador/library_management_system/controlador/ViewCreateLibroController.class
 com/integrador/library_management_system/modelo/Libro_.class
