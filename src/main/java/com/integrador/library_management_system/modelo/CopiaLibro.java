@@ -5,6 +5,8 @@
 package com.integrador.library_management_system.modelo;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -13,7 +15,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -37,17 +42,28 @@ public class CopiaLibro implements Serializable {
     @Enumerated(EnumType.STRING)  // Almacena como texto en la BD
     private EstadoCopiaLibro estado = EstadoCopiaLibro.DISPONIBLE;
 
+    @OneToMany(mappedBy = "copia")
+    private Set<Prestamo> prestamos;
+
     @ManyToOne
-    @JoinColumn(name = "libro_id", nullable = false) // Clave foránea
-    private Libro libro;
+    @JoinColumn(name = "rack_id", nullable = false)
+    private Rack rack;
 
     public CopiaLibro() {
     }
 
-    public CopiaLibro(Long id, Libro libro, TipoCopiaLibro tipo) {
-        this.id = id;
+    public CopiaLibro(TipoCopiaLibro tipo) {
+
         this.tipo = tipo;
-        this.libro = libro;
+        //  this.libro = libro;
+    }
+
+    public Set<Prestamo> getPrestamos() {
+        return prestamos;
+    }
+
+    public void setPrestamos(Set<Prestamo> prestamos) {
+        this.prestamos = prestamos;
     }
 
     public Long getId() {
@@ -82,17 +98,18 @@ public class CopiaLibro implements Serializable {
         this.referenciaLibro = referenciaLibro;
     }
 
-    public Libro getLibro() {
+    /*
+     public Libro getLibro() {
         return libro;
     }
 
     public void setLibro(Libro libro) {
         this.libro = libro;
     }
-
+     */
     @Override
     public String toString() {
-        return "CopiaLibro{" + "id=" + id + ", referenciaLibro=" + referenciaLibro + ", tipo=" + tipo + ", estado=" + estado + ", libro=" + libro + '}';
+        return "CopiaLibro{" + "id=" + id + ", referenciaLibro=" + referenciaLibro + ", tipo=" + tipo + ", estado=" + estado + ", libro=" + '}';
     }
 
 }

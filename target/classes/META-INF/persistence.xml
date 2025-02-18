@@ -5,6 +5,7 @@
     <class>com.integrador.library_management_system.modelo.Miembro</class>
     <class>com.integrador.library_management_system.modelo.Libro</class>
     <class>com.integrador.library_management_system.modelo.CopiaLibro</class>
+    <class>com.integrador.library_management_system.modelo.Prestamo</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/library"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>

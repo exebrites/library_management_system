@@ -5,11 +5,15 @@
 package com.integrador.library_management_system.modelo;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -22,7 +26,7 @@ public class Miembro implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
     @Column
     private String clave;
     @Column
@@ -32,12 +36,15 @@ public class Miembro implements Serializable {
     @Column
     private String apellido;
 
+   
+    @OneToMany(mappedBy = "miembro")
+    private Set<Prestamo> prestamos;
+
     public Miembro() {
     }
 
-    public Miembro(int id, String clave, boolean estadoMiembro, String nombre, String apellido) {
-        this.id = id;
-        this.clave = clave;
+    public Miembro(String nombre, String apellido, boolean estadoMiembro) {
+
         this.estadoMiembro = estadoMiembro;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -59,11 +66,11 @@ public class Miembro implements Serializable {
         this.estadoMiembro = estadoMiembro;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

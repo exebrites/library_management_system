@@ -3,10 +3,13 @@ package com.integrador.library_management_system;
 import com.integrador.library_management_system.modelo.CopiaLibro;
 import com.integrador.library_management_system.modelo.Libro;
 import com.integrador.library_management_system.modelo.Miembro;
+import com.integrador.library_management_system.modelo.Prestamo;
 
 import com.integrador.library_management_system.repositorio.Repositorio;
+import com.integrador.library_management_system.servicios.ServicioCopiaLibro;
 import com.integrador.library_management_system.servicios.ServicioLibro;
 import com.integrador.library_management_system.servicios.ServicioMiembro;
+import com.integrador.library_management_system.servicios.ServicioPrestamo;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,7 +17,10 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
@@ -30,28 +36,22 @@ public class App extends Application {
         //  EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.integradorLMS_PU");
 
         // Crear Repositorio
-        Repositorio repositorio = new Repositorio();
-        //   Miembro u = new Miembro(1, "123", true, "exequiel", "brites");
-        //   ServicioMiembro su = new ServicioMiembro(repositorio);
-        //  su.agregarUsuario(u);
-
-        /*
-        
-        Libro libro = new Libro("ed1", "aut1", "cat1", "isb1", "id1", "ti1");
-        ServicioLibro sl = new ServicioLibro(repositorio);
-
+        Repositorio repo = new Repositorio();
+//-------------------------------------------------------------------------------------
+        //crear miembro y la copia
+        Miembro miembro1 = new Miembro("exe", "brites", true);
         CopiaLibro copia1 = new CopiaLibro();
 
-        copia1.setLibro(libro);
+        //persistir en base de datos ambos
+        ServicioMiembro sm = new ServicioMiembro(repo);
+        sm.agregarUsuario(miembro1);
+        ServicioCopiaLibro scl = new ServicioCopiaLibro(repo);
+        scl.agregarCopiaLibro(copia1);
 
-        CopiaLibro copia2 = new CopiaLibro();
-        copia2.setLibro(libro);
-
-        libro.addCopia(copia1);
-        libro.addCopia(copia2);
-
-        sl.agregarLibro(libro);
-         */
+        //Llamar al servicio de prestamo para asociar miembro con copias
+        ServicioPrestamo sp = new ServicioPrestamo(repo);
+        sp.prestamoMiembro(miembro1.getId(), copia1.getId());
+//-------------------------------------------------------------------------------------
         scene = new Scene(loadFXML("ViewLogin"), 1280, 800);
         stage.setScene(scene);
         stage.setTitle("Library Manager System");

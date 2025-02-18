@@ -39,8 +39,8 @@ public class ServicioLibro {
         this.repositorio.confirmarTransaccion();
     }
 
-    public List<CopiaLibro> obtenerTodos() {
-        return this.repositorio.buscarTodos(CopiaLibro.class);
+    public List<Libro> obtenerTodos() {
+        return this.repositorio.buscarTodos(Libro.class);
     }
 
     public List<Libro> findLibro(Libro libro) {

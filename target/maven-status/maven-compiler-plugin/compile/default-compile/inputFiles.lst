@@ -10,6 +10,7 @@
 /home/exe/NetBeansProjects/library_management_system/src/main/java/com/integrador/library_management_system/controlador/ViewPrincipalController.java
 /home/exe/NetBeansProjects/library_management_system/src/main/java/com/integrador/library_management_system/App.java
 /home/exe/NetBeansProjects/library_management_system/src/main/java/com/integrador/library_management_system/modelo/exceptions/NonexistentEntityException.java
+/home/exe/NetBeansProjects/library_management_system/src/main/java/com/integrador/library_management_system/modelo/Prestamo.java
 /home/exe/NetBeansProjects/library_management_system/src/main/java/com/integrador/library_management_system/controlador/ViewCreatePrestamoController.java
 /home/exe/NetBeansProjects/library_management_system/src/main/java/com/integrador/library_management_system/modelo/EstadoCopiaLibro.java
 /home/exe/NetBeansProjects/library_management_system/src/main/java/com/integrador/library_management_system/modelo/exceptions/PreexistingEntityException.java
@@ -20,3 +21,4 @@
 /home/exe/NetBeansProjects/library_management_system/src/main/java/com/integrador/library_management_system/servicios/ServicioLibro.java
 /home/exe/NetBeansProjects/library_management_system/src/main/java/com/integrador/library_management_system/modelo/Miembro.java
 /home/exe/NetBeansProjects/library_management_system/src/main/java/com/integrador/library_management_system/controlador/ViewIndexUsuarioController.java
+/home/exe/NetBeansProjects/library_management_system/src/main/java/com/integrador/library_management_system/servicios/ServicioPrestamo.java

@@ -4,7 +4,7 @@
  */
 package com.integrador.library_management_system.servicios;
 
- 
+import com.integrador.library_management_system.modelo.CopiaLibro;
 import com.integrador.library_management_system.modelo.Libro;
 import com.integrador.library_management_system.repositorio.Repositorio;
 import java.util.List;
@@ -14,32 +14,33 @@ import java.util.List;
  * @author exe
  */
 public class ServicioCopiaLibro {
-     private final Repositorio repositorio;
+
+    private final Repositorio repositorio;
 
     public ServicioCopiaLibro(Repositorio p) {
         this.repositorio = p;
     }
 
-    public void agregarLibro(Libro libro) {
+    public void agregarCopiaLibro(CopiaLibro copia) {
         this.repositorio.iniciarTransaccion();
-        this.repositorio.insertar(libro);
+        this.repositorio.insertar(copia);
         this.repositorio.confirmarTransaccion();
     }
 
-    public void editarLibro(Libro libro) {
+    public void editarCopiaLibro(CopiaLibro copia) {
         this.repositorio.iniciarTransaccion();
-        this.repositorio.modificar(libro);
+        this.repositorio.modificar(copia);
         this.repositorio.confirmarTransaccion();
     }
 
-    public void eliminarLibro(Libro libro) {
+    public void eliminarCopiaLibro(CopiaLibro copia) {
         this.repositorio.iniciarTransaccion();
-        this.repositorio.eliminar(libro);
+        this.repositorio.eliminar(copia);
         this.repositorio.confirmarTransaccion();
     }
 
-    public List<Libro> obtenerTodos() {
-        return this.repositorio.buscarTodos(Libro.class);
+    public List<CopiaLibro> obtenerTodos() {
+        return this.repositorio.buscarTodos(CopiaLibro.class);
     }
-    
+
 }

@@ -59,6 +59,10 @@ public class Repositorio {
         this.em.refresh(o);
     }
 
+    public void cerrar() {
+        this.em.close();
+    }
+
     // Metodo generico
     // Acepta cualquier tipo (T) que extienda de Object
     // Devuelve un objeto de tipo (T)    
@@ -203,7 +207,7 @@ public class Repositorio {
 
             //cq.select(copiaRoot).where(cb.equal(copiaRoot.get("libro").get("id"), libroId));
             cq.select(copiaRoot).where(cb.equal(copiaRoot.get("libro_id"), libroId));
-            
+
             return em.createQuery(cq).getResultList();
         } finally {
             em.close();
