@@ -5,6 +5,8 @@
 package com.integrador.library_management_system.modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,14 +33,14 @@ public class Rack implements Serializable {
     private String descripcion;
 
     @OneToMany(mappedBy = "rack")
-    private Set<CopiaLibro> copias;
-
-    public Rack(Long id, String descripcion) {
-        this.id = id;
-        this.descripcion = descripcion;
-    }
+    private Set<CopiaLibro> copias = new HashSet<>();
 
     public Rack() {
+    }
+
+    public Rack(String descripcion) {
+
+        this.descripcion = descripcion;
     }
 
     public Long getId() {
@@ -57,17 +59,13 @@ public class Rack implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public Set<CopiaLibro> getCopias() {
-        return copias;
-    }
-
-    public void setCopias(Set<CopiaLibro> copias) {
-        this.copias = copias;
-    }
-
     @Override
     public String toString() {
         return "Rack{" + "id=" + id + ", descripcion=" + descripcion + ", copias=" + copias + '}';
+    }
+
+    public void setCopias(CopiaLibro copias) {
+        this.copias.add(copias);
     }
 
 }

@@ -11,6 +11,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -46,8 +47,12 @@ public class CopiaLibro implements Serializable {
     private Set<Prestamo> prestamos;
 
     @ManyToOne
-    @JoinColumn(name = "rack_id", nullable = false)
+    @JoinColumn(name = "rack_id")
     private Rack rack;
+
+    @ManyToOne
+    @JoinColumn(name = "libro_id")
+    private Libro libro;
 
     public CopiaLibro() {
     }
@@ -98,18 +103,20 @@ public class CopiaLibro implements Serializable {
         this.referenciaLibro = referenciaLibro;
     }
 
-    /*
-     public Libro getLibro() {
+    public Libro getLibro() {
         return libro;
     }
 
     public void setLibro(Libro libro) {
         this.libro = libro;
     }
-     */
+
     @Override
     public String toString() {
         return "CopiaLibro{" + "id=" + id + ", referenciaLibro=" + referenciaLibro + ", tipo=" + tipo + ", estado=" + estado + ", libro=" + '}';
     }
 
+    public void setRack(Rack rack) {
+        this.rack = rack;
+    }
 }

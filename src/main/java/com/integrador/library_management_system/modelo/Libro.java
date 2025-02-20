@@ -40,11 +40,9 @@ public class Libro implements Serializable {
     @Column
     private String titulo;
 
-    /*
-     @OneToMany(mappedBy = "libro", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "libro", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CopiaLibro> copias = new ArrayList<>();
 
-     */
     public Libro() {
     }
 
@@ -138,7 +136,6 @@ public class Libro implements Serializable {
         return "Libro{" + "id=" + id + ", editorial=" + editorial + ", autores=" + autores + ", categoriaTematica=" + categoriaTematica + ", isbn=" + isbn + ", idioma=" + idioma + ", titulo=" + titulo + '}';
     }
 
-    /*
     public void addCopia(CopiaLibro copia) {
         copia.setLibro(this);  // Establece la relación en la copia
         copias.add(copia);
@@ -152,5 +149,9 @@ public class Libro implements Serializable {
     public List<CopiaLibro> getCopias() {
         return copias;
     }
-     */
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
 }

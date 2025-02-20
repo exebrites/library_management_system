@@ -64,7 +64,8 @@ public class ViewShowLibroController implements Initializable {
          */
         Repositorio r = new Repositorio();
         ServicioLibro sl = new ServicioLibro(r);
-        var librodb = sl.findLibro(libro);
+        /*
+         var librodb = sl.findLibro(libro);
 
         var l = librodb.get(0);
 
@@ -72,7 +73,7 @@ public class ViewShowLibroController implements Initializable {
             System.out.println("El objeto es una instancia de la clase String");
             sl.obtenerTodos();
         }
-
+         */
     }
 
     @FXML

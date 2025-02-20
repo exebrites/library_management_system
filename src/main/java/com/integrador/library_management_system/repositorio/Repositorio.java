@@ -13,6 +13,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.persistence.metamodel.SingularAttribute;
@@ -170,7 +171,7 @@ public class Repositorio {
 
     }
 
-    public List<Libro> buscarLibro(Long id) {
+    public Libro buscarLibro(Long id) {
         //Usuario usuario = null;
 
         try {
@@ -187,7 +188,7 @@ public class Repositorio {
             List<Libro> libros = em.createQuery(cq).getResultList();
             // Mostrar resultados
             //    usuarios.forEach(System.out::println);
-            return libros;
+            return libros.get(0);
         } finally {
             em.close();
             //emf.close();
@@ -214,4 +215,82 @@ public class Repositorio {
             //emf.close();
         }
     }
+
+    // definir el metodo all trae todos los registro como php 
+    public List<Libro> all() {
+        try {
+            //1. definir el EntityManager -> em 
+            // 2. Con "em" obtener el CriteriaBuilder cb
+            CriteriaBuilder cb = em.getCriteriaBuilder();
+            // 3. Crear el CriteriaQuery apartir del "cb"
+            CriteriaQuery<Libro> cq = cb.createQuery(Libro.class);
+            // 4. definir la raiz 
+            Root<Libro> root = cq.from(Libro.class);
+
+            cq.select(root);
+
+            List<Libro> resultados = em.createQuery(cq).getResultList();
+            return resultados;
+        } finally {
+            em.close();
+            //emf.close();
+        }
+
+    }
+
+// definir el metodo find trae un registro especifco segun el id 
+    /*
+    public <T extends Object> T find(Class<T> clase, Long id) {
+
+        try {
+            CriteriaBuilder cb = em.getCriteriaBuilder();
+            CriteriaQuery<T> cq = cb.createQuery(clase);
+            Root<T> root = cq.from(clase);
+
+            cq.select(root).where(cb.equal(root.get("id"), id));
+            List<T> resultados = em.createQuery(cq).getResultList();
+            return resultados.isEmpty() ? null : resultados.get(0);
+        } finally {
+            em.close();
+        }
+    }*/
+    public List<Libro> buscarFiltro(String param1) {
+        var clase = Libro.class;
+        var f1 = "titulo";
+
+        try {
+            CriteriaBuilder cb = em.getCriteriaBuilder();
+            CriteriaQuery<Libro> cq = cb.createQuery(clase);
+            Root<Libro> root = cq.from(clase);
+
+            Predicate predicate1 = cb.equal(root.get(f1), param1);
+            //  Predicate predicate2 = cb.equal(root.get(f2), param2);
+
+            cq.select(root).where(predicate1);
+
+            List<Libro> resultados = em.createQuery(cq).getResultList();
+            return resultados;
+        } finally {
+            em.close();
+        }
+    }
+
+    public List<CopiaLibro> findCopiasByLibroId(Long libroId) {
+        // 1. Crear el CriteriaBuilder
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+
+        // 2. Crear la consulta y la raíz
+        CriteriaQuery<CopiaLibro> query = cb.createQuery(CopiaLibro.class);
+        Root<CopiaLibro> copiaRoot = query.from(CopiaLibro.class);
+
+        // 3. Definir la relación con Libro
+        Join<CopiaLibro, Libro> libroJoin = copiaRoot.join("libro");
+
+        // 4. Agregar la condición WHERE (filtrar por ID del libro)
+        query.select(copiaRoot).where(cb.equal(libroJoin.get("id"), libroId));
+
+        // 5. Ejecutar la consulta
+        return em.createQuery(query).getResultList();
+    }
+
 }

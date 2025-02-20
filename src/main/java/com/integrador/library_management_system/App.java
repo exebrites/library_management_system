@@ -4,12 +4,14 @@ import com.integrador.library_management_system.modelo.CopiaLibro;
 import com.integrador.library_management_system.modelo.Libro;
 import com.integrador.library_management_system.modelo.Miembro;
 import com.integrador.library_management_system.modelo.Prestamo;
+import com.integrador.library_management_system.modelo.Rack;
 
 import com.integrador.library_management_system.repositorio.Repositorio;
 import com.integrador.library_management_system.servicios.ServicioCopiaLibro;
 import com.integrador.library_management_system.servicios.ServicioLibro;
 import com.integrador.library_management_system.servicios.ServicioMiembro;
 import com.integrador.library_management_system.servicios.ServicioPrestamo;
+import com.integrador.library_management_system.servicios.ServicioRack;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,6 +22,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -38,24 +41,20 @@ public class App extends Application {
         // Crear Repositorio
         Repositorio repo = new Repositorio();
 //-------------------------------------------------------------------------------------
-        //crear miembro y la copia
-        Miembro miembro1 = new Miembro("exe", "brites", true);
-        CopiaLibro copia1 = new CopiaLibro();
 
-        //persistir en base de datos ambos
-        ServicioMiembro sm = new ServicioMiembro(repo);
-        sm.agregarUsuario(miembro1);
-        ServicioCopiaLibro scl = new ServicioCopiaLibro(repo);
-        scl.agregarCopiaLibro(copia1);
+        ServicioLibro sl = new ServicioLibro(repo);
+        Libro libro = new Libro();
+        libro.setId(Long.valueOf("1001"));
 
-        //Llamar al servicio de prestamo para asociar miembro con copias
-        ServicioPrestamo sp = new ServicioPrestamo(repo);
-        sp.prestamoMiembro(miembro1.getId(), copia1.getId());
+        var l1 = sl.buscarLibro(libro);
+        //System.out.println(l1);
+        var copias = sl.copiasAsociadas(l1);
+        System.out.println(copias);
 //-------------------------------------------------------------------------------------
-        scene = new Scene(loadFXML("ViewLogin"), 1280, 800);
-        stage.setScene(scene);
-        stage.setTitle("Library Manager System");
-        stage.show();
+        //  scene = new Scene(loadFXML("ViewLogin"), 1280, 800);
+        //stage.setScene(scene);
+        // stage.setTitle("Library Manager System");
+        // stage.show();
     }
 
     static void setRoot(String fxml) throws IOException {

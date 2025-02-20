@@ -43,12 +43,25 @@ public class ServicioLibro {
         return this.repositorio.buscarTodos(Libro.class);
     }
 
-    public List<Libro> findLibro(Libro libro) {
-
-        return this.repositorio.buscarLibro(libro.getId());
+    public Libro findLibro(Long id) {
+        this.repositorio.iniciarTransaccion();
+        var libro = this.repositorio.buscarLibro(id);
+        this.repositorio.cerrar();
+        return libro;
     }
 
-    public void copiasLibro(Long id) {
-        System.out.println(this.repositorio.obtenerCopiasPorLibroId(id));
+    // implementar servicio de filtros 
+    public List<Libro> buscarTitulo(String titulo) {
+        return this.repositorio.buscarFiltro(titulo);
     }
+
+    public Libro buscarLibro(Libro libro) {
+        return this.repositorio.buscar(Libro.class, libro.getId());
+    }
+
+    public List<CopiaLibro> copiasAsociadas(Libro libro) {
+        
+        return this.repositorio.findCopiasByLibroId(libro.getId());
+    }
+
 }
