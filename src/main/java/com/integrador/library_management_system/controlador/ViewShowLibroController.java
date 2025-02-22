@@ -5,6 +5,7 @@
 package com.integrador.library_management_system.controlador;
 
 import static com.integrador.library_management_system.App.loadFXML;
+import com.integrador.library_management_system.modelo.CopiaLibro;
 import com.integrador.library_management_system.modelo.Libro;
 import com.integrador.library_management_system.repositorio.Repositorio;
 import com.integrador.library_management_system.servicios.ServicioLibro;
@@ -13,6 +14,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -20,7 +23,10 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 /**
@@ -46,34 +52,70 @@ public class ViewShowLibroController implements Initializable {
     @FXML
     private TextField txtEditorial;
 
+    //TABLA 
+    //tablaCopias
+    @FXML
+    private TableView<CopiaLibro> tablaCopias;
+    //colId
+    //colTipo
+    //colEstado
+    //colReferencia
+
+    @FXML
+    private TableColumn<CopiaLibro, Long> colId;
+    @FXML
+    private TableColumn<CopiaLibro, String> colTipo;
+    @FXML
+    private TableColumn<CopiaLibro, String> colEstado;
+    @FXML
+    private TableColumn colReferencia;
+
+    @FXML
+    private ObservableList<CopiaLibro> listaCopias = FXCollections.observableArrayList();
+
+    private Libro libro1;
+    private Object fila;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // Repositorio r = new Repositorio();
-        // ServicioMiembre s = new ServicioMiembro(r);
 
+        // Listen for selection changes and show the person details when changed.
+        tablaCopias.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue)
+                -> this.fila = newValue
+        );
+        System.out.println(fila);
+
+    }
+
+    private void inicializarTabla() {
+
+        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colTipo.setCellValueFactory(new PropertyValueFactory<>("tipo"));
+        colEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
+        colReferencia.setCellValueFactory(new PropertyValueFactory<>("referenciaLibro"));
+
+        //pasa la lista de copias en base a un libro
+        Repositorio r = new Repositorio();
+        ServicioLibro sl = new ServicioLibro(r);
+
+        var copias = sl.copiasAsociadas(libro1);
+        listaCopias = FXCollections.observableArrayList(copias);
+        tablaCopias.setItems(listaCopias);
+
+//     
     }
 
     public void setData(Object nombre) {
         Libro libro = (Libro) nombre;
-
-        /*
+        libro1 = libro;
         var titulo = libro.getTitulo();
         var editorial = libro.getEditorial();
         txtTitulo.setText(titulo);
         txtEditorial.setText(editorial);
-         */
-        Repositorio r = new Repositorio();
-        ServicioLibro sl = new ServicioLibro(r);
-        /*
-         var librodb = sl.findLibro(libro);
 
-        var l = librodb.get(0);
+        inicializarTabla();
 
-        if (l.getId() instanceof Long) {
-            System.out.println("El objeto es una instancia de la clase String");
-            sl.obtenerTodos();
-        }
-         */
     }
 
     @FXML
@@ -97,6 +139,7 @@ public class ViewShowLibroController implements Initializable {
 
             } else if (evt.equals(btnPrestamo)) {
                 //loadStage("ViewIndexUsuario", event);
+
                 loadStage("ViewCreatePrestamo", event);
 
             }

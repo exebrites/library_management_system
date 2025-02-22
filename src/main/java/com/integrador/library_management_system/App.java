@@ -39,22 +39,15 @@ public class App extends Application {
         //  EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.integradorLMS_PU");
 
         // Crear Repositorio
-        Repositorio repo = new Repositorio();
+      //  Repositorio repo = new Repositorio();
 //-------------------------------------------------------------------------------------
 
-        ServicioLibro sl = new ServicioLibro(repo);
-        Libro libro = new Libro();
-        libro.setId(Long.valueOf("1001"));
-
-        var l1 = sl.buscarLibro(libro);
-        //System.out.println(l1);
-        var copias = sl.copiasAsociadas(l1);
-        System.out.println(copias);
+      
 //-------------------------------------------------------------------------------------
-        //  scene = new Scene(loadFXML("ViewLogin"), 1280, 800);
-        //stage.setScene(scene);
-        // stage.setTitle("Library Manager System");
-        // stage.show();
+         scene = new Scene(loadFXML("ViewLogin"), 1280, 800);
+        stage.setScene(scene);
+         stage.setTitle("Library Manager System");
+         stage.show();
     }
 
     static void setRoot(String fxml) throws IOException {

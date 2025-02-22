@@ -94,6 +94,8 @@ public class ViewLibroController implements Initializable {
                 (observable, oldValue, newValue)
                 -> this.fila = newValue
         );
+        
+        System.out.println(fila);
     }
 
     @FXML
@@ -123,7 +125,7 @@ public class ViewLibroController implements Initializable {
 
     @FXML
     private void eventShow(ActionEvent event) throws IOException {
-        System.out.println(fila);
+        //System.out.println(fila);
 
         //Cargar la vista
         var fxml = "ViewShowLibro";

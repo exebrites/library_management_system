@@ -9,8 +9,8 @@ com/integrador/library_management_system/controlador/ViewLoginController.class
 com/integrador/library_management_system/controlador/ViewIndexUsuarioController.class
 com/integrador/library_management_system/controlador/ViewShowLibroController.class
 com/integrador/library_management_system/controlador/ViewCreatePrestamoController.class
-com/integrador/library_management_system/servicios/ServicioRack.class
 com/integrador/library_management_system/modelo/Prestamo_.class
+com/integrador/library_management_system/servicios/ServicioRack.class
 com/integrador/library_management_system/modelo/Multa_.class
 com/integrador/library_management_system/modelo/Multa.class
 com/integrador/library_management_system/controlador/ViewPrincipalController.class
