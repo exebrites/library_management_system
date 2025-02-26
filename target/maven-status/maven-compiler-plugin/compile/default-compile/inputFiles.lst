@@ -16,6 +16,7 @@
 /home/exe/NetBeansProjects/library_management_system/src/main/java/com/integrador/library_management_system/modelo/Miembro.java
 /home/exe/NetBeansProjects/library_management_system/src/main/java/com/integrador/library_management_system/controlador/ViewIndexUsuarioController.java
 /home/exe/NetBeansProjects/library_management_system/src/main/java/com/integrador/library_management_system/modelo/TipoCopiaLibro.java
+/home/exe/NetBeansProjects/library_management_system/src/main/java/com/integrador/library_management_system/controlador/ViewShowPrestamoController.java
 /home/exe/NetBeansProjects/library_management_system/src/main/java/com/integrador/library_management_system/modelo/Libro.java
 /home/exe/NetBeansProjects/library_management_system/src/main/java/com/integrador/library_management_system/modelo/exceptions/IllegalOrphanException.java
 /home/exe/NetBeansProjects/library_management_system/src/main/java/com/integrador/library_management_system/servicios/ServicioMiembro.java

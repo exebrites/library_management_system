@@ -4,6 +4,7 @@
  */
 package com.integrador.library_management_system.controlador;
 
+import com.integrador.library_management_system.App;
 import static com.integrador.library_management_system.App.loadFXML;
 import com.integrador.library_management_system.modelo.CopiaLibro;
 import com.integrador.library_management_system.modelo.Libro;
@@ -25,8 +26,10 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
@@ -58,36 +61,36 @@ public class ViewCreatePrestamoController implements Initializable {
     private TableColumn<Miembro, String> colApellido;
     @FXML
     private ObservableList<Miembro> listaMiembros;
-    
+
     private Object fila;
     private Object copiaLocal;
     @FXML
     private DatePicker dataInicio;
     @FXML
     private DatePicker dataVencimiento;
-    
+
     @FXML
     private Button btnGuardar;
     @FXML
     private Button btnCancelar;
-    
+
     @FXML
     private TextField txtFiltro;
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+
         colIdentificador.setCellValueFactory(new PropertyValueFactory<>("id"));
         colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         colApellido.setCellValueFactory(new PropertyValueFactory<>("apellido"));
-        
+
         Repositorio r = new Repositorio();
         ServicioMiembro sm = new ServicioMiembro(r);
         List<Miembro> miembros = sm.obtenerTodos();
-        
+
         listaMiembros = FXCollections.observableArrayList(miembros);
         tablaMiembros.setItems(listaMiembros);
-        
+
         tablaMiembros.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue)
                 -> {
@@ -97,20 +100,20 @@ public class ViewCreatePrestamoController implements Initializable {
             }
         }
         );
-        
+
         filtrar();
-        
+
     }
-    
+
     public void setData(Object copia) {
         copiaLocal = copia;
     }
-    
+
     private void filtrar() {
         System.out.println("filtrando ...");
-        
+
         FilteredList<Miembro> filteredList = new FilteredList<>(listaMiembros, u -> true);
-        
+
         txtFiltro.textProperty().addListener((observable, oldValue, newValue) -> {
             //System.out.println(newValue);
 
@@ -125,18 +128,18 @@ public class ViewCreatePrestamoController implements Initializable {
                 }
             }
         });
-        
+
         tablaMiembros.setItems(filteredList);
     }
-    
+
     @FXML
     private void eventAction(ActionEvent event) throws IOException {
         Object evt = event.getSource();
-        
+
         if (evt.equals(btnGuardar)) {
-            
+
             try {
-                
+
                 LocalDate inicio = dataInicio.getValue();
                 LocalDate vencimiento = dataVencimiento.getValue();
                 System.out.println("inicio" + inicio);
@@ -160,6 +163,25 @@ public class ViewCreatePrestamoController implements Initializable {
                 //almacenar prestamo
                 sr.agregarPrestamo(prestamo);
                 System.out.println("prestamo guardado con Exito!");
+                List<Prestamo> prestamos = sr.obtenerTodos();
+                var prestamodb = prestamos.get(prestamos.size() - 1);
+
+                //cargar controlador y pasar a la vista el prestamo
+                var fxml = "ViewShowPrestamo";
+
+                FXMLLoader loader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+                Parent root = loader.load();
+
+                // Obtener el controlador y pasarle los datos
+                ViewShowPrestamoController controller = loader.getController();
+                controller.setData(prestamodb);
+
+                //ocultar la escena anterior y generar una nueva
+                ((Node) (event.getSource())).getScene().getWindow().hide();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.show();
+
             } catch (Exception e) {
                 System.out.println(e);
             }
@@ -167,15 +189,15 @@ public class ViewCreatePrestamoController implements Initializable {
             loadStage("ViewIndexLibro", event);
         }
     }
-    
+
     private void loadStage(String url, ActionEvent event) throws IOException {
         ((Node) (event.getSource())).getScene().getWindow().hide();
-        
+
         Scene scene = new Scene(loadFXML(url));
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.setTitle("Library Manager System");
         stage.show();
     }
-    
+
 }

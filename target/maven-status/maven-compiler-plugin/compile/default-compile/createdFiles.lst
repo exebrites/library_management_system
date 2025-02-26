@@ -2,6 +2,7 @@ com/integrador/library_management_system/modelo/Prestamo.class
 com/integrador/library_management_system/modelo/exceptions/IllegalOrphanException.class
 com/integrador/library_management_system/modelo/exceptions/NonexistentEntityException.class
 com/integrador/library_management_system/modelo/CopiaLibro_.class
+com/integrador/library_management_system/controlador/ViewShowPrestamoController.class
 com/integrador/library_management_system/modelo/Libro.class
 com/integrador/library_management_system/repositorio/Repositorio.class
 com/integrador/library_management_system/servicios/ServicioMiembro.class
