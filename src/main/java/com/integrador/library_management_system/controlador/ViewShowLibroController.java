@@ -4,6 +4,7 @@
  */
 package com.integrador.library_management_system.controlador;
 
+import com.integrador.library_management_system.App;
 import static com.integrador.library_management_system.App.loadFXML;
 import com.integrador.library_management_system.modelo.CopiaLibro;
 import com.integrador.library_management_system.modelo.Libro;
@@ -18,8 +19,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -71,7 +74,7 @@ public class ViewShowLibroController implements Initializable {
     private TableColumn colReferencia;
 
     @FXML
-    private ObservableList<CopiaLibro> listaCopias = FXCollections.observableArrayList();
+    private ObservableList<CopiaLibro> listaCopias;
 
     private Libro libro1;
     private Object fila;
@@ -80,12 +83,12 @@ public class ViewShowLibroController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         // Listen for selection changes and show the person details when changed.
-        tablaCopias.getSelectionModel().selectedItemProperty().addListener(
+        /*
+         tablaCopias.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue)
                 -> this.fila = newValue
         );
-        System.out.println(fila);
-
+         */
     }
 
     private void inicializarTabla() {
@@ -102,6 +105,15 @@ public class ViewShowLibroController implements Initializable {
         var copias = sl.copiasAsociadas(libro1);
         listaCopias = FXCollections.observableArrayList(copias);
         tablaCopias.setItems(listaCopias);
+        tablaCopias.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue)
+                -> {
+            this.fila = newValue;
+            if (newValue != null) {
+                System.out.println("Seleccionaste: " + newValue.getId());
+            }
+        }
+        );
 
 //     
     }
@@ -139,8 +151,22 @@ public class ViewShowLibroController implements Initializable {
 
             } else if (evt.equals(btnPrestamo)) {
                 //loadStage("ViewIndexUsuario", event);
+                //Cargar la vista
+                var fxml = "ViewCreatePrestamo";
 
-                loadStage("ViewCreatePrestamo", event);
+                FXMLLoader loader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+                Parent root = loader.load();
+
+                // Obtener el controlador y pasarle los datos
+                ViewCreatePrestamoController controller = loader.getController();
+                controller.setData(fila);
+
+                //ocultar la escena anterior y generar una nueva
+                ((Node) (event.getSource())).getScene().getWindow().hide();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.show();
+           
 
             }
 

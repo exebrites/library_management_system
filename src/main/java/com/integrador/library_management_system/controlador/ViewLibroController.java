@@ -95,7 +95,7 @@ public class ViewLibroController implements Initializable {
                 -> this.fila = newValue
         );
         
-        System.out.println(fila);
+       // System.out.println(fila);
     }
 
     @FXML

@@ -2,7 +2,11 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
@@ -12,7 +16,7 @@
    <center>
       <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="TOP_LEFT" contentDisplay="TOP" layoutY="-2.0" prefHeight="82.0" prefWidth="598.0" text="Bienvenido &lt;usuario&gt;">
+            <Label alignment="TOP_LEFT" contentDisplay="TOP" layoutY="-2.0" prefHeight="82.0" prefWidth="598.0" text="Crear prestamo">
                <font>
                   <Font size="48.0" />
                </font>
@@ -20,6 +24,21 @@
                   <Insets left="10.0" top="10.0" />
                </padding>
             </Label>
+            <TextField layoutX="59.0" layoutY="96.0" text="copia" />
+            <TableView fx:id="tablaMiembros" layoutX="69.0" layoutY="250.0" prefHeight="176.0" prefWidth="720.0">
+              <columns>
+                <TableColumn fx:id="colIdentificador" prefWidth="75.0" text="identificador" />
+                <TableColumn fx:id="colNombre" prefWidth="75.0" text="nombre" />
+                  <TableColumn fx:id="colApellido" prefWidth="75.0" text="apellido" />
+              </columns>
+            </TableView>
+            <Button fx:id="btnGuardar" layoutX="714.0" layoutY="575.0" mnemonicParsing="false" onAction="#eventAction" text="Guardar" />
+            <DatePicker fx:id="dataInicio" layoutX="84.0" layoutY="493.0" />
+            <DatePicker fx:id="dataVencimiento" layoutX="553.0" layoutY="493.0" />
+            <Label layoutX="88.0" layoutY="474.0" text="fecha de inicio" />
+            <Label layoutX="559.0" layoutY="466.0" text="fecha de vencimiento" />
+            <TextField fx:id="txtFiltro" layoutX="73.0" layoutY="205.0" />
+            <Label layoutX="70.0" layoutY="175.0" prefHeight="15.0" prefWidth="89.0" text="filtro " />
          </children>
       </Pane>
    </center>
