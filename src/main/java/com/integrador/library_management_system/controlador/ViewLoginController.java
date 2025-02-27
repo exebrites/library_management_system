@@ -18,6 +18,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.PasswordField;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
@@ -74,8 +76,11 @@ public class ViewLoginController implements Initializable {
                     System.out.print("usuario logueado exitosamente");
                     loadStage("ViewPrincipal", event);
                 } else {
-                    System.out.print("upss algo falló xd");
-
+                    Alert alert = new Alert(AlertType.ERROR);
+                    alert.setTitle("Información");
+                    alert.setHeaderText("Credenciales incorrectas");
+                    alert.setContentText("El Identificador o Contraseña del usuario con coinciden con los usuarios registrados.VUELVA A INTERNAR NUEVAMENTE");
+                    alert.showAndWait();
                 }
                 // desde aca se va a realizar el login al menos un true o false para continuar 
                 //System.out.print(identificador);

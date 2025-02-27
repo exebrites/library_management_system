@@ -40,6 +40,8 @@ public class Libro implements Serializable {
     @Column
     private String titulo;
 
+    
+    //esto asegura la composicion
     @OneToMany(mappedBy = "libro", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CopiaLibro> copias = new ArrayList<>();
 

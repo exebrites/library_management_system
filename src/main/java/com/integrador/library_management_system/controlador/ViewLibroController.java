@@ -12,6 +12,7 @@ import com.integrador.library_management_system.repositorio.Repositorio;
 import com.integrador.library_management_system.servicios.ServicioLibro;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,7 +25,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -71,7 +75,10 @@ public class ViewLibroController implements Initializable {
     @FXML
     private Button btnShow;
 
-    private Object fila;
+    private Libro libroFila;
+
+    @FXML
+    private Button btnEliminar;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -92,10 +99,10 @@ public class ViewLibroController implements Initializable {
         // Listen for selection changes and show the person details when changed.
         tableLibros.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue)
-                -> this.fila = newValue
+                -> this.libroFila = newValue
         );
-        
-       // System.out.println(fila);
+
+        // System.out.println(fila);
     }
 
     @FXML
@@ -135,13 +142,71 @@ public class ViewLibroController implements Initializable {
 
         // Obtener el controlador y pasarle los datos
         ViewShowLibroController detalleController = loader.getController();
-        detalleController.setData(fila);
+        detalleController.setData(libroFila);
 
         //ocultar la escena anterior y generar una nueva
         ((Node) (event.getSource())).getScene().getWindow().hide();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.show();
+    }
+
+    @FXML
+    private void eventEliminar(ActionEvent event) throws IOException {
+        Object evt = event.getSource();
+        // Cargo la vista
+        if (evt.equals(btnEliminar)) {
+
+            //traer el libro seleccionado
+            System.out.println(libroFila.getClass());
+            //buscar ese libro en db
+            Repositorio r = new Repositorio();
+            ServicioLibro sl = new ServicioLibro(r);
+            //sl.findLibro()
+            // eliminarlo de la db
+            if (libroFila != null) {
+
+                //controlar la eliminacion
+                //si tiene copias asociadas avisar al usuario
+                // el usuario confirma la eliminacion
+                Alert alertConfirmacion = new Alert(AlertType.CONFIRMATION);
+                alertConfirmacion.setTitle("ELIMINAR LIBRO");
+                alertConfirmacion.setHeaderText("Al eliminar un libro se eliminan TODAS LAS COPIAS DEL LIBRO ¿Desea continuar?");
+                alertConfirmacion.setContentText("Elige una opción:");
+
+                Optional<ButtonType> result = alertConfirmacion.showAndWait(); // Muestra la alerta y espera a que el usuario la cierre
+                Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("Información");
+                alert.setHeaderText("Este es un mensaje informativo");
+                if (result.isPresent() && result.get() == ButtonType.OK) {
+
+                    System.out.println("libro eliminado con sus copias");
+
+                    Libro libro = sl.buscarLibro(libroFila);
+                    sl.eliminarLibro(libro);
+
+                    //notificar al usuario 
+                    System.out.println("Eliminado exitosamente");
+
+                    alert.setContentText("LIBRO ELIMINADO EXITOSAMENTE!");
+
+                    alert.showAndWait(); // Muestra la alerta y espera a que el usuario la cierre
+
+                    //volver al index
+                    listaLibros = FXCollections.observableArrayList(sl.obtenerTodos());
+
+                    tableLibros.setItems(listaLibros);
+                } else {
+
+                    System.out.println("Se cancela la operacion");
+                    alert.setContentText("OPERACION CANCELADA!!");
+
+                    alert.showAndWait(); // Muestra la alerta y espera a que el usuario la cierre
+                }
+
+            }
+
+        }
     }
 
     private void loadStage(String url, ActionEvent event) throws IOException {

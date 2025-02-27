@@ -51,7 +51,7 @@ public class CopiaLibro implements Serializable {
     private Rack rack;
 
     @ManyToOne
-    @JoinColumn(name = "libro_id")
+    @JoinColumn(name = "libro_id", nullable = false)
     private Libro libro;
 
     public CopiaLibro() {
