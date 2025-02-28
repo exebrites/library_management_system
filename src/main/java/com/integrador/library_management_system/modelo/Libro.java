@@ -4,10 +4,12 @@
  */
 package com.integrador.library_management_system.modelo;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.CascadeType;
+import javax.persistence.*;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,13 +17,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 /**
  *
  * @author exe
  */
 @Entity
-@Table
+@Table(name = "libros", uniqueConstraints = {
+    @UniqueConstraint(columnNames = "titulo")})
 public class Libro implements Serializable {
 
     @Id
@@ -37,10 +41,12 @@ public class Libro implements Serializable {
     private String isbn;
     @Column
     private String idioma;
-    @Column
+
+    @NotBlank(message = "El título es obligatorio")
+    @Size(max = 255, message = "El título no puede superar los 255 caracteres")
+    @Column(nullable = false, unique = true)
     private String titulo;
 
-    
     //esto asegura la composicion
     @OneToMany(mappedBy = "libro", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CopiaLibro> copias = new ArrayList<>();
@@ -130,6 +136,9 @@ public class Libro implements Serializable {
     }
 
     public void setTitulo(String titulo) {
+        if (titulo.trim().isEmpty()) {
+            throw new IllegalArgumentException("El campo titulo no puede estar vacío.");
+        }
         this.titulo = titulo;
     }
 
