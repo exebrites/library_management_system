@@ -20,6 +20,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -54,21 +56,21 @@ public class ViewCreateLibroController implements Initializable {
     private TextField txtCategoria;
     @FXML
     private TextField txtAutores;
-
+    
     @FXML
     private Button btnGuardar;
     @FXML
     private Button btnCancelar;
-
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        
     }
-
+    
     @FXML
     private void eventAction(ActionEvent event) throws IOException {
         Object evt = event.getSource();
-
+        
         if (evt.equals(btnGuardar)) {
             var titulo = txtTitulo.getText();
             var isbn = txtIsbn.getText();
@@ -76,31 +78,46 @@ public class ViewCreateLibroController implements Initializable {
             var editorial = txtEditorial.getText();
             var autores = txtAutores.getText();
             var categoriaTematica = txtCategoria.getText();
-
+            
             try {
 
-                Libro libro = new Libro(editorial, autores, categoriaTematica, isbn, idioma, titulo);
                 // Cargar datos
                 Repositorio r = new Repositorio();
                 ServicioLibro sl = new ServicioLibro(r);
-                sl.agregarLibro(libro);
-                loadStage("ViewIndexLibro", event);
+                var libros = sl.buscarTitulo(titulo);
+                
+                System.out.println(libros.isEmpty() + "VACIO");
+                System.out.println(libros);
+                if (!libros.isEmpty()) {
+                    Alert alert = new Alert(AlertType.INFORMATION);
+                    alert.setTitle("Alta Libros");
+                    alert.setHeaderText("Titulos duplicados");
+                    alert.setContentText("Ya existe un LIBRO con ese titulo. POR FAVOR INGRESE UN NUEVO TITULO");
+                    alert.showAndWait();
+                } else {
+                    
+                    Libro libro = new Libro(editorial, autores, categoriaTematica, isbn, idioma, titulo);
+                    sl.agregarLibro(libro);
+                    loadStage("ViewIndexLibro", event);
+                    
+                    System.out.println("puto");
+                }
             } catch (Exception e) {
-                System.out.println(e);
+                System.out.println(e.getMessage() + "hola");
             }
         } else if (evt.equals(btnCancelar)) {
             loadStage("ViewIndexLibro", event);
         }
     }
-
+    
     private void loadStage(String url, ActionEvent event) throws IOException {
         ((Node) (event.getSource())).getScene().getWindow().hide();
-
+        
         Scene scene = new Scene(loadFXML(url));
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.setTitle("Library Manager System");
         stage.show();
     }
-
+    
 }

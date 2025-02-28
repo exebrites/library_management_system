@@ -52,6 +52,7 @@ public class ServicioLibro {
 
     // implementar servicio de filtros 
     public List<Libro> buscarTitulo(String titulo) {
+      
         return this.repositorio.buscarFiltro(titulo);
     }
 
@@ -60,7 +61,7 @@ public class ServicioLibro {
     }
 
     public List<CopiaLibro> copiasAsociadas(Libro libro) {
-        
+
         return this.repositorio.findCopiasByLibroId(libro.getId());
     }
 

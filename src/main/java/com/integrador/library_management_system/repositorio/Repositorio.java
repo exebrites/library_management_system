@@ -258,21 +258,17 @@ public class Repositorio {
         var clase = Libro.class;
         var f1 = "titulo";
 
-        try {
-            CriteriaBuilder cb = em.getCriteriaBuilder();
-            CriteriaQuery<Libro> cq = cb.createQuery(clase);
-            Root<Libro> root = cq.from(clase);
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Libro> cq = cb.createQuery(clase);
+        Root<Libro> root = cq.from(clase);
 
-            Predicate predicate1 = cb.equal(root.get(f1), param1);
-            //  Predicate predicate2 = cb.equal(root.get(f2), param2);
+        Predicate predicate1 = cb.equal(root.get(f1), param1);
+        //  Predicate predicate2 = cb.equal(root.get(f2), param2);
 
-            cq.select(root).where(predicate1);
+        cq.select(root).where(predicate1);
 
-            List<Libro> resultados = em.createQuery(cq).getResultList();
-            return resultados;
-        } finally {
-            em.close();
-        }
+        return em.createQuery(cq).getResultList();
+
     }
 
     public List<CopiaLibro> findCopiasByLibroId(Long libroId) {
