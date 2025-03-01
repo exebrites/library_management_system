@@ -32,7 +32,7 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField fx:id="txtTitulo">
+                  <TextField fx:id="txtTitulo" promptText="Cien años de soledad ">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
@@ -48,7 +48,7 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField fx:id="txtIsbn">
+                  <TextField fx:id="txtIsbn" promptText="978-950-563-656-3">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
@@ -64,7 +64,7 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField fx:id="txtIdioma">
+                  <TextField fx:id="txtIdioma" promptText="Español">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
@@ -84,7 +84,7 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField fx:id="txtEditorial">
+                  <TextField fx:id="txtEditorial" promptText="Planeta">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -100,7 +100,7 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField fx:id="txtCategoria">
+                  <TextField fx:id="txtCategoria" promptText="Realismo mágico">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -116,7 +116,7 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField fx:id="txtAutores">
+                  <TextField fx:id="txtAutores" promptText="Gabriel García Márquez">
                      <font>
                         <Font size="18.0" />
                      </font>

@@ -63,6 +63,10 @@ public class Libro implements Serializable {
         if (isbn.trim().isEmpty()) {
             throw new IllegalArgumentException("El campo ISBN no puede estar vacío.");
         }
+        //regla isbn hasta 13 caracteres mas guiones 4=> 17totla ejemplo 978-950-563-656-3
+        if (isbn.length() >= 17) {
+            throw new IllegalArgumentException("El campo ISBN no puede superar los 17 caracteres.");
+        }
 
         if (idioma.trim().isEmpty()) {
             throw new IllegalArgumentException("El campo IDIOMA no puede estar vacío.");
