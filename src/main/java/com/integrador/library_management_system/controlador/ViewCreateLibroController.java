@@ -107,16 +107,25 @@ public class ViewCreateLibroController implements Initializable {
                 // Cargar datos
                 Repositorio r = new Repositorio();
                 ServicioLibro sl = new ServicioLibro(r);
-                var libros = sl.buscarTitulo(titulo);
-
+                var librosTitulos = sl.buscarTitulo(titulo);
+                var librosISBN = sl.buscarISBN(isbn);
                 // aveces si o tras no (?
-                System.out.println(libros.isEmpty() + "VACIO");
-                System.out.println(libros);
-                if (!libros.isEmpty()) {
+                System.out.println(librosTitulos.isEmpty() + "VACIO");
+                System.out.println(librosTitulos);
+                System.out.println("");
+                System.out.println(librosISBN.isEmpty() + "VACIO");
+                System.out.println(librosISBN);
+                if (!librosTitulos.isEmpty()) {
                     Alert alert = new Alert(AlertType.INFORMATION);
                     alert.setTitle("Alta Libros");
                     alert.setHeaderText("Titulos duplicados");
                     alert.setContentText("Ya existe un LIBRO con ese titulo. POR FAVOR INGRESE UN NUEVO TITULO");
+                    alert.showAndWait();
+                } else if (!librosISBN.isEmpty()) {
+                    Alert alert = new Alert(AlertType.INFORMATION);
+                    alert.setTitle("Alta Libros");
+                    alert.setHeaderText("ISBN duplicados");
+                    alert.setContentText("Ya existe un LIBRO con ese ISBN. POR FAVOR INGRESE UN NUEVO ISBN");
                     alert.showAndWait();
                 } else {
 

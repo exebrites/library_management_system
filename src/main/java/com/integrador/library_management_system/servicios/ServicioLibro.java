@@ -52,8 +52,13 @@ public class ServicioLibro {
 
     // implementar servicio de filtros 
     public List<Libro> buscarTitulo(String titulo) {
-      
-        return this.repositorio.buscarFiltro(titulo);
+
+        return this.repositorio.buscarFiltro(titulo, "titulo");
+    }
+
+    public List<Libro> buscarISBN(String titulo) {
+
+        return this.repositorio.buscarFiltro(titulo, "isbn");
     }
 
     public Libro buscarLibro(Libro libro) {

@@ -254,9 +254,9 @@ public class Repositorio {
             em.close();
         }
     }*/
-    public List<Libro> buscarFiltro(String param1) {
+    public List<Libro> buscarFiltro(String param1,String f1) {
         var clase = Libro.class;
-        var f1 = "titulo";
+        //var f1 = "titulo";
 
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Libro> cq = cb.createQuery(clase);
