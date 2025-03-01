@@ -39,6 +39,16 @@ public class ViewCreateLibroController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    @FXML
+    private Button btnGestionarLibro;
+    @FXML
+    private Button btnGestionarUsuario;
+    @FXML
+    private Button btnGestionarPrestamo;
+    @FXML
+    private Button btnGestionarCopias;
+    @FXML
+    private Button btnPrestamo;
     //navegacion
     @FXML
     private Button btnNuevoLibro;
@@ -71,15 +81,26 @@ public class ViewCreateLibroController implements Initializable {
     private void eventAction(ActionEvent event) throws IOException {
         Object evt = event.getSource();
 
-        if (evt.equals(btnGuardar)) {
+        if (evt.equals(btnGestionarLibro)) {
 
-            var titulo = txtTitulo.getText();
+            loadStage("ViewIndexLibro", event);
+        } else if (evt.equals(btnGestionarUsuario)) {
+            loadStage("ViewIndexUsuario", event);
+        } else if (evt.equals(btnGestionarPrestamo)) {
+            //loadStage("ViewIndexUsuario", event);
+            loadStage("ViewIndexPrestamo", event);
+        } else if (evt.equals(btnGestionarCopias)) {
+            //loadStage("ViewIndexUsuario", event);
+            loadStage("ViewIndexCopias", event);
+        } else if (evt.equals(btnGuardar)) {
 
-            var isbn = txtIsbn.getText();
-            var idioma = txtIdioma.getText();
-            var editorial = txtEditorial.getText();
-            var autores = txtAutores.getText();
-            var categoriaTematica = txtCategoria.getText();
+            var titulo = txtTitulo.getText().toUpperCase();
+
+            var isbn = txtIsbn.getText().toUpperCase();
+            var idioma = txtIdioma.getText().toUpperCase();
+            var editorial = txtEditorial.getText().toUpperCase();
+            var autores = txtAutores.getText().toUpperCase();
+            var categoriaTematica = txtCategoria.getText().toUpperCase();
 
             try {
 
@@ -88,6 +109,7 @@ public class ViewCreateLibroController implements Initializable {
                 ServicioLibro sl = new ServicioLibro(r);
                 var libros = sl.buscarTitulo(titulo);
 
+                // aveces si o tras no (?
                 System.out.println(libros.isEmpty() + "VACIO");
                 System.out.println(libros);
                 if (!libros.isEmpty()) {
