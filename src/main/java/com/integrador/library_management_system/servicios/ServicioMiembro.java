@@ -52,17 +52,11 @@ public class ServicioMiembro {
     }
 
     //El servicio se encarga del login
-    public boolean login(int id, String pass) {
+    public List<Miembro> login(int id, String pass) {
 
         //buscarUsuario();
-        var lista = this.repositorio.buscarUsuario(id, pass);
+        return this.repositorio.buscarUsuario(id, pass);
 
-        if (!lista.isEmpty()) {
-         
-            return true;
-        }
-
-        return false;
     }
     //El servicio se encarga del logout
 

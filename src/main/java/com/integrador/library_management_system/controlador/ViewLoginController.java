@@ -7,6 +7,7 @@ package com.integrador.library_management_system.controlador;
 import static com.integrador.library_management_system.App.loadFXML;
 import com.integrador.library_management_system.repositorio.Repositorio;
 import com.integrador.library_management_system.servicios.ServicioMiembro;
+import com.integrador.library_management_system.util.GestorDatos;
 import java.io.IOException;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -23,7 +24,6 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.PasswordField;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -71,9 +71,12 @@ public class ViewLoginController implements Initializable {
             if (!txtIdentificador.getText().isEmpty() && !txtContrasenia.getText().isEmpty()) {
                 var identificador = Integer.parseInt(txtIdentificador.getText());
                 String contrasenia = txtContrasenia.getText();
-
-                if (su.login(identificador, contrasenia)) {
+                var miembro = su.login(identificador, contrasenia);
+                if (!miembro.isEmpty()) {
                     System.out.print("usuario logueado exitosamente");
+
+                    GestorDatos.guardarDato("miembroAuth", miembro.get(0));
+
                     loadStage("ViewPrincipal", event);
                 } else {
                     Alert alert = new Alert(AlertType.ERROR);

@@ -12,7 +12,7 @@
    <center>
       <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="TOP_LEFT" contentDisplay="TOP" layoutY="-2.0" prefHeight="82.0" prefWidth="598.0" text="Bienvenido &lt;usuario&gt;">
+            <Label fx:id="lbBienvenida" alignment="TOP_LEFT" contentDisplay="TOP" layoutY="-2.0" prefHeight="82.0" prefWidth="598.0" text="Bienvenido &lt;usuario&gt;">
                <font>
                   <Font size="48.0" />
                </font>
@@ -34,7 +34,7 @@
                   <Insets left="10.0" top="10.0" />
                </padding>
             </Label>
-            <Label alignment="TOP_RIGHT" layoutX="1052.0" prefHeight="52.0" prefWidth="202.0" text="Nombre de usuario">
+            <Label fx:id="lbUser" alignment="TOP_RIGHT" layoutX="1052.0" prefHeight="52.0" prefWidth="202.0" text="Nombre de usuario">
                <font>
                   <Font size="18.0" />
                </font>
