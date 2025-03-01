@@ -173,23 +173,29 @@ public class ViewLibroController implements Initializable {
 
     @FXML
     private void eventShow(ActionEvent event) throws IOException {
-        //System.out.println(fila);
 
-        //Cargar la vista
-        var fxml = "ViewShowLibro";
+        if (libroFila == null) {
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("Seleccione un libro");
+            alert.setContentText("Para continuar debe seleccionar un libro");
+            alert.showAndWait();
+        } else {
+            //Cargar la vista
+            var fxml = "ViewShowLibro";
 
-        FXMLLoader loader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
-        Parent root = loader.load();
+            FXMLLoader loader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+            Parent root = loader.load();
 
-        // Obtener el controlador y pasarle los datos
-        ViewShowLibroController detalleController = loader.getController();
-        detalleController.setData(libroFila);
+            // Obtener el controlador y pasarle los datos
+            ViewShowLibroController detalleController = loader.getController();
+            detalleController.setData(libroFila);
 
-        //ocultar la escena anterior y generar una nueva
-        ((Node) (event.getSource())).getScene().getWindow().hide();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.show();
+            //ocultar la escena anterior y generar una nueva
+            ((Node) (event.getSource())).getScene().getWindow().hide();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        }
     }
 
     @FXML
