@@ -36,7 +36,6 @@ public class Miembro implements Serializable {
     @Column
     private String apellido;
 
-   
     @OneToMany(mappedBy = "miembro")
     private Set<Prestamo> prestamos;
 
@@ -46,8 +45,8 @@ public class Miembro implements Serializable {
     public Miembro(String nombre, String apellido, boolean estadoMiembro) {
 
         this.estadoMiembro = estadoMiembro;
-        this.nombre = nombre;
-        this.apellido = apellido;
+        this.nombre = nombre.toUpperCase();
+        this.apellido = apellido.toUpperCase();
     }
 
     public String getClave() {
@@ -79,7 +78,7 @@ public class Miembro implements Serializable {
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.nombre = nombre.toUpperCase();
     }
 
     public String getApellido() {
@@ -87,12 +86,12 @@ public class Miembro implements Serializable {
     }
 
     public void setApellido(String apellido) {
-        this.apellido = apellido;
+        this.apellido = apellido.toUpperCase();
     }
 
     public String getFullName() {
 
-        return nombre + " " + apellido;
+        return nombre.toUpperCase() + " " + apellido.toUpperCase();
     }
 
     @Override

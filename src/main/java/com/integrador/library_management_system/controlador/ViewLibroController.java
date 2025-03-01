@@ -8,8 +8,10 @@ import com.integrador.library_management_system.App;
 import static com.integrador.library_management_system.App.FXML;
 import static com.integrador.library_management_system.App.loadFXML;
 import com.integrador.library_management_system.modelo.Libro;
+import com.integrador.library_management_system.modelo.Miembro;
 import com.integrador.library_management_system.repositorio.Repositorio;
 import com.integrador.library_management_system.servicios.ServicioLibro;
+import com.integrador.library_management_system.util.GestorDatos;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -18,6 +20,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,8 +32,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -80,9 +85,21 @@ public class ViewLibroController implements Initializable {
     @FXML
     private Button btnEliminar;
 
+    @FXML
+    private TextField txtFiltroTitulo;
+
+    /*NODOS DE VISTA*/
+    @FXML
+    private Label lbUser;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        /*DATOS DE USUARIO*/
+        Miembro miembro = (Miembro) GestorDatos.obtenerDato("miembroAuth");
+        lbUser.setText(miembro.getNombre());
+
+        /*TABLA*/
         colIsbn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
         colTitulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
         colAutores.setCellValueFactory(new PropertyValueFactory<>("autores"));
@@ -103,6 +120,30 @@ public class ViewLibroController implements Initializable {
         );
 
         // System.out.println(fila);
+        filtrar();
+    }
+
+    private void filtrar() {
+        System.out.println("filtrando ...");
+
+        FilteredList<Libro> filteredList = new FilteredList<>(listaLibros, u -> true);
+
+        txtFiltroTitulo.textProperty().addListener((observable, oldValue, newValue) -> {
+            //System.out.println(newValue);
+
+            //si es vacio muestra todo
+            if (newValue.isEmpty()) {
+                filteredList.setPredicate(u -> true);
+            } else {
+                //filtro por el titulo. El filtro tiene encuentra si la cadena esta contenido dentro de los titulos
+
+                filteredList.setPredicate(u -> u.getTitulo().contains(newValue.toUpperCase()));
+
+            }
+        });
+
+        tableLibros.setItems(filteredList);
+
     }
 
     @FXML

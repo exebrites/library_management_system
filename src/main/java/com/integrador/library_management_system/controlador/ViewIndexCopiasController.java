@@ -6,8 +6,10 @@ package com.integrador.library_management_system.controlador;
 
 import static com.integrador.library_management_system.App.loadFXML;
 import com.integrador.library_management_system.modelo.Libro;
+import com.integrador.library_management_system.modelo.Miembro;
 import com.integrador.library_management_system.repositorio.Repositorio;
 import com.integrador.library_management_system.servicios.ServicioLibro;
+import com.integrador.library_management_system.util.GestorDatos;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -21,6 +23,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -34,7 +37,6 @@ import javafx.stage.Stage;
  */
 public class ViewIndexCopiasController implements Initializable {
 
-    
     @FXML
     private Button btnGestionarLibro;
     @FXML
@@ -43,16 +45,22 @@ public class ViewIndexCopiasController implements Initializable {
     private Button btnGestionarPrestamo;
     @FXML
     private Button btnGestionarCopias;
-    
-    
+    /*NAVEGACION*/
+
+    @FXML
+    private Label lbUser;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        /*DATOS DE USUARIO*/
+        Miembro miembro = (Miembro) GestorDatos.obtenerDato("miembroAuth");
+        lbUser.setText(miembro.getNombre());
     }
 
     @FXML
     private void eventAction(ActionEvent event) throws IOException {
-try {
+        try {
             // Cargo la vista
             Object evt = event.getSource();
 
