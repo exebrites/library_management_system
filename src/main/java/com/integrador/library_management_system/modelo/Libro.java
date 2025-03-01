@@ -56,29 +56,29 @@ public class Libro implements Serializable {
 
     public Libro(String editorial, String autores, String categoriaTematica, String isbn, String idioma, String titulo) {
 
-        if (editorial.trim().isEmpty()) {
-            throw new IllegalArgumentException("El campo editor no puede estar vacío.");
-        }
-
-        if (autores.trim().isEmpty()) {
-            throw new IllegalArgumentException("El campo autores no puede estar vacío.");
-        }
-
-        if (categoriaTematica.trim().isEmpty()) {
-            throw new IllegalArgumentException("El campo categoria tematica no puede estar vacío.");
+        if (titulo.trim().isEmpty()) {
+            throw new IllegalArgumentException("El campo TITULO no puede estar vacío.");
         }
 
         if (isbn.trim().isEmpty()) {
-            throw new IllegalArgumentException("El campo isbn no puede estar vacío.");
+            throw new IllegalArgumentException("El campo ISBN no puede estar vacío.");
         }
 
         if (idioma.trim().isEmpty()) {
-            throw new IllegalArgumentException("El campo idioma no puede estar vacío.");
+            throw new IllegalArgumentException("El campo IDIOMA no puede estar vacío.");
         }
 
-        if (titulo.trim().isEmpty()) {
-            throw new IllegalArgumentException("El campo titulo no puede estar vacío.");
+        if (editorial.trim().isEmpty()) {
+            throw new IllegalArgumentException("El campo EDITOR no puede estar vacío.");
         }
+        if (categoriaTematica.trim().isEmpty()) {
+            throw new IllegalArgumentException("El campo CATEGORIA tematica no puede estar vacío.");
+        }
+
+        if (autores.trim().isEmpty()) {
+            throw new IllegalArgumentException("El campo AUTORES no puede estar vacío.");
+        }
+
         this.editorial = editorial.toUpperCase();
         this.autores = autores.toUpperCase();
         this.categoriaTematica = categoriaTematica.toUpperCase();

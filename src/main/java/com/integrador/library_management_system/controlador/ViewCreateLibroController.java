@@ -56,36 +56,38 @@ public class ViewCreateLibroController implements Initializable {
     private TextField txtCategoria;
     @FXML
     private TextField txtAutores;
-    
+
     @FXML
     private Button btnGuardar;
     @FXML
     private Button btnCancelar;
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+
     }
-    
+
     @FXML
     private void eventAction(ActionEvent event) throws IOException {
         Object evt = event.getSource();
-        
+
         if (evt.equals(btnGuardar)) {
+
             var titulo = txtTitulo.getText();
+
             var isbn = txtIsbn.getText();
             var idioma = txtIdioma.getText();
             var editorial = txtEditorial.getText();
             var autores = txtAutores.getText();
             var categoriaTematica = txtCategoria.getText();
-            
+
             try {
 
                 // Cargar datos
                 Repositorio r = new Repositorio();
                 ServicioLibro sl = new ServicioLibro(r);
                 var libros = sl.buscarTitulo(titulo);
-                
+
                 System.out.println(libros.isEmpty() + "VACIO");
                 System.out.println(libros);
                 if (!libros.isEmpty()) {
@@ -95,29 +97,36 @@ public class ViewCreateLibroController implements Initializable {
                     alert.setContentText("Ya existe un LIBRO con ese titulo. POR FAVOR INGRESE UN NUEVO TITULO");
                     alert.showAndWait();
                 } else {
-                    
+
                     Libro libro = new Libro(editorial, autores, categoriaTematica, isbn, idioma, titulo);
                     sl.agregarLibro(libro);
                     loadStage("ViewIndexLibro", event);
-                    
+
                     System.out.println("puto");
                 }
+            } catch (IllegalArgumentException ie) {
+                Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("Alta Libros");
+                alert.setHeaderText("Datos ingresados");
+                alert.setContentText(ie.getMessage());
+                alert.showAndWait();
             } catch (Exception e) {
                 System.out.println(e.getMessage() + "hola");
+
             }
         } else if (evt.equals(btnCancelar)) {
             loadStage("ViewIndexLibro", event);
         }
     }
-    
+
     private void loadStage(String url, ActionEvent event) throws IOException {
         ((Node) (event.getSource())).getScene().getWindow().hide();
-        
+
         Scene scene = new Scene(loadFXML(url));
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.setTitle("Library Manager System");
         stage.show();
     }
-    
+
 }
