@@ -75,7 +75,7 @@ public class ViewCreateCopiaLibroController implements Initializable {
 
     @FXML
     private Label lbUser;
-
+ 
     //LISTADO DE LIBROS
     //tablaLibros
     @FXML

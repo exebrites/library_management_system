@@ -8,8 +8,10 @@ import com.integrador.library_management_system.App;
 import static com.integrador.library_management_system.App.loadFXML;
 import com.integrador.library_management_system.modelo.CopiaLibro;
 import com.integrador.library_management_system.modelo.Libro;
+import com.integrador.library_management_system.modelo.Miembro;
 import com.integrador.library_management_system.repositorio.Repositorio;
 import com.integrador.library_management_system.servicios.ServicioLibro;
+import com.integrador.library_management_system.util.GestorDatos;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -30,6 +32,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
 
 /**
@@ -54,6 +57,14 @@ public class ViewShowLibroController implements Initializable {
     private TextField txtTitulo;
     @FXML
     private TextField txtEditorial;
+    @FXML
+    private TextField txtAutores;
+    @FXML
+    private TextField txtCategoria;
+    @FXML
+    private TextField txtIsbn;
+    @FXML
+    private TextField txtIdioma;
 
     //TABLA 
     //tablaCopias
@@ -79,8 +90,15 @@ public class ViewShowLibroController implements Initializable {
     private Libro libro1;
     private Object fila;
 
+    //NOMBRE USER
+    @FXML
+    private Label lbUser;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+        Miembro miembro = (Miembro) GestorDatos.obtenerDato("miembroAuth");
+        lbUser.setText(miembro.getNombre());
 
         // Listen for selection changes and show the person details when changed.
         /*
@@ -98,6 +116,17 @@ public class ViewShowLibroController implements Initializable {
         colEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
         colReferencia.setCellValueFactory(new PropertyValueFactory<>("referenciaLibro"));
 
+        colReferencia.setCellFactory(column -> new TextFieldTableCell<Libro, Boolean>() {
+            @Override
+            public void updateItem(Boolean item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    setText(item ? "SI" : "NO");
+                }
+            }
+        });
         //pasa la lista de copias en base a un libro
         Repositorio r = new Repositorio();
         ServicioLibro sl = new ServicioLibro(r);
@@ -118,14 +147,16 @@ public class ViewShowLibroController implements Initializable {
 //     
     }
 
-    public void setData(Object nombre) {
-        Libro libro = (Libro) nombre;
+    public void setData(Object data) {
+        Libro libro = (Libro) data;
         libro1 = libro;
-        var titulo = libro.getTitulo();
-        var editorial = libro.getEditorial();
-        txtTitulo.setText(titulo);
-        txtEditorial.setText(editorial);
 
+        txtTitulo.setText(libro.getTitulo());
+        txtEditorial.setText(libro.getEditorial());
+        txtAutores.setText(libro.getAutores());
+        txtCategoria.setText(libro.getCategoriaTematica());
+        txtIsbn.setText(libro.getIsbn());
+        txtIdioma.setText(libro.getIdioma());
         inicializarTabla();
 
     }
@@ -166,7 +197,6 @@ public class ViewShowLibroController implements Initializable {
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));
                 stage.show();
-           
 
             }
 

@@ -33,4 +33,5 @@ com/integrador/library_management_system/servicios/ServicioPrestamo.class
 com/integrador/library_management_system/controlador/ViewLibroController.class
 com/integrador/library_management_system/modelo/Miembro_.class
 com/integrador/library_management_system/modelo/Rack.class
+com/integrador/library_management_system/controlador/ViewShowLibroController$1.class
 com/integrador/library_management_system/util/GestorDatos.class
