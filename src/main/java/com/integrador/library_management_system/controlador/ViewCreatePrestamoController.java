@@ -63,7 +63,7 @@ public class ViewCreatePrestamoController implements Initializable {
     private ObservableList<Miembro> listaMiembros;
 
     private Object fila;
-    private Object copiaLocal;
+    private CopiaLibro copiaLocal;
     @FXML
     private DatePicker dataInicio;
     @FXML
@@ -76,6 +76,18 @@ public class ViewCreatePrestamoController implements Initializable {
 
     @FXML
     private TextField txtFiltro;
+    @FXML
+    private TextField txtfiltroNombre;
+    @FXML
+    private TextField txtfiltroApellido;
+
+    //Campos de copia
+    @FXML
+    private TextField txtId;
+    @FXML
+    private TextField txtEstado;
+    @FXML
+    private TextField txtTipo;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -105,8 +117,14 @@ public class ViewCreatePrestamoController implements Initializable {
 
     }
 
-    public void setData(Object copia) {
-        copiaLocal = copia;
+    public void setData(Object data) {
+        copiaLocal = (CopiaLibro) data;
+        txtId.setText(copiaLocal.getId().toString());
+
+        txtEstado.setText(copiaLocal.getEstado().toString());
+
+        txtTipo.setText(copiaLocal.getTipo().toString());
+
     }
 
     private void filtrar() {
@@ -114,6 +132,7 @@ public class ViewCreatePrestamoController implements Initializable {
 
         FilteredList<Miembro> filteredList = new FilteredList<>(listaMiembros, u -> true);
 
+        //filtro excluyentes
         txtFiltro.textProperty().addListener((observable, oldValue, newValue) -> {
             //System.out.println(newValue);
 
@@ -127,6 +146,19 @@ public class ViewCreatePrestamoController implements Initializable {
                     filteredList.setPredicate(u -> false); // Si no es número, no muestra nada
                 }
             }
+        });
+
+        //filtro por nombre
+        txtfiltroNombre.textProperty().addListener((observable, oldValue, newValue) -> {
+
+            filteredList.setPredicate(u -> u.getNombre().contains(newValue));
+
+        });
+
+        txtfiltroApellido.textProperty().addListener((observable, oldValue, newValue) -> {
+
+            filteredList.setPredicate(u -> u.getApellido().contains(newValue));
+
         });
 
         tablaMiembros.setItems(filteredList);

@@ -24,7 +24,7 @@
                   <Insets left="10.0" top="10.0" />
                </padding>
             </Label>
-            <TextField layoutX="59.0" layoutY="96.0" text="copia" />
+            <TextField fx:id="txtId" editable="false" layoutX="59.0" layoutY="96.0" />
             <TableView fx:id="tablaMiembros" layoutX="69.0" layoutY="250.0" prefHeight="176.0" prefWidth="720.0">
               <columns>
                 <TableColumn fx:id="colIdentificador" prefWidth="75.0" text="identificador" />
@@ -38,7 +38,16 @@
             <Label layoutX="88.0" layoutY="474.0" text="fecha de inicio" />
             <Label layoutX="559.0" layoutY="466.0" text="fecha de vencimiento" />
             <TextField fx:id="txtFiltro" layoutX="73.0" layoutY="205.0" />
-            <Label layoutX="70.0" layoutY="175.0" prefHeight="15.0" prefWidth="89.0" text="filtro " />
+            <Label layoutX="70.0" layoutY="175.0" prefHeight="16.0" prefWidth="161.0" text="filtro por identificador" />
+            <Label layoutX="55.0" layoutY="80.0" text="Identificador" />
+            <TextField fx:id="txtEstado" editable="false" layoutX="283.0" layoutY="97.0" />
+            <Label layoutX="279.0" layoutY="81.0" text="Estado" />
+            <TextField fx:id="txtTipo" editable="false" layoutX="498.0" layoutY="95.0" />
+            <Label layoutX="494.0" layoutY="79.0" text="Tipo" />
+            <TextField fx:id="txtfiltroNombre" layoutX="273.0" layoutY="203.0" />
+            <Label layoutX="270.0" layoutY="173.0" prefHeight="16.0" prefWidth="191.0" text="filtro por nombre " />
+            <TextField fx:id="txtfiltroApellido" layoutX="498.0" layoutY="207.0" />
+            <Label layoutX="495.0" layoutY="177.0" prefHeight="16.0" prefWidth="191.0" text="filtro por apellido" />
          </children>
       </Pane>
    </center>

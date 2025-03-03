@@ -26,6 +26,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -88,7 +90,7 @@ public class ViewShowLibroController implements Initializable {
     private ObservableList<CopiaLibro> listaCopias;
 
     private Libro libro1;
-    private Object fila;
+    private CopiaLibro copia;
 
     //NOMBRE USER
     @FXML
@@ -137,7 +139,7 @@ public class ViewShowLibroController implements Initializable {
         tablaCopias.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue)
                 -> {
-            this.fila = newValue;
+            this.copia = newValue;
             if (newValue != null) {
                 System.out.println("Seleccionaste: " + newValue.getId());
             }
@@ -183,21 +185,34 @@ public class ViewShowLibroController implements Initializable {
             } else if (evt.equals(btnPrestamo)) {
                 //loadStage("ViewIndexUsuario", event);
                 //Cargar la vista
-                var fxml = "ViewCreatePrestamo";
 
-                FXMLLoader loader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
-                Parent root = loader.load();
+                if (copia == null) {
+                    Alert alert = new Alert(AlertType.WARNING);
+                    alert.setTitle("Copia");
+                    alert.setHeaderText("Seleccione una COPIA para continuar");
+                    alert.showAndWait();
+                } else if (copia.isReferenciaLibro()) {
+                    Alert alert2 = new Alert(AlertType.WARNING);
+                    alert2.setTitle("Copia selecciona");
+                    alert2.setHeaderText("COPIA DE REFERENCIA");
+                    alert2.setContentText("La copia seleccionada es una copia de REFERENCIA. Elija otra copia para CONTINUAR");
+                    alert2.showAndWait();
+                } else {
+                    var fxml = "ViewCreatePrestamo";
 
-                // Obtener el controlador y pasarle los datos
-                ViewCreatePrestamoController controller = loader.getController();
-                controller.setData(fila);
+                    FXMLLoader loader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+                    Parent root = loader.load();
 
-                //ocultar la escena anterior y generar una nueva
-                ((Node) (event.getSource())).getScene().getWindow().hide();
-                Stage stage = new Stage();
-                stage.setScene(new Scene(root));
-                stage.show();
+                    // Obtener el controlador y pasarle los datos
+                    ViewCreatePrestamoController controller = loader.getController();
+                    controller.setData(copia);
 
+                    //ocultar la escena anterior y generar una nueva
+                    ((Node) (event.getSource())).getScene().getWindow().hide();
+                    Stage stage = new Stage();
+                    stage.setScene(new Scene(root));
+                    stage.show();
+                }
             }
 
         } catch (IOException ex) {
