@@ -36,7 +36,7 @@ import javafx.stage.Stage;
  * @author exe
  */
 public class ViewIndexCopiasController implements Initializable {
-
+    
     @FXML
     private Button btnGestionarLibro;
     @FXML
@@ -46,10 +46,13 @@ public class ViewIndexCopiasController implements Initializable {
     @FXML
     private Button btnGestionarCopias;
     /*NAVEGACION*/
-
+    
+    @FXML
+    private Button btnNuevaCopia;
+    
     @FXML
     private Label lbUser;
-
+      
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -57,15 +60,15 @@ public class ViewIndexCopiasController implements Initializable {
         Miembro miembro = (Miembro) GestorDatos.obtenerDato("miembroAuth");
         lbUser.setText(miembro.getNombre());
     }
-
+    
     @FXML
     private void eventAction(ActionEvent event) throws IOException {
         try {
             // Cargo la vista
             Object evt = event.getSource();
-
+            
             if (evt.equals(btnGestionarLibro)) {
-
+                
                 loadStage("ViewIndexLibro", event);
             } else if (evt.equals(btnGestionarUsuario)) {
                 loadStage("ViewIndexUsuario", event);
@@ -75,22 +78,25 @@ public class ViewIndexCopiasController implements Initializable {
             } else if (evt.equals(btnGestionarCopias)) {
                 //loadStage("ViewIndexUsuario", event);
                 loadStage("ViewIndexCopias", event);
-
+                
+            } else if (evt.equals(btnNuevaCopia)) {
+                 loadStage("ViewCreateCopiaLibro", event);
+                
             }
-
+            
         } catch (IOException ex) {
             Logger.getLogger(ViewPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     private void loadStage(String url, ActionEvent event) throws IOException {
         ((Node) (event.getSource())).getScene().getWindow().hide();
-
+        
         Scene scene = new Scene(loadFXML(url));
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.setTitle("Library Manager System");
         stage.show();
     }
-
+    
 }

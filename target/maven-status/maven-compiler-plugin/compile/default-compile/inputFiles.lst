@@ -20,6 +20,7 @@
 /home/exe/NetBeansProjects/library_management_system/src/main/java/com/integrador/library_management_system/modelo/Libro.java
 /home/exe/NetBeansProjects/library_management_system/src/main/java/com/integrador/library_management_system/modelo/exceptions/IllegalOrphanException.java
 /home/exe/NetBeansProjects/library_management_system/src/main/java/com/integrador/library_management_system/servicios/ServicioMiembro.java
+/home/exe/NetBeansProjects/library_management_system/src/main/java/com/integrador/library_management_system/controlador/ViewCreateCopiaLibroController.java
 /home/exe/NetBeansProjects/library_management_system/src/main/java/com/integrador/library_management_system/modelo/Multa.java
 /home/exe/NetBeansProjects/library_management_system/src/main/java/com/integrador/library_management_system/modelo/exceptions/NonexistentEntityException.java
 /home/exe/NetBeansProjects/library_management_system/src/main/java/com/integrador/library_management_system/util/GestorDatos.java
