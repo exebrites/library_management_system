@@ -5,10 +5,12 @@
 package com.integrador.library_management_system.controlador;
 
 import static com.integrador.library_management_system.App.loadFXML;
+import com.integrador.library_management_system.modelo.CopiaLibro;
 import com.integrador.library_management_system.modelo.Libro;
 import com.integrador.library_management_system.modelo.Miembro;
 import com.integrador.library_management_system.modelo.TipoCopiaLibro;
 import com.integrador.library_management_system.repositorio.Repositorio;
+import com.integrador.library_management_system.servicios.ServicioCopiaLibro;
 import com.integrador.library_management_system.servicios.ServicioLibro;
 import com.integrador.library_management_system.util.GestorDatos;
 import java.io.IOException;
@@ -146,9 +148,23 @@ public class ViewCreateCopiaLibroController implements Initializable {
             //controla el combobox
             var tipoCopia = cboxTipo.getValue();
             var referencia = checkReferencia.isSelected();
-            System.out.println("creando copia");
-            System.out.println(cboxTipo.getValue());
-            System.out.println(checkReferencia.isSelected());
+
+            try {
+                Repositorio r = new Repositorio();
+                ServicioCopiaLibro scopia = new ServicioCopiaLibro(r);
+                ServicioLibro sl = new ServicioLibro(r);
+                var librodb = sl.buscarLibro(libroFila);
+
+                CopiaLibro copia = new CopiaLibro(tipoCopia, librodb);
+                copia.setReferenciaLibro(referencia);
+
+                copia.setLibro(librodb);
+
+                scopia.agregarCopiaLibro(copia);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+
         } else if (evt.equals(btnCancelar)) {
             loadStage("ViewIndexLibro", event);
         }

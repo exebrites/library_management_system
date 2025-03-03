@@ -57,11 +57,12 @@ public class CopiaLibro implements Serializable {
     public CopiaLibro() {
     }
 
-    public CopiaLibro(TipoCopiaLibro tipo) {
+    public CopiaLibro(TipoCopiaLibro tipo, Libro libro) {
 
         this.tipo = tipo;
-        //  this.libro = libro;
+        this.libro = libro;
     }
+    
 
     public Set<Prestamo> getPrestamos() {
         return prestamos;
@@ -119,4 +120,5 @@ public class CopiaLibro implements Serializable {
     public void setRack(Rack rack) {
         this.rack = rack;
     }
+
 }
