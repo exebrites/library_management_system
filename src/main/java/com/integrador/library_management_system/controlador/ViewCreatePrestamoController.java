@@ -31,6 +31,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
@@ -171,51 +173,69 @@ public class ViewCreatePrestamoController implements Initializable {
         if (evt.equals(btnGuardar)) {
 
             try {
+                if (fila == null) {
+                    Alert alert = new Alert(AlertType.WARNING);
+                    alert.setTitle("Miembro");
+                    alert.setHeaderText("Seleccionar miembro");
+                    alert.setContentText("Seleccione un MIEMBRO para CONTINUAR");
+                    alert.showAndWait();
+                } else {
 
-                LocalDate inicio = dataInicio.getValue();
-                LocalDate vencimiento = dataVencimiento.getValue();
-                System.out.println("inicio" + inicio);
-                System.out.println("venc" + vencimiento);
-                System.out.println("miembro" + fila);
-                System.out.println("copia" + copiaLocal.toString());
+                    LocalDate inicio = dataInicio.getValue();
+                    LocalDate vencimiento = dataVencimiento.getValue();
+                    System.out.println("inicio" + inicio);
+                    System.out.println("venc" + vencimiento);
+                    System.out.println("miembro" + fila);
+                    System.out.println("copia" + copiaLocal.toString());
 
-                //crear objeto prestamo
-                Prestamo prestamo = new Prestamo();
-                prestamo.setFechaPrestamo(inicio);
-                prestamo.setFechaVencimiento(vencimiento);
+                    //crear objeto prestamo
+                    Prestamo prestamo = new Prestamo(inicio, vencimiento);
 
-                //asociar miembro a prestamo 
-                prestamo.setCopia((CopiaLibro) copiaLocal);
-                //asociar copia a prestamo
-                prestamo.setMiembro((Miembro) fila);
-                //instanciar servicioPrestamo
-                Repositorio r = new Repositorio();
-                ServicioPrestamo sr = new ServicioPrestamo(r);
+                    //asociar miembro a prestamo 
+                    prestamo.setCopia((CopiaLibro) copiaLocal);
+                    //asociar copia a prestamo
+                    prestamo.setMiembro((Miembro) fila);
+                    //instanciar servicioPrestamo
+                    Repositorio r = new Repositorio();
+                    ServicioPrestamo sr = new ServicioPrestamo(r);
 
-                //almacenar prestamo
-                sr.agregarPrestamo(prestamo);
-                System.out.println("prestamo guardado con Exito!");
-                List<Prestamo> prestamos = sr.obtenerTodos();
-                var prestamodb = prestamos.get(prestamos.size() - 1);
+                    //almacenar prestamo
+                    sr.agregarPrestamo(prestamo);
 
-                //cargar controlador y pasar a la vista el prestamo
-                var fxml = "ViewShowPrestamo";
+                    System.out.println("prestamo guardado con Exito!");
+                    List<Prestamo> prestamos = sr.obtenerTodos();
+                    var prestamodb = prestamos.get(prestamos.size() - 1);
 
-                FXMLLoader loader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
-                Parent root = loader.load();
+                    //cargar controlador y pasar a la vista el prestamo
+                    var fxml = "ViewShowPrestamo";
 
-                // Obtener el controlador y pasarle los datos
-                ViewShowPrestamoController controller = loader.getController();
-                controller.setData(prestamodb);
+                    FXMLLoader loader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+                    Parent root = loader.load();
 
-                //ocultar la escena anterior y generar una nueva
-                ((Node) (event.getSource())).getScene().getWindow().hide();
-                Stage stage = new Stage();
-                stage.setScene(new Scene(root));
-                stage.show();
+                    // Obtener el controlador y pasarle los datos
+                    ViewShowPrestamoController controller = loader.getController();
+                    controller.setData(prestamodb);
 
+                    //ocultar la escena anterior y generar una nueva
+                    ((Node) (event.getSource())).getScene().getWindow().hide();
+                    Stage stage = new Stage();
+                    stage.setScene(new Scene(root));
+                    stage.show();
+                }
+
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                
+                Alert alert = new Alert(AlertType.WARNING);
+                alert.setTitle("Miembro");
+                alert.setHeaderText("Seleccionar miembro");
+                alert.setContentText(e.getMessage() + " Ingresa la FECHA para CONTINUAR");
+                alert.showAndWait();
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
             } catch (Exception e) {
-                System.out.println(e);
+                System.out.println(e.getMessage());
+
             }
         } else if (evt.equals(btnCancelar)) {
             loadStage("ViewIndexLibro", event);

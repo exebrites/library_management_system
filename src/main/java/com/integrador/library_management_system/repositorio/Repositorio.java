@@ -254,7 +254,7 @@ public class Repositorio {
             em.close();
         }
     }*/
-    public List<Libro> buscarFiltro(String param1,String f1) {
+    public List<Libro> buscarFiltro(String param1, String f1) {
         var clase = Libro.class;
         //var f1 = "titulo";
 
@@ -288,5 +288,30 @@ public class Repositorio {
         // 5. Ejecutar la consulta
         return em.createQuery(query).getResultList();
     }
+
+    
+    //#Retorna el miembro asociado al prestamo
+    //1. armar la consuta en base al prestamo
+    //2. unir prestamo con miembro 
+    /*
+    
+    public Miembro findMiembroByPrestamoId(Long prestamoId) {
+        // 1. Crear el CriteriaBuilder
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+
+        // 2. Crear la consulta y la raíz
+        CriteriaQuery<CopiaLibro> query = cb.createQuery(CopiaLibro.class);
+        Root<CopiaLibro> copiaRoot = query.from(CopiaLibro.class);
+
+        // 3. Definir la relación con Libro
+        Join<CopiaLibro, Libro> libroJoin = copiaRoot.join("libro");
+
+        // 4. Agregar la condición WHERE (filtrar por ID del libro)
+        query.select(copiaRoot).where(cb.equal(libroJoin.get("id"), libroId));
+
+        // 5. Ejecutar la consulta
+        return em.createQuery(query).getResultList();
+    }
+     */
 
 }

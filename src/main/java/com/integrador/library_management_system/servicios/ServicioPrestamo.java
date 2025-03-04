@@ -89,4 +89,9 @@ public class ServicioPrestamo {
             this.repositorio.cerrar();
         }
     }
+
+    public Prestamo buscarPrestamo(Prestamo prestamo) {
+        return this.repositorio.buscar(Prestamo.class, prestamo.getId());
+    }
+
 }

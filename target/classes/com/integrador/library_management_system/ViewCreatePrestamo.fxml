@@ -27,9 +27,9 @@
             <TextField fx:id="txtId" editable="false" layoutX="59.0" layoutY="96.0" />
             <TableView fx:id="tablaMiembros" layoutX="69.0" layoutY="250.0" prefHeight="176.0" prefWidth="720.0">
               <columns>
-                <TableColumn fx:id="colIdentificador" prefWidth="75.0" text="identificador" />
-                <TableColumn fx:id="colNombre" prefWidth="75.0" text="nombre" />
-                  <TableColumn fx:id="colApellido" prefWidth="75.0" text="apellido" />
+                <TableColumn fx:id="colIdentificador" prefWidth="131.0" text="identificador" />
+                <TableColumn fx:id="colNombre" prefWidth="354.0" text="nombre" />
+                  <TableColumn fx:id="colApellido" prefWidth="234.0" text="apellido" />
               </columns>
             </TableView>
             <Button fx:id="btnGuardar" layoutX="714.0" layoutY="575.0" mnemonicParsing="false" onAction="#eventAction" text="Guardar" />

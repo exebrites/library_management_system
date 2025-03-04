@@ -8,11 +8,15 @@ import com.integrador.library_management_system.App;
 import static com.integrador.library_management_system.App.loadFXML;
 import com.integrador.library_management_system.modelo.CopiaLibro;
 import com.integrador.library_management_system.modelo.Libro;
+import com.integrador.library_management_system.modelo.Miembro;
 import com.integrador.library_management_system.modelo.Prestamo;
 import com.integrador.library_management_system.repositorio.Repositorio;
 import com.integrador.library_management_system.servicios.ServicioLibro;
+import com.integrador.library_management_system.servicios.ServicioPrestamo;
+import com.integrador.library_management_system.util.GestorDatos;
 import java.io.IOException;
 import java.net.URL;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -56,10 +60,11 @@ public class ViewShowPrestamoController implements Initializable {
     private Libro libro1;
     private Object fila;
 
+    //PRESTAMO
     private Prestamo prestamoLocal;
 
     @FXML
-    private TextField txtId;
+    private TextField txtIdPrestamo;
 
     @FXML
     private TextField txtFechaInicio;
@@ -67,9 +72,31 @@ public class ViewShowPrestamoController implements Initializable {
     @FXML
     private TextField txtFechaVencimiento;
 
+    //MIEMBRO
+    @FXML
+    private TextField txtNombreMiembro;
+
+    @FXML
+    private TextField txtApellidoMiembro;
+
+    //COPIA
+    @FXML
+    private TextField txtIdCopia;
+    @FXML
+    private TextField txtEstadoCopia;
+    @FXML
+    //LIBRO
+    private TextField txtTituloLibro;
+
+    //USER
+    @FXML
+    private Label lbUser;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        Miembro miembro = (Miembro) GestorDatos.obtenerDato("miembroAuth");
+        lbUser.setText(miembro.getNombre());
         // Listen for selection changes and show the person details when changed.
         /*
          tablaCopias.getSelectionModel().selectedItemProperty().addListener(
@@ -114,13 +141,27 @@ public class ViewShowPrestamoController implements Initializable {
         System.out.println("estoy en show prestamo");
         System.out.println(prestamoLocal);
 
-        txtId.setText(prestamoLocal.getId().toString());
-        txtFechaInicio.setText(prestamoLocal.getFechaPrestamo().toString());
-        txtFechaVencimiento.setText(prestamoLocal.getFechaVencimiento().toString());
+        txtIdPrestamo.setText(prestamoLocal.getId().toString());
+        txtFechaInicio.setText(prestamoLocal.getFechaPrestamo().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        txtFechaVencimiento.setText(prestamoLocal.getFechaVencimiento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 
+        Repositorio r = new Repositorio();
+        ServicioPrestamo sp = new ServicioPrestamo(r);
+        var prestamodb = sp.buscarPrestamo(prestamoLocal);
+        System.out.println(prestamodb.getMiembro());
         System.out.println("datos del miembro");
+        //BUSCAR DATOS DEL MIEMBRO ENBASE AL PRESTAMO
+        var miembro = prestamodb.getMiembro();
+        txtNombreMiembro.setText(miembro.getNombre());
+        txtApellidoMiembro.setText(miembro.getApellido());
         System.out.println("datos de la copia");
-
+        var copia = prestamodb.getCopia();
+        txtIdCopia.setText(copia.getId().toString());
+        txtEstadoCopia.setText(copia.getEstado().toString());
+        //libro
+        System.out.println(copia.getLibro());
+        var libro = copia.getLibro();
+        txtTituloLibro.setText(libro.getTitulo());
     }
 
     @FXML

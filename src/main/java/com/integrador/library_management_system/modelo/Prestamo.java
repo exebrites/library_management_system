@@ -5,6 +5,7 @@
 package com.integrador.library_management_system.modelo;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -49,6 +50,16 @@ public class Prestamo {
 
     public Prestamo(LocalDate fechaPrestamo, LocalDate fechaVencimiento) {
 
+        if (fechaPrestamo == null) {
+            throw new IllegalArgumentException("El campo fechaPrestamo no puede estar vacío.");
+        }
+        if (fechaVencimiento == null) {
+            throw new IllegalArgumentException("El campo fechaPrestamo no puede estar vacío.");
+        }
+        if (fechaPrestamo.isAfter(fechaPrestamo)) {
+            throw new IllegalArgumentException("El campo fechaPrestamo no puede ser mayor a FechaVencimiento.");
+        }
+
         this.fechaPrestamo = fechaPrestamo;
         this.fechaVencimiento = fechaVencimiento;
     }
@@ -81,7 +92,12 @@ public class Prestamo {
         return fechaPrestamo;
     }
 
+    
+
     public void setFechaPrestamo(LocalDate fechaPrestamo) {
+        if (fechaPrestamo == null) {
+            throw new IllegalArgumentException("El campo fechaPrestamo no puede estar vacío.");
+        }
         this.fechaPrestamo = fechaPrestamo;
     }
 
@@ -90,6 +106,9 @@ public class Prestamo {
     }
 
     public void setFechaVencimiento(LocalDate fechaVencimiento) {
+        if (fechaVencimiento == null) {
+            throw new IllegalArgumentException("El campo fechaPrestamo no puede estar vacío.");
+        }
         this.fechaVencimiento = fechaVencimiento;
     }
 
