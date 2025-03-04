@@ -7,10 +7,12 @@ package com.integrador.library_management_system.controlador;
 import com.integrador.library_management_system.App;
 import static com.integrador.library_management_system.App.loadFXML;
 import com.integrador.library_management_system.modelo.CopiaLibro;
+import com.integrador.library_management_system.modelo.EstadoCopiaLibro;
 import com.integrador.library_management_system.modelo.Libro;
 import com.integrador.library_management_system.modelo.Miembro;
 import com.integrador.library_management_system.modelo.Prestamo;
 import com.integrador.library_management_system.repositorio.Repositorio;
+import com.integrador.library_management_system.servicios.ServicioCopiaLibro;
 import com.integrador.library_management_system.servicios.ServicioLibro;
 import com.integrador.library_management_system.servicios.ServicioMiembro;
 import com.integrador.library_management_system.servicios.ServicioPrestamo;
@@ -192,11 +194,16 @@ public class ViewCreatePrestamoController implements Initializable {
                     Prestamo prestamo = new Prestamo(inicio, vencimiento);
 
                     //asociar miembro a prestamo 
+                    copiaLocal.setEstado(EstadoCopiaLibro.PRESTADA);
+                    // cambiar el estado en db
+                    Repositorio r = new Repositorio();
+                    ServicioCopiaLibro scopia = new ServicioCopiaLibro(r);
+                    scopia.editarCopiaLibro(copiaLocal);
                     prestamo.setCopia((CopiaLibro) copiaLocal);
                     //asociar copia a prestamo
                     prestamo.setMiembro((Miembro) fila);
                     //instanciar servicioPrestamo
-                    Repositorio r = new Repositorio();
+
                     ServicioPrestamo sr = new ServicioPrestamo(r);
 
                     //almacenar prestamo
@@ -225,7 +232,7 @@ public class ViewCreatePrestamoController implements Initializable {
 
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
-                
+
                 Alert alert = new Alert(AlertType.WARNING);
                 alert.setTitle("Miembro");
                 alert.setHeaderText("Seleccionar miembro");
