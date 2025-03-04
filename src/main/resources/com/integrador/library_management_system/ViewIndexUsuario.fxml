@@ -29,9 +29,9 @@
                   <TableColumn fx:id="colEstado" prefWidth="237.33331298828125" text="Estado" />
               </columns>
             </TableView>
-            <Button layoutX="34.0" layoutY="434.0" mnemonicParsing="false" text="Ver" />
-            <Button layoutX="142.0" layoutY="435.0" mnemonicParsing="false" text="Editar" />
-            <Button layoutX="257.0" layoutY="436.0" mnemonicParsing="false" text="Eliminar" />
+            <Button fx:id="btnShow" layoutX="34.0" layoutY="434.0" mnemonicParsing="false" onAction="#eventAction" text="Ver" />
+            <Button fx:id="btnEditar" layoutX="142.0" layoutY="435.0" mnemonicParsing="false" onAction="#eventAction" text="Editar" />
+            <Button fx:id="btnEliminar" layoutX="257.0" layoutY="436.0" mnemonicParsing="false" onAction="#eventAction" text="Eliminar" />
             <Button fx:id="btnNuevo" layoutX="34.0" layoutY="93.0" mnemonicParsing="false" onAction="#eventAction" text="Nuevo" />
          </children>
       </Pane>

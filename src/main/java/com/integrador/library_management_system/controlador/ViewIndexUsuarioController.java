@@ -52,6 +52,12 @@ public class ViewIndexUsuarioController implements Initializable {
  /*GESTION MIEMBROS*/
     @FXML
     private Button btnNuevo;
+    @FXML
+    private Button btnShow;
+    @FXML
+    private Button btnEditar;
+    @FXML
+    private Button btnEliminar;
 
     @FXML
     private Label lbUser;
@@ -69,6 +75,9 @@ public class ViewIndexUsuarioController implements Initializable {
 
     //declarar observerlist
     private ObservableList<Miembro> listaMiembros;
+
+    //MIEMBRO SELECCIONADO
+    private Miembro miembro;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -101,6 +110,13 @@ public class ViewIndexUsuarioController implements Initializable {
         listaMiembros = FXCollections.observableArrayList(miembros);
         //setear tabla
         tablaMiembros.setItems(listaMiembros);
+
+        tablaMiembros.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                this.miembro = newSelection;
+            }
+        });
+        System.out.println(miembro);
     }
 
     @FXML
@@ -118,10 +134,36 @@ public class ViewIndexUsuarioController implements Initializable {
                 loadStage("ViewIndexCopias", event);
             } else if (evt.equals(btnNuevo)) {
                 loadStage("ViewCreateMiembro", event);
+            } else if (evt.equals(btnShow)) {
+                System.out.println("show....");
+            } else if (evt.equals(btnEditar)) {
+                System.out.println("editar....");
+            } else if (evt.equals(btnEliminar)) {
+                System.out.println("eliminar....");
+                System.out.println(miembro);
+
+                //buscar de la base de datos
+                Repositorio r = new Repositorio();
+                ServicioMiembro sm = new ServicioMiembro(r);
+                var miembrodb = sm.buscarMiembro(miembro);
+                System.out.println(miembrodb);
+                //eliminarlo
+                try {
+                    sm.eliminarUsuario(miembrodb);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+                var miembros = sm.obtenerTodos();
+                listaMiembros = FXCollections.observableArrayList(miembros);
+                //setear tabla
+                tablaMiembros.setItems(listaMiembros);
+                //notificar si esta asociado a algun prestamo
+
             }
 
         } catch (IOException ex) {
-            Logger.getLogger(ViewLibroController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ViewLibroController.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
 
     }

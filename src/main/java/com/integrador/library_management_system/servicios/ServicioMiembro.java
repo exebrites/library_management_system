@@ -43,12 +43,15 @@ public class ServicioMiembro {
         return this.repositorio.buscarTodos(Miembro.class);
     }
 
-    public void consulta() {
+    /* public void consulta() {
         this.repositorio.consultaSQL();
     }
 
     public void consulta2(int id) {
         this.repositorio.consultaSQL2(id);
+    }*/
+    public Miembro buscarMiembro(Miembro miembro) {
+        return this.repositorio.buscar(Miembro.class, miembro.getId());
     }
 
     //El servicio se encarga del login
