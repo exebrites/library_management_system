@@ -26,5 +26,6 @@
 /home/exe/NetBeansProjects/library_management_system/src/main/java/com/integrador/library_management_system/util/GestorDatos.java
 /home/exe/NetBeansProjects/library_management_system/src/main/java/com/integrador/library_management_system/modelo/Rack.java
 /home/exe/NetBeansProjects/library_management_system/src/main/java/com/integrador/library_management_system/repositorio/Repositorio.java
+/home/exe/NetBeansProjects/library_management_system/src/main/java/com/integrador/library_management_system/controlador/ViewCreateMiembroController.java
 /home/exe/NetBeansProjects/library_management_system/src/main/java/com/integrador/library_management_system/controlador/ViewLibroController.java
 /home/exe/NetBeansProjects/library_management_system/src/main/java/com/integrador/library_management_system/servicios/ServicioPrestamo.java

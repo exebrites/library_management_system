@@ -10,7 +10,6 @@ import com.integrador.library_management_system.modelo.Miembro;
 import com.integrador.library_management_system.repositorio.Repositorio;
 import com.integrador.library_management_system.servicios.ServicioLibro;
 import com.integrador.library_management_system.servicios.ServicioMiembro;
-import com.integrador.library_management_system.util.GestorDatos;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -23,8 +22,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -36,8 +36,11 @@ import javafx.stage.Stage;
  *
  * @author exe
  */
-public class ViewIndexUsuarioController implements Initializable {
+public class ViewCreateMiembroController implements Initializable {
 
+    /**
+     * Initializes the controller class.
+     */
     @FXML
     private Button btnGestionarLibro;
     @FXML
@@ -46,71 +49,72 @@ public class ViewIndexUsuarioController implements Initializable {
     private Button btnGestionarPrestamo;
     @FXML
     private Button btnGestionarCopias;
-    /*NAVEGACION*/
+    @FXML
+    private Button btnPrestamo;
+    //navegacion
+    @FXML
+    private Button btnNuevoLibro;
+//create
 
- /*GESTION MIEMBROS*/
     @FXML
-    private Button btnNuevo;
+    private TextField txtNombre;
+    @FXML
+    private TextField txtApellido;
+    @FXML
+    private TextField txtPass;
 
     @FXML
-    private Label lbUser;
-
-    //declara tabla
+    private Button btnGuardar;
     @FXML
-    private TableView<Miembro> tablaMiembros;
-    //declarar columnas
-    @FXML
-    private TableColumn<Miembro, String> colNombre;
-    @FXML
-    private TableColumn<Miembro, String> colApellido;
-    @FXML
-    private TableColumn colEstado;
-
-    //declarar observerlist
-    private ObservableList<Miembro> listaMiembros;
+    private Button btnCancelar;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        /*DATOS DE USUARIO*/
-        Miembro miembro = (Miembro) GestorDatos.obtenerDato("miembroAuth");
-        lbUser.setText(miembro.getNombre());
-
-        //setear columnas
-        colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
-        colApellido.setCellValueFactory(new PropertyValueFactory<>("apellido"));
-        colEstado.setCellValueFactory(new PropertyValueFactory<>("estadoMiembro"));
-        //obtener todos los miembros
-        Repositorio r = new Repositorio();
-        ServicioMiembro sm = new ServicioMiembro(r);
-        var miembros = sm.obtenerTodos();
-        //setear lista
-        listaMiembros = FXCollections.observableArrayList(miembros);
-        //setear tabla
-        tablaMiembros.setItems(listaMiembros);
     }
 
     @FXML
     private void eventAction(ActionEvent event) throws IOException {
-        try {
-            // Cargo la vista
-            Object evt = event.getSource();
-            if (evt.equals(btnGestionarLibro)) {
-                loadStage("ViewIndexLibro", event);
-            } else if (evt.equals(btnGestionarUsuario)) {
+        Object evt = event.getSource();
+
+        if (evt.equals(btnGestionarLibro)) {
+
+            loadStage("ViewIndexLibro", event);
+        } else if (evt.equals(btnGestionarUsuario)) {
+            loadStage("ViewIndexUsuario", event);
+        } else if (evt.equals(btnGestionarPrestamo)) {
+            //loadStage("ViewIndexUsuario", event);
+            loadStage("ViewIndexPrestamo", event);
+        } else if (evt.equals(btnGestionarCopias)) {
+            //loadStage("ViewIndexUsuario", event);
+            loadStage("ViewIndexCopias", event);
+        } else if (evt.equals(btnGuardar)) {
+            System.out.println("GUARDANDO...");
+            System.out.println(txtNombre.getText());
+            var nombre = txtNombre.getText();
+            System.out.println(txtApellido.getText());
+            var apellido = txtApellido.getText();
+            System.out.println(txtPass.getText());
+            var pass = txtPass.getText();
+            //crear objeto
+            Miembro miembro = new Miembro();
+            miembro.setNombre(nombre);
+            miembro.setApellido(apellido);
+            miembro.setClave(pass);
+            //almacenar miembro
+            Repositorio r = new Repositorio();
+            ServicioMiembro sm = new ServicioMiembro(r);
+            try {
+                sm.agregarUsuario(miembro);
                 loadStage("ViewIndexUsuario", event);
-            } else if (evt.equals(btnGestionarPrestamo)) {
-                loadStage("ViewIndexPrestamo", event);
-            } else if (evt.equals(btnGestionarCopias)) {
-                loadStage("ViewIndexCopias", event);
-            } else if (evt.equals(btnNuevo)) {
-                loadStage("ViewCreateMiembro", event);
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
             }
-
-        } catch (IOException ex) {
-            Logger.getLogger(ViewLibroController.class.getName()).log(Level.SEVERE, null, ex);
+        } else if (evt.equals(btnCancelar)) {
+            loadStage("ViewIndexLibro", event);
         }
-
     }
 
     private void loadStage(String url, ActionEvent event) throws IOException {

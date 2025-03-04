@@ -7,6 +7,7 @@ com/integrador/library_management_system/servicios/ServicioRack.class
 com/integrador/library_management_system/modelo/Multa_.class
 com/integrador/library_management_system/modelo/Multa.class
 com/integrador/library_management_system/controlador/ViewPrincipalController.class
+com/integrador/library_management_system/controlador/ViewCreateMiembroController.class
 com/integrador/library_management_system/modelo/TipoCopiaLibro.class
 com/integrador/library_management_system/modelo/CopiaLibro.class
 com/integrador/library_management_system/modelo/Rack_.class
