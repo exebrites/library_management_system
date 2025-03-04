@@ -29,6 +29,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
 
 /**
@@ -84,6 +85,18 @@ public class ViewIndexUsuarioController implements Initializable {
         Repositorio r = new Repositorio();
         ServicioMiembro sm = new ServicioMiembro(r);
         var miembros = sm.obtenerTodos();
+
+        colEstado.setCellFactory(column -> new TextFieldTableCell<Miembro, Boolean>() {
+            @Override
+            public void updateItem(Boolean item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    setText(item ? "No ACTIVO" : "ACTIVO");
+                }
+            }
+        });
         //setear lista
         listaMiembros = FXCollections.observableArrayList(miembros);
         //setear tabla
