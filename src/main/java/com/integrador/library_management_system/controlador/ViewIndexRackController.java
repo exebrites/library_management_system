@@ -127,18 +127,16 @@ public class ViewIndexRackController implements Initializable {
                 loadStage("ViewCreateRack", event);
             } else if (evt.equals(btnShow)) {
                 System.out.println("show....");
-
+//Cargar la vista
                 /*
-
-                //Cargar la vista
-                var fxml = "ViewShowMiembro";
+ var fxml = "ViewEditRack";
 
                 FXMLLoader loader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
                 Parent root = loader.load();
 
                 // Obtener el controlador y pasarle los datos
-                ViewShowMiembroController detalleController = loader.getController();
-                detalleController.setData(miembro);
+                ViewEditRackController detalleController = loader.getController();
+                detalleController.setData(rack);
 
                 //ocultar la escena anterior y generar una nueva
                 ((Node) (event.getSource())).getScene().getWindow().hide();
@@ -148,22 +146,21 @@ public class ViewIndexRackController implements Initializable {
                  */
             } else if (evt.equals(btnEditar)) {
                 System.out.println("editar....");
-                /*
-                var fxml = "ViewEditMiembro";
+                //Cargar la vista
+                var fxml = "ViewEditRack";
 
                 FXMLLoader loader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
                 Parent root = loader.load();
 
                 // Obtener el controlador y pasarle los datos
-                ViewEditMiembroController detalleController = loader.getController();
-                detalleController.setData(miembro);
+                ViewEditRackController detalleController = loader.getController();
+                detalleController.setData(rack);
 
                 //ocultar la escena anterior y generar una nueva
                 ((Node) (event.getSource())).getScene().getWindow().hide();
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));
                 stage.show();
-                 */
             } else if (evt.equals(btnEliminar)) {
                 System.out.println("eliminar....");
 

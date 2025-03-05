@@ -10,6 +10,7 @@
 /home/exe/NetBeansProjects/library_management_system/src/main/java/com/integrador/library_management_system/controlador/ViewCreatePrestamoController.java
 /home/exe/NetBeansProjects/library_management_system/src/main/java/com/integrador/library_management_system/controlador/ViewCreateRackController.java
 /home/exe/NetBeansProjects/library_management_system/src/main/java/com/integrador/library_management_system/modelo/EstadoCopiaLibro.java
+/home/exe/NetBeansProjects/library_management_system/src/main/java/com/integrador/library_management_system/controlador/ViewEditRackController.java
 /home/exe/NetBeansProjects/library_management_system/src/main/java/com/integrador/library_management_system/servicios/ServicioRack.java
 /home/exe/NetBeansProjects/library_management_system/src/main/java/com/integrador/library_management_system/controlador/ViewIndexRackController.java
 /home/exe/NetBeansProjects/library_management_system/src/main/java/com/integrador/library_management_system/modelo/exceptions/PreexistingEntityException.java
