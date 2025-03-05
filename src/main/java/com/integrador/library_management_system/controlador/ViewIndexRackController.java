@@ -128,14 +128,14 @@ public class ViewIndexRackController implements Initializable {
             } else if (evt.equals(btnShow)) {
                 System.out.println("show....");
 //Cargar la vista
-                /*
- var fxml = "ViewEditRack";
+
+                var fxml = "ViewShowRack";
 
                 FXMLLoader loader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
                 Parent root = loader.load();
 
                 // Obtener el controlador y pasarle los datos
-                ViewEditRackController detalleController = loader.getController();
+                ViewShowRackController detalleController = loader.getController();
                 detalleController.setData(rack);
 
                 //ocultar la escena anterior y generar una nueva
@@ -143,7 +143,7 @@ public class ViewIndexRackController implements Initializable {
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));
                 stage.show();
-                 */
+                  
             } else if (evt.equals(btnEditar)) {
                 System.out.println("editar....");
                 //Cargar la vista
