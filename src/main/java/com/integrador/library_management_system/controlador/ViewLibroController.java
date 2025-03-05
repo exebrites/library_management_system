@@ -85,8 +85,13 @@ public class ViewLibroController implements Initializable {
     @FXML
     private Button btnEliminar;
 
+    /*FILTROS*/
     @FXML
     private TextField txtFiltroTitulo;
+    @FXML
+    private TextField txtFiltroAutor;
+    @FXML
+    private TextField txtFiltroCategoria;
 
     /*NODOS DE VISTA*/
     @FXML
@@ -138,6 +143,32 @@ public class ViewLibroController implements Initializable {
                 //filtro por el titulo. El filtro tiene encuentra si la cadena esta contenido dentro de los titulos
 
                 filteredList.setPredicate(u -> u.getTitulo().contains(newValue.toUpperCase()));
+
+            }
+        });
+        txtFiltroAutor.textProperty().addListener((observable, oldValue, newValue) -> {
+            //System.out.println(newValue);
+
+            //si es vacio muestra todo
+            if (newValue.isEmpty()) {
+                filteredList.setPredicate(u -> true);
+            } else {
+                //filtro por el titulo. El filtro tiene encuentra si la cadena esta contenido dentro de los titulos
+
+                filteredList.setPredicate(u -> u.getAutores().contains(newValue.toUpperCase()));
+
+            }
+        });
+        txtFiltroCategoria.textProperty().addListener((observable, oldValue, newValue) -> {
+            //System.out.println(newValue);
+
+            //si es vacio muestra todo
+            if (newValue.isEmpty()) {
+                filteredList.setPredicate(u -> true);
+            } else {
+                //filtro por el titulo. El filtro tiene encuentra si la cadena esta contenido dentro de los titulos
+
+                filteredList.setPredicate(u -> u.getCategoriaTematica().contains(newValue.toUpperCase()));
 
             }
         });
@@ -259,7 +290,7 @@ public class ViewLibroController implements Initializable {
     private void loadStage(String url, ActionEvent event) throws IOException {
         ((Node) (event.getSource())).getScene().getWindow().hide();
 
-        Scene scene = new Scene(loadFXML(url));
+        Scene scene = new Scene(loadFXML(url),1600, 900);
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.setTitle("Library Manager System");
