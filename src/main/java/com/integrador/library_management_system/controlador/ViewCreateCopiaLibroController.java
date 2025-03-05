@@ -8,10 +8,12 @@ import static com.integrador.library_management_system.App.loadFXML;
 import com.integrador.library_management_system.modelo.CopiaLibro;
 import com.integrador.library_management_system.modelo.Libro;
 import com.integrador.library_management_system.modelo.Miembro;
+import com.integrador.library_management_system.modelo.Rack;
 import com.integrador.library_management_system.modelo.TipoCopiaLibro;
 import com.integrador.library_management_system.repositorio.Repositorio;
 import com.integrador.library_management_system.servicios.ServicioCopiaLibro;
 import com.integrador.library_management_system.servicios.ServicioLibro;
+import com.integrador.library_management_system.servicios.ServicioRack;
 import com.integrador.library_management_system.util.GestorDatos;
 import java.io.IOException;
 import java.net.URL;
@@ -75,7 +77,7 @@ public class ViewCreateCopiaLibroController implements Initializable {
 
     @FXML
     private Label lbUser;
- 
+
     //LISTADO DE LIBROS
     //tablaLibros
     @FXML
@@ -94,6 +96,17 @@ public class ViewCreateCopiaLibroController implements Initializable {
     private ObservableList<Libro> listaLibros;
     //libroFila
     private Libro libroFila;
+
+    /*LISTA DE RACKS*/
+    @FXML
+    private TableView<Rack> tablaRacks;
+    @FXML
+    private TableColumn<Rack, Long> colId;
+    @FXML
+    private TableColumn<Rack, String> colDescripcion;
+    private ObservableList<Rack> listaRacks;
+    //libroFila
+    private Rack rack;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -126,6 +139,24 @@ public class ViewCreateCopiaLibroController implements Initializable {
                 libroFila = newSelection;
             }
         });
+
+        //LISTADO DE RACKS
+        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colDescripcion.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
+
+        ServicioRack sr = new ServicioRack(r);
+        var racks = sr.obtenerTodos();
+        // asignar libros al ObList
+        listaRacks = FXCollections.observableArrayList(racks);
+        //setear la tabla libros
+        tablaRacks.setItems(listaRacks);
+
+        //Implementar un Listener cuando el usuario cliquea un libro para asignarlo a la copia
+        tablaRacks.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                rack = newSelection;
+            }
+        });
     }
 
     @FXML
@@ -153,20 +184,26 @@ public class ViewCreateCopiaLibroController implements Initializable {
                 Repositorio r = new Repositorio();
                 ServicioCopiaLibro scopia = new ServicioCopiaLibro(r);
                 ServicioLibro sl = new ServicioLibro(r);
+                ServicioRack sr = new ServicioRack(r);
+
                 var librodb = sl.buscarLibro(libroFila);
+                var rackdb = sr.buscarRack(rack);
 
                 CopiaLibro copia = new CopiaLibro(tipoCopia, librodb);
                 copia.setReferenciaLibro(referencia);
-
                 copia.setLibro(librodb);
+                copia.setRack(rackdb);
 
                 scopia.agregarCopiaLibro(copia);
+                loadStage("ViewIndexCopias", event);
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
 
         } else if (evt.equals(btnCancelar)) {
-            loadStage("ViewIndexLibro", event);
+            loadStage("ViewIndexCopias", event);
         }
     }
 

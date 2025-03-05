@@ -53,6 +53,15 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </Label>
+                  <TableView fx:id="tablaRacks" prefHeight="200.0" prefWidth="200.0">
+                    <columns>
+                      <TableColumn fx:id="colId" prefWidth="153.66665649414062" text="Identificador" />
+                      <TableColumn fx:id="colDescripcion" prefWidth="698.3333435058594" text="Descripcion" />
+                    </columns>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </TableView>
                   <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#eventAction" text="Cancelar">
                      <font>
                         <Font size="24.0" />
