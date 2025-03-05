@@ -124,7 +124,7 @@ public class ViewIndexRackController implements Initializable {
             } else if (evt.equals(btnGestionarCopias)) {
                 loadStage("ViewIndexCopias", event);
             } else if (evt.equals(btnNuevo)) {
-                loadStage("ViewCreateMiembro", event);
+                loadStage("ViewCreateRack", event);
             } else if (evt.equals(btnShow)) {
                 System.out.println("show....");
 
