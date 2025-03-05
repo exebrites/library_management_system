@@ -2,6 +2,7 @@ com/integrador/library_management_system/modelo/Prestamo.class
 com/integrador/library_management_system/modelo/exceptions/NonexistentEntityException.class
 com/integrador/library_management_system/modelo/CopiaLibro_.class
 com/integrador/library_management_system/controlador/ViewLoginController.class
+com/integrador/library_management_system/controlador/ViewIndexRackController.class
 com/integrador/library_management_system/controlador/ViewShowMiembroController.class
 com/integrador/library_management_system/controlador/ViewIndexUsuarioController.class
 com/integrador/library_management_system/servicios/ServicioRack.class

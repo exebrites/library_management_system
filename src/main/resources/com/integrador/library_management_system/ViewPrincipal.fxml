@@ -81,6 +81,14 @@
                   <Font size="18.0" />
                </font>
             </Button>
+            <Button fx:id="btnGestionarRack" mnemonicParsing="false" onAction="#eventAction" prefHeight="100.0" prefWidth="400.0" text="Seccion rack">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+            </Button>
          </children>
       </VBox>
    </left>

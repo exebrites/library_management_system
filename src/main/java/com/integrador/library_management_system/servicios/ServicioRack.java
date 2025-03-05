@@ -44,4 +44,8 @@ public class ServicioRack {
         return this.repositorio.buscarTodos(Rack.class);
     }
 
+    public Rack buscarRack(Rack rack) {
+        return this.repositorio.buscar(Rack.class, rack.getId());
+    }
+
 }

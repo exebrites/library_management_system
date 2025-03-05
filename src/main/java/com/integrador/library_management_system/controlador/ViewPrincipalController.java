@@ -27,7 +27,7 @@ import javafx.stage.Stage;
  * @author exe
  */
 public class ViewPrincipalController implements Initializable {
-    
+
     @FXML
     private Button btnGestionarLibro;
     @FXML
@@ -36,13 +36,15 @@ public class ViewPrincipalController implements Initializable {
     private Button btnGestionarPrestamo;
     @FXML
     private Button btnGestionarCopias;
+    @FXML
+    private Button btnGestionarRack;
 
     /*NAVEGACION*/
     @FXML
     private Label lbBienvenida;
     @FXML
     private Label lbUser;
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // Repositorio r = new Repositorio();
@@ -52,16 +54,16 @@ public class ViewPrincipalController implements Initializable {
         lbUser.setText(miembro.getNombre());
         lbBienvenida.setText(miembro.getFullName());
     }
-    
+
     @FXML
     private void eventAction(ActionEvent event) throws IOException {
-        
+
         try {
             // Cargo la vista
             Object evt = event.getSource();
-            
+
             if (evt.equals(btnGestionarLibro)) {
-                
+
                 loadStage("ViewIndexLibro", event);
             } else if (evt.equals(btnGestionarUsuario)) {
                 loadStage("ViewIndexUsuario", event);
@@ -71,23 +73,28 @@ public class ViewPrincipalController implements Initializable {
             } else if (evt.equals(btnGestionarCopias)) {
                 //loadStage("ViewIndexUsuario", event);
                 loadStage("ViewIndexCopias", event);
-                
+
             }
-            
+            else if (evt.equals(btnGestionarRack)) {
+                //loadStage("ViewIndexUsuario", event);
+                loadStage("ViewIndexRack", event);
+
+            }
+
         } catch (IOException ex) {
             Logger.getLogger(ViewPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
-    
+
     private void loadStage(String url, ActionEvent event) throws IOException {
         ((Node) (event.getSource())).getScene().getWindow().hide();
-        
+
         Scene scene = new Scene(loadFXML(url), 1600, 900);
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.setTitle("Library Manager System");
         stage.show();
     }
-    
+
 }

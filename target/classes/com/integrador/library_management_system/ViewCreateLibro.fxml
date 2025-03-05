@@ -163,7 +163,7 @@
                   <Insets left="10.0" top="10.0" />
                </padding>
             </Label>
-            <Label alignment="TOP_RIGHT" layoutX="1052.0" prefHeight="52.0" prefWidth="202.0" text="Nombre de usuario">
+            <Label fx:id="lbUser" alignment="TOP_RIGHT" layoutX="1052.0" prefHeight="52.0" prefWidth="202.0" text="Nombre de usuario">
                <font>
                   <Font size="18.0" />
                </font>
