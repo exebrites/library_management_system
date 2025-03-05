@@ -82,8 +82,11 @@ public class ViewLibroController implements Initializable {
 
     private Libro libroFila;
 
+    /*GESTIONAR LIBRO*/
     @FXML
     private Button btnEliminar;
+    @FXML
+    private Button btnEditar;
 
     /*FILTROS*/
     @FXML
@@ -194,6 +197,22 @@ public class ViewLibroController implements Initializable {
                 loadStage("ViewIndexPrestamo", event);
             } else if (evt.equals(btnGestionarCopias)) {
                 loadStage("ViewIndexCopias", event);
+            } else if (evt.equals(btnEditar)) {
+                //Cargar la vista
+            var fxml = "ViewEditLibro";
+
+            FXMLLoader loader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+            Parent root = loader.load();
+
+            // Obtener el controlador y pasarle los datos
+            ViewEditLibroController detalleController = loader.getController();
+            detalleController.setData(libroFila);
+
+            //ocultar la escena anterior y generar una nueva
+            ((Node) (event.getSource())).getScene().getWindow().hide();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
             }
 
         } catch (IOException ex) {
@@ -290,7 +309,7 @@ public class ViewLibroController implements Initializable {
     private void loadStage(String url, ActionEvent event) throws IOException {
         ((Node) (event.getSource())).getScene().getWindow().hide();
 
-        Scene scene = new Scene(loadFXML(url),1600, 900);
+        Scene scene = new Scene(loadFXML(url), 1600, 900);
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.setTitle("Library Manager System");

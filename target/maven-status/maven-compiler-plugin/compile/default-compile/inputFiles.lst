@@ -23,6 +23,7 @@
 /home/exe/NetBeansProjects/library_management_system/src/main/java/com/integrador/library_management_system/servicios/ServicioMiembro.java
 /home/exe/NetBeansProjects/library_management_system/src/main/java/com/integrador/library_management_system/controlador/ViewCreateCopiaLibroController.java
 /home/exe/NetBeansProjects/library_management_system/src/main/java/com/integrador/library_management_system/modelo/Multa.java
+/home/exe/NetBeansProjects/library_management_system/src/main/java/com/integrador/library_management_system/controlador/ViewEditLibroController.java
 /home/exe/NetBeansProjects/library_management_system/src/main/java/com/integrador/library_management_system/modelo/exceptions/NonexistentEntityException.java
 /home/exe/NetBeansProjects/library_management_system/src/main/java/com/integrador/library_management_system/controlador/ViewShowMiembroController.java
 /home/exe/NetBeansProjects/library_management_system/src/main/java/com/integrador/library_management_system/util/GestorDatos.java
