@@ -45,6 +45,10 @@ public class ViewPrincipalController implements Initializable {
     @FXML
     private Label lbUser;
 
+    /*DASHBOARD*/
+    @FXML
+    private Button btnHistorialLibro;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // Repositorio r = new Repositorio();
@@ -73,9 +77,7 @@ public class ViewPrincipalController implements Initializable {
             } else if (evt.equals(btnGestionarCopias)) {
                 //loadStage("ViewIndexUsuario", event);
                 loadStage("ViewIndexCopias", event);
-
-            }
-            else if (evt.equals(btnGestionarRack)) {
+            } else if (evt.equals(btnGestionarRack)) {
                 //loadStage("ViewIndexUsuario", event);
                 loadStage("ViewIndexRack", event);
 
@@ -83,6 +85,24 @@ public class ViewPrincipalController implements Initializable {
 
         } catch (IOException ex) {
             Logger.getLogger(ViewPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    @FXML
+    private void eventDash(ActionEvent event) throws IOException {
+        try {
+            Object evt = event.getSource();
+            if (evt.equals(btnHistorialLibro)) {
+
+                System.out.println("ver...");
+                loadStage("ViewHistorialLibros", event);
+
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage() + "io");
+        } catch (Exception e) {
+            System.out.println(e.getMessage() + "e");
         }
 
     }

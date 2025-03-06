@@ -21,6 +21,7 @@ com/integrador/library_management_system/modelo/EstadoCopiaLibro.class
 com/integrador/library_management_system/modelo/exceptions/PreexistingEntityException.class
 com/integrador/library_management_system/App.class
 com/integrador/library_management_system/controlador/ViewIndexPrestamoController.class
+com/integrador/library_management_system/controlador/ViewHistorialLibrosController.class
 com/integrador/library_management_system/modelo/exceptions/IllegalOrphanException.class
 com/integrador/library_management_system/controlador/ViewShowPrestamoController.class
 com/integrador/library_management_system/modelo/Libro.class
@@ -41,6 +42,7 @@ com/integrador/library_management_system/modelo/Miembro.class
 com/integrador/library_management_system/servicios/ServicioPrestamo.class
 com/integrador/library_management_system/controlador/ViewLibroController.class
 com/integrador/library_management_system/modelo/Miembro_.class
+com/integrador/library_management_system/controlador/ViewDetalleHistorialLibrosController.class
 com/integrador/library_management_system/modelo/Rack.class
 com/integrador/library_management_system/controlador/ViewShowLibroController$1.class
 com/integrador/library_management_system/controlador/ViewIndexUsuarioController$1.class
