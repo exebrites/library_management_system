@@ -61,6 +61,10 @@ public class ServicioMiembro {
         return this.repositorio.buscarUsuario(id, pass);
 
     }
+
     //El servicio se encarga del logout
+    public List<Object[]> consultaHistorialLibrosMiembro() {
+        return this.repositorio.consultaHistorialLibrosMiembro();
+    }
 
 }

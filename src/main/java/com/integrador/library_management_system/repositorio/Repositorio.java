@@ -7,10 +7,12 @@ package com.integrador.library_management_system.repositorio;
 import com.integrador.library_management_system.modelo.CopiaLibro;
 import com.integrador.library_management_system.modelo.Libro;
 import com.integrador.library_management_system.modelo.Miembro;
+import com.integrador.library_management_system.modelo.Prestamo;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Join;
@@ -289,7 +291,6 @@ public class Repositorio {
         return em.createQuery(query).getResultList();
     }
 
-    
     //#Retorna el miembro asociado al prestamo
     //1. armar la consuta en base al prestamo
     //2. unir prestamo con miembro 
@@ -313,5 +314,25 @@ public class Repositorio {
         return em.createQuery(query).getResultList();
     }
      */
+    public List<Object[]> consultaHistorialLibrosMiembro() {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Object[]> query = cb.createQuery(Object[].class);
+        Root<Miembro> miembro = query.from(Miembro.class);
+        Join<Miembro, Prestamo> prestamo = miembro.join("prestamos");
+        Join<Prestamo, CopiaLibro> copiaLibro = prestamo.join("copia");
+        Join<CopiaLibro, Libro> libro = copiaLibro.join("libro");
 
+// Seleccionar los campos necesarios
+        query.multiselect(
+                miembro.get("nombre"),
+                miembro.get("apellido"),
+                prestamo.get("fechaVencimiento"),
+                copiaLibro.get("id"),
+                libro.get("titulo")
+        );
+
+// Ejecutar la consulta
+        TypedQuery<Object[]> typedQuery = em.createQuery(query);
+        return typedQuery.getResultList();
+    }
 }

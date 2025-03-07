@@ -8,18 +8,25 @@ import static com.integrador.library_management_system.App.loadFXML;
 import com.integrador.library_management_system.modelo.CopiaLibro;
 import com.integrador.library_management_system.modelo.Libro;
 import com.integrador.library_management_system.modelo.Miembro;
+import com.integrador.library_management_system.modelo.Prestamo;
 import com.integrador.library_management_system.modelo.Rack;
 import com.integrador.library_management_system.modelo.TipoCopiaLibro;
 import com.integrador.library_management_system.repositorio.Repositorio;
 import com.integrador.library_management_system.servicios.ServicioCopiaLibro;
 import com.integrador.library_management_system.servicios.ServicioLibro;
+import com.integrador.library_management_system.servicios.ServicioMiembro;
 import com.integrador.library_management_system.servicios.ServicioRack;
 import com.integrador.library_management_system.util.GestorDatos;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -69,12 +76,60 @@ public class ViewHistorialLibrosController implements Initializable {
     private Button btnShow;
 
     /*NAVEGACION VENTANAS*/
-    //
+ /*COMPONENTES*/
+    @FXML
+    private TableView tabla;
+    @FXML
+    private TableColumn<Object[], String> colNombreApellido;
+    @FXML
+    private TableColumn<Object[], LocalDate> colFechaVencimiento;
+    @FXML
+    private TableColumn<Object[], Long> colNroCopia;
+    @FXML
+    private TableColumn<Object[], String> colTituloLibro;
+
+    private ObservableList lista;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
         Miembro miembro = (Miembro) GestorDatos.obtenerDato("miembroAuth");
         lbUser.setText(miembro.getNombre());
+        //setear columnas
+
+        colNombreApellido.setCellValueFactory(cellData -> {
+            Object[] row = cellData.getValue();
+            return new javafx.beans.property.SimpleStringProperty((String) row[0] + " " + (String) row[1]);
+        });
+
+        colFechaVencimiento.setCellValueFactory(cellData -> {
+            Object[] row = cellData.getValue();
+            return new javafx.beans.property.SimpleObjectProperty<>((LocalDate) row[2]);
+        });
+
+        colNroCopia.setCellValueFactory(cellData -> {
+            Object[] row = cellData.getValue();
+            return new javafx.beans.property.SimpleLongProperty((Long) row[3]).asObject();
+        });
+
+        colTituloLibro.setCellValueFactory(cellData -> {
+            Object[] row = cellData.getValue();
+            return new javafx.beans.property.SimpleStringProperty((String) row[4]);
+        });
+        // colNroCopia.setCellValueFactory(new PropertyValueFactory<>(""));
+        //obtneer datos
+        Repositorio r = new Repositorio();
+        ServicioMiembro sm = new ServicioMiembro(r);
+
+        var resultados = sm.consultaHistorialLibrosMiembro();
+
+        //setear lista
+        lista = FXCollections.observableArrayList(resultados);
+
+        //setear tabla
+        tabla.setItems(lista);
+        //colocar formatos
+        //listener seleccionar 
 
     }
 

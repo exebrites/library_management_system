@@ -22,12 +22,12 @@
                   <Insets left="10.0" top="10.0" />
                </padding>
             </Label>
-            <TableView layoutX="14.0" layoutY="109.0" prefHeight="476.0" prefWidth="823.0">
+            <TableView fx:id="tabla" layoutX="14.0" layoutY="109.0" prefHeight="476.0" prefWidth="823.0">
               <columns>
-                <TableColumn prefWidth="163.0" text="Nombre y Apellido" />
-                  <TableColumn prefWidth="298.66668701171875" text="Fecha de vencimiento del prestamo" />
-                  <TableColumn prefWidth="162.33331298828125" text="Numero de copia" />
-                  <TableColumn prefWidth="198.6666259765625" text="Titulo del libro" />
+                <TableColumn fx:id="colNombreApellido" prefWidth="163.0" text="Nombre y Apellido" />
+                  <TableColumn fx:id="colFechaVencimiento" prefWidth="298.66668701171875" text="Fecha de vencimiento del prestamo" />
+                  <TableColumn fx:id="colNroCopia" prefWidth="162.33331298828125" text="Numero de copia" />
+                  <TableColumn fx:id="colTituloLibro" prefWidth="198.6666259765625" text="Titulo del libro" />
               </columns>
             </TableView>
             <Label layoutX="20.0" layoutY="83.0" prefHeight="16.0" prefWidth="262.0" text="Lista de miembros con libros" />

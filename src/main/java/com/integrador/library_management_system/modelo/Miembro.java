@@ -99,4 +99,12 @@ public class Miembro implements Serializable {
         return "Miembro{" + "id=" + id + ", clave=" + clave + ", estadoMiembro=" + estadoMiembro + ", nombre=" + nombre + ", apellido=" + apellido + '}';
     }
 
+    public Set<Prestamo> getPrestamos() {
+        return prestamos;
+    }
+
+    public void setPrestamos(Set<Prestamo> prestamos) {
+        this.prestamos = prestamos;
+    }
+
 }
