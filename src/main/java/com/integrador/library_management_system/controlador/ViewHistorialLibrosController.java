@@ -20,6 +20,7 @@ import com.integrador.library_management_system.util.GestorDatos;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -82,13 +83,15 @@ public class ViewHistorialLibrosController implements Initializable {
     @FXML
     private TableColumn<Object[], String> colNombreApellido;
     @FXML
-    private TableColumn<Object[], LocalDate> colFechaVencimiento;
+    private TableColumn<Object[], String> colFechaVencimiento;
     @FXML
     private TableColumn<Object[], Long> colNroCopia;
     @FXML
     private TableColumn<Object[], String> colTituloLibro;
 
     private ObservableList lista;
+
+    private Object[] fila;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -104,7 +107,10 @@ public class ViewHistorialLibrosController implements Initializable {
 
         colFechaVencimiento.setCellValueFactory(cellData -> {
             Object[] row = cellData.getValue();
-            return new javafx.beans.property.SimpleObjectProperty<>((LocalDate) row[2]);
+            var fecha = (LocalDate) row[2];
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            var fechaFormateada = fecha.format(formatter);
+            return new javafx.beans.property.SimpleObjectProperty<>(fechaFormateada);
         });
 
         colNroCopia.setCellValueFactory(cellData -> {
@@ -128,9 +134,13 @@ public class ViewHistorialLibrosController implements Initializable {
 
         //setear tabla
         tabla.setItems(lista);
-        //colocar formatos
-        //listener seleccionar 
 
+        //listener seleccionar 
+        tabla.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                fila = (Object[]) newSelection;
+            }
+        });
     }
 
     @FXML
@@ -150,7 +160,8 @@ public class ViewHistorialLibrosController implements Initializable {
             loadStage("ViewIndexCopias", event);
         } else if (evt.equals(btnShow)) {
             //loadStage("ViewIndexUsuario", event);
-            loadStage("ViewDetalleHistorialLibros", event);
+            // loadStage("ViewDetalleHistorialLibros", event);
+            System.out.println(Arrays.toString(fila));
         }
 
     }
