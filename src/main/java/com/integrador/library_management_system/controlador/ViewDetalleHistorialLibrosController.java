@@ -8,15 +8,18 @@ import static com.integrador.library_management_system.App.loadFXML;
 import com.integrador.library_management_system.modelo.CopiaLibro;
 import com.integrador.library_management_system.modelo.Libro;
 import com.integrador.library_management_system.modelo.Miembro;
+import com.integrador.library_management_system.modelo.Prestamo;
 import com.integrador.library_management_system.modelo.Rack;
 import com.integrador.library_management_system.modelo.TipoCopiaLibro;
 import com.integrador.library_management_system.repositorio.Repositorio;
 import com.integrador.library_management_system.servicios.ServicioCopiaLibro;
 import com.integrador.library_management_system.servicios.ServicioLibro;
+import com.integrador.library_management_system.servicios.ServicioPrestamo;
 import com.integrador.library_management_system.servicios.ServicioRack;
 import com.integrador.library_management_system.util.GestorDatos;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -64,11 +67,58 @@ public class ViewDetalleHistorialLibrosController implements Initializable {
     @FXML
     private Label lbUser;
 
+    private Object[] fila;
+
+    /*COMPONENTES*/
+    @FXML
+    private TextField txtNombreApellido;
+    @FXML
+    private TextField txtIdPrestamo;
+    @FXML
+    private TextField txtIdCopia;
+    @FXML
+    private TextField txtIdLibro;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //System.out.println(TipoCopiaLibro.values());
 
         Miembro miembro = (Miembro) GestorDatos.obtenerDato("miembroAuth");
+
+    }
+
+    public void setData(Object[] data) {
+        fila = data;
+
+        System.out.println(Arrays.toString(fila));
+        txtNombreApellido.setText((String) fila[0] + " " + (String) fila[1]);
+
+        Repositorio r = new Repositorio();
+        ServicioPrestamo sp = new ServicioPrestamo(r);
+        ServicioCopiaLibro scopia = new ServicioCopiaLibro(r);
+        ServicioLibro sl = new ServicioLibro(r);
+        //PRESTAMO
+        Long idPrestamo = (Long) fila[6];
+        Prestamo p = new Prestamo();
+        p.setId(idPrestamo);
+        var prestamo = sp.buscarPrestamo(p);
+
+        //COPIA
+        Long idCopia = (Long) fila[3];
+        var c = new CopiaLibro();
+        c.setId(idCopia);
+        var copia = scopia.buscarCopia(c);
+
+        //LIBRO 
+        Long idLibro = (Long) fila[7];
+        var l = new Libro();
+        l.setId(idLibro);
+        var libro = sl.buscarLibro(l);
+
+        //VISUALIZAR DATOS|
+        txtIdPrestamo.setText(prestamo.getId().toString());
+        txtIdCopia.setText(copia.getId().toString());
+        txtIdLibro.setText(libro.getId().toString());
 
     }
 

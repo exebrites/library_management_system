@@ -43,4 +43,7 @@ public class ServicioCopiaLibro {
         return this.repositorio.buscarTodos(CopiaLibro.class);
     }
 
+    public CopiaLibro buscarCopia(CopiaLibro copia) {
+        return this.repositorio.buscar(CopiaLibro.class, copia.getId());
+    }
 }

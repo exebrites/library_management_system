@@ -27,25 +27,25 @@
                   <Label prefHeight="16.0" prefWidth="262.0" text="Informacion del miembro" />
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <TextField promptText="nombre y apellido" />
+                        <TextField fx:id="txtNombreApellido" editable="false" promptText="nombre y apellido" />
                      </children>
                   </HBox>
                   <Label prefHeight="16.0" prefWidth="262.0" text="Informacion del prestamo" />
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <TextField promptText="id prestamo" />
+                        <TextField fx:id="txtIdPrestamo" editable="false" promptText="id prestamo" />
                      </children>
                   </HBox>
                   <Label prefHeight="16.0" prefWidth="262.0" text="Informacion de la copia" />
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <TextField promptText="id copia" />
+                        <TextField fx:id="txtIdCopia" editable="false" promptText="id copia" />
                      </children>
                   </HBox>
                   <Label prefHeight="16.0" prefWidth="262.0" text="Informacion del libro" />
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <TextField promptText="titulo libro" />
+                        <TextField fx:id="txtIdLibro" editable="false" promptText="titulo libro" />
                      </children>
                   </HBox>
                </children>
