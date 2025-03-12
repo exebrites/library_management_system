@@ -209,20 +209,28 @@ public class ViewLibroController implements Initializable {
 
             } else if (evt.equals(btnEditar)) {
                 //Cargar la vista
-                var fxml = "ViewEditLibro";
 
-                FXMLLoader loader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
-                Parent root = loader.load();
+                if (libroFila == null) {
+                    Alert alert = new Alert(AlertType.WARNING);
+                    alert.setTitle("Seleccione un Libro");
+                    alert.showAndWait();
+                } else {
+                    var fxml = "ViewEditLibro";
 
-                // Obtener el controlador y pasarle los datos
-                ViewEditLibroController detalleController = loader.getController();
-                detalleController.setData(libroFila);
+                    FXMLLoader loader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+                    Parent root = loader.load();
 
-                //ocultar la escena anterior y generar una nueva
-                ((Node) (event.getSource())).getScene().getWindow().hide();
-                Stage stage = new Stage();
-                stage.setScene(new Scene(root));
-                stage.show();
+                    // Obtener el controlador y pasarle los datos
+                    ViewEditLibroController detalleController = loader.getController();
+                    detalleController.setData(libroFila);
+
+                    //ocultar la escena anterior y generar una nueva
+                    ((Node) (event.getSource())).getScene().getWindow().hide();
+                    Stage stage = new Stage();
+                    stage.setScene(new Scene(root));
+                    stage.show();
+                }
+
             }
 
         } catch (IOException ex) {

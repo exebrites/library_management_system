@@ -155,7 +155,7 @@
    <top>
       <Pane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="TOP_LEFT" contentDisplay="TOP" onMouseClicked="#cambiarVista" text="Library Manager System">
+            <Label alignment="TOP_LEFT" contentDisplay="TOP" text="Library Manager System">
                <font>
                   <Font size="48.0" />
                </font>

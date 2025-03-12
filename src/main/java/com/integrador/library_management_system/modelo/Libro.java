@@ -9,6 +9,7 @@ import jakarta.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.*;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -167,6 +168,52 @@ public class Libro implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.id);
+        hash = 97 * hash + Objects.hashCode(this.editorial);
+        hash = 97 * hash + Objects.hashCode(this.autores);
+        hash = 97 * hash + Objects.hashCode(this.categoriaTematica);
+        hash = 97 * hash + Objects.hashCode(this.isbn);
+        hash = 97 * hash + Objects.hashCode(this.idioma);
+        hash = 97 * hash + Objects.hashCode(this.titulo);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Libro other = (Libro) obj;
+        if (!Objects.equals(this.editorial, other.editorial)) {
+            return false;
+        }
+        if (!Objects.equals(this.autores, other.autores)) {
+            return false;
+        }
+        if (!Objects.equals(this.categoriaTematica, other.categoriaTematica)) {
+            return false;
+        }
+        if (!Objects.equals(this.isbn, other.isbn)) {
+            return false;
+        }
+        if (!Objects.equals(this.idioma, other.idioma)) {
+            return false;
+        }
+        if (!Objects.equals(this.titulo, other.titulo)) {
+            return false;
+        }
+        return Objects.equals(this.id, other.id);
     }
 
 }

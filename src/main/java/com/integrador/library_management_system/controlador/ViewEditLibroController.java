@@ -102,16 +102,6 @@ public class ViewEditLibroController implements Initializable {
         txtAutores.setText(libro.getAutores());
     }
 
-    private void cambiarVista(MouseEvent event) throws IOException {
-        ((Node) (event.getSource())).getScene().getWindow().hide();
-        var url = "ViewPrincipal";
-        Scene scene = new Scene(loadFXML(url));
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.setTitle("Library Manager System");
-        stage.show();
-    }
-
     @FXML
     private void eventAction(ActionEvent event) throws IOException {
         Object evt = event.getSource();
@@ -144,37 +134,45 @@ public class ViewEditLibroController implements Initializable {
                 // Cargar datos
                 Repositorio r = new Repositorio();
                 ServicioLibro sl = new ServicioLibro(r);
+                var librodb = sl.buscarLibro(libro);
+                librodb.setTitulo(titulo);
+                librodb.setIsbn(isbn);
+                librodb.setIdioma(idioma);
+                librodb.setEditorial(editorial);
+                librodb.setAutores(autores);
+                librodb.setCategoriaTematica(categoriaTematica);
+
                 var librosTitulos = sl.buscarTitulo(titulo);
                 var librosISBN = sl.buscarISBN(isbn);
-                // aveces si o tras no (?
 
+                var bandera = true;
+                //verificar si existe algun otro libro con el mismo titulo
                 if (!librosTitulos.isEmpty()) {
-                    Alert alert = new Alert(AlertType.INFORMATION);
-                    alert.setTitle("Alta Libros");
-                    alert.setHeaderText("Titulos duplicados");
-                    alert.setContentText("Ya existe un LIBRO con ese titulo. POR FAVOR INGRESE UN NUEVO TITULO");
-                    alert.showAndWait();
-                } else if (!librosISBN.isEmpty()) {
-                    Alert alert = new Alert(AlertType.INFORMATION);
-                    alert.setTitle("Alta Libros");
-                    alert.setHeaderText("ISBN duplicados");
-                    alert.setContentText("Ya existe un LIBRO con ese ISBN. POR FAVOR INGRESE UN NUEVO ISBN");
-                    alert.showAndWait();
-                } else {
-
-                    var librodb = sl.buscarLibro(libro);
-
-                    librodb.setTitulo(titulo);
-                    librodb.setIsbn(isbn);
-                    librodb.setIdioma(idioma);
-                    librodb.setEditorial(editorial);
-                    librodb.setAutores(autores);
-                    librodb.setCategoriaTematica(categoriaTematica);
-
+                    if (!librodb.equals(librosTitulos.get(0))) {
+                        Alert alert = new Alert(AlertType.INFORMATION);
+                        alert.setTitle("Alta Libros");
+                        alert.setHeaderText("Titulos duplicados");
+                        alert.setContentText("Ya existe un LIBRO con ese titulo. POR FAVOR INGRESE UN NUEVO TITULO");
+                        alert.showAndWait();
+                        bandera = false;
+                    }
+                }
+                //verificar si existe algun otro libro con el mismo titulo
+                if (!librosISBN.isEmpty()) {
+                    if (!librodb.equals(librosISBN.get(0))) {
+                        Alert alert = new Alert(AlertType.INFORMATION);
+                        alert.setTitle("Alta Libros");
+                        alert.setHeaderText("ISBN duplicados");
+                        alert.setContentText("Ya existe un LIBRO con ese ISBN. POR FAVOR INGRESE UN NUEVO ISBN");
+                        alert.showAndWait();
+                        bandera = false;
+                    }
+                }
+                //modificar el libro
+                if (bandera) {
+                    System.out.println("modificando libro...");
                     sl.editarLibro(librodb);
                     loadStage("ViewIndexLibro", event);
-
-                    System.out.println("puto");
                 }
 
             } catch (IllegalArgumentException ie) {

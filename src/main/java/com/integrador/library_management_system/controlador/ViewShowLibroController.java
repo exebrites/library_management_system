@@ -7,6 +7,7 @@ package com.integrador.library_management_system.controlador;
 import com.integrador.library_management_system.App;
 import static com.integrador.library_management_system.App.loadFXML;
 import com.integrador.library_management_system.modelo.CopiaLibro;
+import com.integrador.library_management_system.modelo.EstadoCopiaLibro;
 import com.integrador.library_management_system.modelo.Libro;
 import com.integrador.library_management_system.modelo.Miembro;
 import com.integrador.library_management_system.repositorio.Repositorio;
@@ -209,6 +210,12 @@ public class ViewShowLibroController implements Initializable {
                     alert2.setTitle("Copia selecciona");
                     alert2.setHeaderText("COPIA DE REFERENCIA");
                     alert2.setContentText("La copia seleccionada es una copia de REFERENCIA. Elija otra copia para CONTINUAR");
+                    alert2.showAndWait();
+                } else if (copia.getEstado().equals(EstadoCopiaLibro.PRESTADA)) {
+                    Alert alert2 = new Alert(AlertType.WARNING);
+                    alert2.setTitle("Copia selecciona");
+                    alert2.setHeaderText("COPIA DE PRESTADA");
+                    alert2.setContentText("La copia seleccionada es una copia de PRESTADA. Elija otra copia para CONTINUAR");
                     alert2.showAndWait();
                 } else {
                     var fxml = "ViewCreatePrestamo";
