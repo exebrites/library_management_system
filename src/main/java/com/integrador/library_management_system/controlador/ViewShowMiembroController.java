@@ -52,6 +52,10 @@ public class ViewShowMiembroController implements Initializable {
     private Button btnGestionarPrestamo;
     @FXML
     private Button btnGestionarCopias;
+    @FXML
+    private Button btnInicio;
+    @FXML
+    private Button btnGestionarRack;
 
     /*NAVEGACION*/
     @FXML
@@ -112,6 +116,12 @@ public class ViewShowMiembroController implements Initializable {
                 //loadStage("ViewIndexUsuario", event);
                 loadStage("ViewIndexCopias", event);
 
+            } else if (evt.equals(btnInicio)) {
+                //loadStage("ViewIndexUsuario", event);
+                loadStage("ViewPrincipal", event);
+
+            } else if (evt.equals(btnGestionarRack)) {
+                loadStage("ViewIndexRack", event);
             }
 
         } catch (IOException ex) {

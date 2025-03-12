@@ -53,6 +53,13 @@ public class ViewShowLibroController implements Initializable {
     @FXML
     private Button btnGestionarCopias;
     @FXML
+    private Button btnInicio;
+
+    @FXML
+    private Button btnGestionarRack;
+
+    /*NAVEGACION*/
+    @FXML
     private Button btnPrestamo;
 
     @FXML
@@ -181,6 +188,12 @@ public class ViewShowLibroController implements Initializable {
             } else if (evt.equals(btnGestionarCopias)) {
                 //loadStage("ViewIndexUsuario", event);
                 loadStage("ViewIndexCopias", event);
+
+            } else if (evt.equals(btnGestionarRack)) {
+                loadStage("ViewIndexRack", event);
+            } else if (evt.equals(btnInicio)) {
+                //loadStage("ViewIndexUsuario", event);
+                loadStage("ViewPrincipal", event);
 
             } else if (evt.equals(btnPrestamo)) {
                 //loadStage("ViewIndexUsuario", event);

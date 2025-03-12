@@ -50,6 +50,11 @@ public class ViewIndexUsuarioController implements Initializable {
     private Button btnGestionarPrestamo;
     @FXML
     private Button btnGestionarCopias;
+    @FXML
+    private Button btnInicio;
+    @FXML
+    private Button btnGestionarRack;
+
     /*NAVEGACION*/
 
  /*GESTION MIEMBROS*/
@@ -137,6 +142,12 @@ public class ViewIndexUsuarioController implements Initializable {
                 loadStage("ViewIndexCopias", event);
             } else if (evt.equals(btnNuevo)) {
                 loadStage("ViewCreateMiembro", event);
+            } else if (evt.equals(btnInicio)) {
+                //loadStage("ViewIndexUsuario", event);
+                loadStage("ViewPrincipal", event);
+
+            } else if (evt.equals(btnGestionarRack)) {
+                loadStage("ViewIndexRack", event);
             } else if (evt.equals(btnShow)) {
                 System.out.println("show....");
 
@@ -155,11 +166,10 @@ public class ViewIndexUsuarioController implements Initializable {
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));
                 stage.show();
-                
-                
+
             } else if (evt.equals(btnEditar)) {
                 System.out.println("editar....");
-                  var fxml = "ViewEditMiembro";
+                var fxml = "ViewEditMiembro";
 
                 FXMLLoader loader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
                 Parent root = loader.load();

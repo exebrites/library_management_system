@@ -84,6 +84,7 @@ public class ViewDetalleHistorialLibrosController implements Initializable {
         //System.out.println(TipoCopiaLibro.values());
 
         Miembro miembro = (Miembro) GestorDatos.obtenerDato("miembroAuth");
+        lbUser.setText(miembro.getNombre());
 
     }
 

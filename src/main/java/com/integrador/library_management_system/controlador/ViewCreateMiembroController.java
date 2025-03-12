@@ -10,6 +10,7 @@ import com.integrador.library_management_system.modelo.Miembro;
 import com.integrador.library_management_system.repositorio.Repositorio;
 import com.integrador.library_management_system.servicios.ServicioLibro;
 import com.integrador.library_management_system.servicios.ServicioMiembro;
+import com.integrador.library_management_system.util.GestorDatos;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -25,6 +26,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -51,6 +53,12 @@ public class ViewCreateMiembroController implements Initializable {
     private Button btnGestionarCopias;
     @FXML
     private Button btnPrestamo;
+
+    @FXML
+    private Button btnInicio;
+    @FXML
+    private Button btnGestionarRack;
+
     //navegacion
     @FXML
     private Button btnNuevoLibro;
@@ -68,9 +76,14 @@ public class ViewCreateMiembroController implements Initializable {
     @FXML
     private Button btnCancelar;
 
+    @FXML
+    private Label lbUser;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        Miembro miembro = (Miembro) GestorDatos.obtenerDato("miembroAuth");
+        lbUser.setText(miembro.getNombre());
     }
 
     @FXML
@@ -88,6 +101,12 @@ public class ViewCreateMiembroController implements Initializable {
         } else if (evt.equals(btnGestionarCopias)) {
             //loadStage("ViewIndexUsuario", event);
             loadStage("ViewIndexCopias", event);
+        } else if (evt.equals(btnInicio)) {
+            //loadStage("ViewIndexUsuario", event);
+            loadStage("ViewPrincipal", event);
+
+        } else if (evt.equals(btnGestionarRack)) {
+            loadStage("ViewIndexRack", event);
         } else if (evt.equals(btnGuardar)) {
             System.out.println("GUARDANDO...");
             System.out.println(txtNombre.getText());

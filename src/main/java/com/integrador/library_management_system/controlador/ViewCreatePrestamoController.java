@@ -16,6 +16,7 @@ import com.integrador.library_management_system.servicios.ServicioCopiaLibro;
 import com.integrador.library_management_system.servicios.ServicioLibro;
 import com.integrador.library_management_system.servicios.ServicioMiembro;
 import com.integrador.library_management_system.servicios.ServicioPrestamo;
+import com.integrador.library_management_system.util.GestorDatos;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -37,6 +38,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -54,6 +56,11 @@ public class ViewCreatePrestamoController implements Initializable {
      * Initializes the controller class.
      */
     //navegacion
+    @FXML
+    private Button btnInicio;
+    @FXML
+    private Button btnGestionarRack;
+
 //create
     @FXML
     private TableView<Miembro> tablaMiembros;
@@ -93,8 +100,15 @@ public class ViewCreatePrestamoController implements Initializable {
     @FXML
     private TextField txtTipo;
 
+    @FXML
+    private Label lbUser;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+        //NOMBRE USER
+        Miembro miembro = (Miembro) GestorDatos.obtenerDato("miembroAuth");
+        lbUser.setText(miembro.getNombre());
 
         colIdentificador.setCellValueFactory(new PropertyValueFactory<>("id"));
         colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
@@ -246,6 +260,12 @@ public class ViewCreatePrestamoController implements Initializable {
             }
         } else if (evt.equals(btnCancelar)) {
             loadStage("ViewIndexLibro", event);
+        } else if (evt.equals(btnInicio)) {
+            //loadStage("ViewIndexUsuario", event);
+            loadStage("ViewPrincipal", event);
+
+        } else if (evt.equals(btnGestionarRack)) {
+            loadStage("ViewIndexRack", event);
         }
     }
 

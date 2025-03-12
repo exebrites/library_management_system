@@ -6,8 +6,10 @@ package com.integrador.library_management_system.controlador;
 
 import static com.integrador.library_management_system.App.loadFXML;
 import com.integrador.library_management_system.modelo.Libro;
+import com.integrador.library_management_system.modelo.Miembro;
 import com.integrador.library_management_system.repositorio.Repositorio;
 import com.integrador.library_management_system.servicios.ServicioLibro;
+import com.integrador.library_management_system.util.GestorDatos;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -23,10 +25,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 /**
@@ -49,6 +53,10 @@ public class ViewEditLibroController implements Initializable {
     private Button btnGestionarCopias;
     @FXML
     private Button btnPrestamo;
+
+    @FXML
+    private Button btnGestionarRack;
+
     //navegacion
     @FXML
     private Button btnNuevoLibro;
@@ -74,9 +82,14 @@ public class ViewEditLibroController implements Initializable {
 
     private Libro libro;
 
+    @FXML
+    private Label lbUser;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        Miembro miembro = (Miembro) GestorDatos.obtenerDato("miembroAuth");
+        lbUser.setText(miembro.getNombre());
     }
 
     public void setData(Object data) {
@@ -87,6 +100,16 @@ public class ViewEditLibroController implements Initializable {
         txtEditorial.setText(libro.getEditorial());
         txtCategoria.setText(libro.getCategoriaTematica());
         txtAutores.setText(libro.getAutores());
+    }
+
+    private void cambiarVista(MouseEvent event) throws IOException {
+        ((Node) (event.getSource())).getScene().getWindow().hide();
+        var url = "ViewPrincipal";
+        Scene scene = new Scene(loadFXML(url));
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("Library Manager System");
+        stage.show();
     }
 
     @FXML
@@ -104,6 +127,8 @@ public class ViewEditLibroController implements Initializable {
         } else if (evt.equals(btnGestionarCopias)) {
             //loadStage("ViewIndexUsuario", event);
             loadStage("ViewIndexCopias", event);
+        } else if (evt.equals(btnGestionarRack)) {
+            loadStage("ViewIndexRack", event);
         } else if (evt.equals(btnGuardar)) {
             System.out.println("guardando... ");
 

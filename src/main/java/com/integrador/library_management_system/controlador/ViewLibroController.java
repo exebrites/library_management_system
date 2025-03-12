@@ -76,7 +76,11 @@ public class ViewLibroController implements Initializable {
     private Button btnGestionarPrestamo;
     @FXML
     private Button btnGestionarCopias;
+    @FXML
+    private Button btnGestionarRack;
 
+    @FXML
+    private Button btnInicio;
     @FXML
     private Button btnShow;
 
@@ -197,22 +201,28 @@ public class ViewLibroController implements Initializable {
                 loadStage("ViewIndexPrestamo", event);
             } else if (evt.equals(btnGestionarCopias)) {
                 loadStage("ViewIndexCopias", event);
+            } else if (evt.equals(btnGestionarRack)) {
+                loadStage("ViewIndexRack", event);
+            } else if (evt.equals(btnInicio)) {
+                //loadStage("ViewIndexUsuario", event);
+                loadStage("ViewPrincipal", event);
+
             } else if (evt.equals(btnEditar)) {
                 //Cargar la vista
-            var fxml = "ViewEditLibro";
+                var fxml = "ViewEditLibro";
 
-            FXMLLoader loader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
-            Parent root = loader.load();
+                FXMLLoader loader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+                Parent root = loader.load();
 
-            // Obtener el controlador y pasarle los datos
-            ViewEditLibroController detalleController = loader.getController();
-            detalleController.setData(libroFila);
+                // Obtener el controlador y pasarle los datos
+                ViewEditLibroController detalleController = loader.getController();
+                detalleController.setData(libroFila);
 
-            //ocultar la escena anterior y generar una nueva
-            ((Node) (event.getSource())).getScene().getWindow().hide();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.show();
+                //ocultar la escena anterior y generar una nueva
+                ((Node) (event.getSource())).getScene().getWindow().hide();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.show();
             }
 
         } catch (IOException ex) {
