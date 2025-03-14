@@ -16,6 +16,7 @@ import com.integrador.library_management_system.util.GestorDatos;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,6 +35,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
 
 /**
@@ -74,11 +76,11 @@ public class ViewIndexPrestamoController implements Initializable {
     @FXML
     private TableColumn<Prestamo, Long> colId;
     @FXML
-    private TableColumn<Prestamo, LocalDate> colFechaInicio;
+    private TableColumn<Prestamo, String> colFechaInicio;
     @FXML
-    private TableColumn<Prestamo, LocalDate> colFechaVencimiento;
+    private TableColumn<Prestamo, String> colFechaVencimiento;
     @FXML
-    private TableColumn colEstado;
+    private TableColumn<Prestamo, String> colEstado;
 
     private ObservableList<Prestamo> listaPrestamos;
 
@@ -109,9 +111,29 @@ public class ViewIndexPrestamoController implements Initializable {
         implementar el listener para seleccionar
          */
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));
-        colFechaInicio.setCellValueFactory(new PropertyValueFactory<>("fechaPrestamo"));
-        colFechaVencimiento.setCellValueFactory(new PropertyValueFactory<>("fechaVencimiento"));
-        colEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
+        colFechaInicio.setCellValueFactory(
+                cellData -> {
+                    var fecha = cellData.getValue().getFechaPrestamo();
+
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                    var fechaFormateada = fecha.format(formatter);
+                    return new javafx.beans.property.SimpleObjectProperty<>(fechaFormateada);
+                }
+        );
+        colFechaVencimiento.setCellValueFactory(cellData -> {
+            var fecha = cellData.getValue().getFechaVencimiento();
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            var fechaFormateada = fecha.format(formatter);
+            return new javafx.beans.property.SimpleObjectProperty<>(fechaFormateada);
+        });
+
+        //colEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
+        colEstado.setCellValueFactory(cellData -> {
+            var estado = cellData.getValue().isEstado();
+            var formato = estado ? "ACTIVO" : "NO ACTIVO";
+            return new javafx.beans.property.SimpleObjectProperty<>(formato);
+        });
 
         Repositorio r = new Repositorio();
         ServicioPrestamo sp = new ServicioPrestamo(r);
@@ -153,8 +175,8 @@ public class ViewIndexPrestamoController implements Initializable {
                 System.out.println("editar");
                 //System.out.println(this.prestamo);
                 //configurar vista y envio a vista;
-                
-                 var fxml = "ViewEditPrestamo";
+
+                var fxml = "ViewEditPrestamo";
 
                 FXMLLoader loader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
                 Parent root = loader.load();

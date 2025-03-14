@@ -24,12 +24,12 @@
             </Label>
             <VBox layoutX="14.0" layoutY="71.0" prefHeight="374.0" prefWidth="1155.0">
                <children>
-                  <Label prefHeight="97.0" prefWidth="396.0" text="Listado de multa" />
+                  <Label prefHeight="50.0" prefWidth="396.0" text="Listado de multa" />
                   <TableView fx:id="tablaMultas" prefHeight="200.0" prefWidth="200.0">
                     <columns>
-                      <TableColumn fx:id="colId" prefWidth="188.66668701171875" text="Identificador" />
-                      <TableColumn fx:id="colCosto" prefWidth="421.33331298828125" text="costo" />
-                        <TableColumn fx:id="colIdPrestamo" prefWidth="314.3333740234375" text="Numero de prestamo" />
+                      <TableColumn fx:id="colId" prefWidth="378.0" text="Identificador" />
+                      <TableColumn fx:id="colCosto" prefWidth="470.0" text="costo" />
+                        <TableColumn fx:id="colIdPrestamo" prefWidth="306.0" text="Numero de prestamo" />
                     </columns>
                   </TableView>
                </children>

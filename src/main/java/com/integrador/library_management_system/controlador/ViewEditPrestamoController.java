@@ -110,7 +110,7 @@ public class ViewEditPrestamoController implements Initializable {
     @FXML
     private TextField txtId;
     @FXML
-    private CheckBox checkEstado;
+    private TextField txtEstado;
 
     @FXML
     private Button btnGuardar;
@@ -139,7 +139,8 @@ public class ViewEditPrestamoController implements Initializable {
         txtId.setText(prestamo.getId().toString());
         dataInicio.setValue(prestamo.getFechaPrestamo());
         dataVencimiento.setValue(prestamo.getFechaVencimiento());
-        checkEstado.setSelected(prestamo.isEstado());
+        var formato = prestamo.isEstado() ? "ACTIVO" : "NO ACTIVO";
+        txtEstado.setText(formato);
     }
 
     @FXML
@@ -151,8 +152,7 @@ public class ViewEditPrestamoController implements Initializable {
             Repositorio r = new Repositorio();
             ServicioPrestamo sr = new ServicioPrestamo(r);
             var prestamodb = sr.buscarPrestamo(prestamo);
-            var estado = checkEstado.isSelected();
-            //Controlar la fecha de vencimiento y generar multa
+            var estado = false; //Controlar la fecha de vencimiento y generar multa
             System.out.println("hoy a hace diez dias sacaste el libro (?");
             //System.out.println(estado);
             if (prestamodb.hanPasadoDiezDias()) {
@@ -160,13 +160,13 @@ public class ViewEditPrestamoController implements Initializable {
                 Alert alert = new Alert(AlertType.WARNING);
                 alert.setTitle("Generacion de multa");
                 //generarr multa. REalizar en el servicio
-                 var costo =  1;
+                var costo = 1;
                 Multa multa = new Multa(costo);
                 multa.setPrestamo(prestamodb);
-                ServicioMulta sm = new ServicioMulta(r); 
+                ServicioMulta sm = new ServicioMulta(r);
                 sm.agregarMulta(multa);
             }
-       
+
             prestamodb.setEstado(estado);
             sr.editarPrestamo(prestamodb);
             loadStage("ViewIndexPrestamo", event);

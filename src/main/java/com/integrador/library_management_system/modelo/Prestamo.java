@@ -51,20 +51,15 @@ public class Prestamo implements Serializable {
     public Prestamo() {
     }
 
-    public Prestamo(LocalDate fechaPrestamo, LocalDate fechaVencimiento) {
+    public Prestamo(LocalDate fechaPrestamo) {
 
         if (fechaPrestamo == null) {
             throw new IllegalArgumentException("El campo fechaPrestamo no puede estar vacío.");
         }
-        if (fechaVencimiento == null) {
-            throw new IllegalArgumentException("El campo fechaPrestamo no puede estar vacío.");
-        }
-        if (fechaPrestamo.isAfter(fechaPrestamo)) {
-            throw new IllegalArgumentException("El campo fechaPrestamo no puede ser mayor a FechaVencimiento.");
-        }
 
         this.fechaPrestamo = fechaPrestamo;
-        this.fechaVencimiento = fechaVencimiento;
+
+        this.fechaVencimiento = fechaPrestamo.plusDays(10);
     }
 
     public Miembro getMiembro() {

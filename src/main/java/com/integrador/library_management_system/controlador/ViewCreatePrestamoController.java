@@ -197,15 +197,10 @@ public class ViewCreatePrestamoController implements Initializable {
                     alert.showAndWait();
                 } else {
 
-                    LocalDate inicio = dataInicio.getValue();
-                    LocalDate vencimiento = dataVencimiento.getValue();
-                    System.out.println("inicio" + inicio);
-                    System.out.println("venc" + vencimiento);
-                    System.out.println("miembro" + fila);
-                    System.out.println("copia" + copiaLocal.toString());
+                 
 
                     //crear objeto prestamo
-                    Prestamo prestamo = new Prestamo(inicio, vencimiento);
+                    Prestamo prestamo = new Prestamo(LocalDate.now());
 
                     //asociar miembro a prestamo 
                     copiaLocal.setEstado(EstadoCopiaLibro.PRESTADA);

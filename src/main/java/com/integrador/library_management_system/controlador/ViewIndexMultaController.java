@@ -78,7 +78,7 @@ public class ViewIndexMultaController implements Initializable {
     @FXML
     private TableColumn<Multa, Float> colCosto;
     @FXML
-    private TableColumn<Prestamo, Long> colIdPrestamo;
+    private TableColumn<Multa, String> colIdPrestamo;
 
     private ObservableList<Multa> listaMultas;
 
@@ -110,7 +110,12 @@ public class ViewIndexMultaController implements Initializable {
          */
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colCosto.setCellValueFactory(new PropertyValueFactory<>("costo"));
-        colIdPrestamo.setCellValueFactory(new PropertyValueFactory<>("prestamo_id"));
+        colIdPrestamo.setCellValueFactory(cellData -> {
+            var id = cellData.getValue().getPrestamo().getId();
+
+            return new javafx.beans.property.SimpleObjectProperty<>(id.toString());
+
+        });
 //        colEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
 
         Repositorio r = new Repositorio();
