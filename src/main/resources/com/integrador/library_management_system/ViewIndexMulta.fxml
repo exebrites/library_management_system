@@ -10,11 +10,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.integrador.library_management_system.controlador.ViewIndexUsuarioController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.integrador.library_management_system.controlador.ViewIndexMultaController">
    <center>
       <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="TOP_LEFT" contentDisplay="TOP" layoutY="-2.0" prefHeight="82.0" prefWidth="598.0" text="Seccion Usuarios">
+            <Label alignment="TOP_LEFT" contentDisplay="TOP" layoutY="-2.0" prefHeight="82.0" prefWidth="598.0" text="Seccion multa">
                <font>
                   <Font size="48.0" />
                </font>
@@ -22,18 +22,19 @@
                   <Insets left="10.0" top="10.0" />
                </padding>
             </Label>
-            <TableView fx:id="tablaMiembros" layoutX="23.0" layoutY="140.0" prefHeight="269.0" prefWidth="1135.0">
-              <columns>
-                <TableColumn fx:id="colId" prefWidth="263.0" text="Identificador" />
-                <TableColumn fx:id="colNombre" prefWidth="298.0" text="Nombre" />
-                  <TableColumn fx:id="colApellido" prefWidth="237.0" text="Apellido" />
-                  <TableColumn fx:id="colEstado" prefWidth="336.0" text="Estado" />
-              </columns>
-            </TableView>
-            <Button fx:id="btnShow" layoutX="34.0" layoutY="434.0" mnemonicParsing="false" onAction="#eventAction" text="Ver" />
-            <Button fx:id="btnEditar" layoutX="142.0" layoutY="435.0" mnemonicParsing="false" onAction="#eventAction" text="Editar" />
-            <Button fx:id="btnEliminar" layoutX="257.0" layoutY="436.0" mnemonicParsing="false" onAction="#eventAction" text="Eliminar" />
-            <Button fx:id="btnNuevo" layoutX="34.0" layoutY="93.0" mnemonicParsing="false" onAction="#eventAction" text="Nuevo" />
+            <VBox layoutX="14.0" layoutY="71.0" prefHeight="374.0" prefWidth="1155.0">
+               <children>
+                  <Label prefHeight="97.0" prefWidth="396.0" text="Listado de multa" />
+                  <TableView fx:id="tablaMultas" prefHeight="200.0" prefWidth="200.0">
+                    <columns>
+                      <TableColumn fx:id="colId" prefWidth="188.66668701171875" text="Identificador" />
+                      <TableColumn fx:id="colCosto" prefWidth="421.33331298828125" text="costo" />
+                        <TableColumn fx:id="colIdPrestamo" prefWidth="314.3333740234375" text="Numero de prestamo" />
+                    </columns>
+                  </TableView>
+               </children>
+            </VBox>
+            <Button fx:id="btnEditar" layoutX="40.0" layoutY="529.0" mnemonicParsing="false" onAction="#eventAction" prefHeight="44.0" prefWidth="138.0" text="Editar" />
          </children>
       </Pane>
    </center>
@@ -48,7 +49,7 @@
                   <Insets left="10.0" top="10.0" />
                </padding>
             </Label>
-            <Label fx:id="lbUser" alignment="TOP_RIGHT" layoutX="1052.0" prefHeight="52.0" prefWidth="202.0" text="Nombre de usuario">
+            <Label fx:id="lbUser" alignment="TOP_RIGHT" layoutX="1378.0" layoutY="12.0" prefHeight="52.0" prefWidth="202.0" text="Nombre de usuario">
                <font>
                   <Font size="18.0" />
                </font>
@@ -56,7 +57,7 @@
                   <Insets left="10.0" top="10.0" />
                </padding>
             </Label>
-            <Button layoutX="1164.0" layoutY="40.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Logout" />
+            <Button layoutX="1457.0" layoutY="74.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Logout" />
          </children>
       </Pane>
    </top>

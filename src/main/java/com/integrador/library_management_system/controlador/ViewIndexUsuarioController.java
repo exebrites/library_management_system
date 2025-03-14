@@ -75,6 +75,8 @@ public class ViewIndexUsuarioController implements Initializable {
     private TableView<Miembro> tablaMiembros;
     //declarar columnas
     @FXML
+    private TableColumn<Miembro, Long> colId;
+    @FXML
     private TableColumn<Miembro, String> colNombre;
     @FXML
     private TableColumn<Miembro, String> colApellido;
@@ -95,6 +97,7 @@ public class ViewIndexUsuarioController implements Initializable {
         lbUser.setText(miembro.getNombre());
 
         //setear columnas
+        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         colApellido.setCellValueFactory(new PropertyValueFactory<>("apellido"));
         colEstado.setCellValueFactory(new PropertyValueFactory<>("estadoMiembro"));

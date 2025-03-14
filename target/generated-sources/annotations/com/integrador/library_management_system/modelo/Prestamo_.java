@@ -8,10 +8,11 @@ import javax.annotation.processing.Generated;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor", date="2025-03-12T16:47:31", comments="EclipseLink-2.7.12.v20230209-rNA")
+@Generated(value="org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor", date="2025-03-14T18:23:04", comments="EclipseLink-2.7.12.v20230209-rNA")
 @StaticMetamodel(Prestamo.class)
 public class Prestamo_ { 
 
+    public static volatile SingularAttribute<Prestamo, Boolean> estado;
     public static volatile SingularAttribute<Prestamo, LocalDate> fechaPrestamo;
     public static volatile SingularAttribute<Prestamo, LocalDate> fechaVencimiento;
     public static volatile SingularAttribute<Prestamo, Multa> multa;

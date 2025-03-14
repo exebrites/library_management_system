@@ -8,9 +8,11 @@ import com.integrador.library_management_system.App;
 import static com.integrador.library_management_system.App.loadFXML;
 import com.integrador.library_management_system.modelo.Libro;
 import com.integrador.library_management_system.modelo.Miembro;
+import com.integrador.library_management_system.modelo.Multa;
 import com.integrador.library_management_system.modelo.Prestamo;
 import com.integrador.library_management_system.repositorio.Repositorio;
 import com.integrador.library_management_system.servicios.ServicioLibro;
+import com.integrador.library_management_system.servicios.ServicioMulta;
 import com.integrador.library_management_system.servicios.ServicioPrestamo;
 import com.integrador.library_management_system.util.GestorDatos;
 import java.io.IOException;
@@ -41,7 +43,7 @@ import javafx.stage.Stage;
  *
  * @author exe
  */
-public class ViewIndexPrestamoController implements Initializable {
+public class ViewIndexMultaController implements Initializable {
 
     @FXML
     private Button btnGestionarLibro;
@@ -70,19 +72,17 @@ public class ViewIndexPrestamoController implements Initializable {
     definir el prestamo fila
      */
     @FXML
-    private TableView<Prestamo> tablaPrestamos;
+    private TableView<Multa> tablaMultas;
     @FXML
-    private TableColumn<Prestamo, Long> colId;
+    private TableColumn<Multa, Long> colId;
     @FXML
-    private TableColumn<Prestamo, LocalDate> colFechaInicio;
+    private TableColumn<Multa, Float> colCosto;
     @FXML
-    private TableColumn<Prestamo, LocalDate> colFechaVencimiento;
-    @FXML
-    private TableColumn colEstado;
+    private TableColumn<Prestamo, Long> colIdPrestamo;
 
-    private ObservableList<Prestamo> listaPrestamos;
+    private ObservableList<Multa> listaMultas;
 
-    private Prestamo prestamo;
+    private Multa multa;
     /*Gestionar prestamos*/
     @FXML
     private Button btnEditar;
@@ -109,18 +109,18 @@ public class ViewIndexPrestamoController implements Initializable {
         implementar el listener para seleccionar
          */
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));
-        colFechaInicio.setCellValueFactory(new PropertyValueFactory<>("fechaPrestamo"));
-        colFechaVencimiento.setCellValueFactory(new PropertyValueFactory<>("fechaVencimiento"));
-        colEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
+        colCosto.setCellValueFactory(new PropertyValueFactory<>("costo"));
+        colIdPrestamo.setCellValueFactory(new PropertyValueFactory<>("prestamo_id"));
+//        colEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
 
         Repositorio r = new Repositorio();
-        ServicioPrestamo sp = new ServicioPrestamo(r);
-        var prestamos = sp.obtenerTodos();
-        listaPrestamos = FXCollections.observableArrayList(prestamos);
-        tablaPrestamos.setItems(listaPrestamos);
-        tablaPrestamos.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+        ServicioMulta sm = new ServicioMulta(r);
+        var multas = sm.obtenerTodos();
+        listaMultas = FXCollections.observableArrayList(multas);
+        tablaMultas.setItems(listaMultas);
+        tablaMultas.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
-                this.prestamo = newSelection;
+                this.multa = newSelection;
             }
         });
     }
@@ -151,10 +151,10 @@ public class ViewIndexPrestamoController implements Initializable {
                 loadStage("ViewIndexRack", event);
             } else if (evt.equals(btnEditar)) {
                 System.out.println("editar");
-                //System.out.println(this.prestamo);
+                System.out.println(this.multa);
                 //configurar vista y envio a vista;
-                
-                 var fxml = "ViewEditPrestamo";
+
+                /*   var fxml = "ViewEditPrestamo";
 
                 FXMLLoader loader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
                 Parent root = loader.load();
@@ -167,7 +167,7 @@ public class ViewIndexPrestamoController implements Initializable {
                 ((Node) (event.getSource())).getScene().getWindow().hide();
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));
-                stage.show();
+                stage.show();*/
             }
             //settear el btn editar
 

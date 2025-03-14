@@ -16,6 +16,7 @@ com/integrador/library_management_system/modelo/TipoCopiaLibro.class
 com/integrador/library_management_system/modelo/CopiaLibro.class
 com/integrador/library_management_system/modelo/Rack_.class
 com/integrador/library_management_system/modelo/Libro_.class
+com/integrador/library_management_system/servicios/ServicioMulta.class
 com/integrador/library_management_system/servicios/ServicioLibro.class
 com/integrador/library_management_system/modelo/EstadoCopiaLibro.class
 com/integrador/library_management_system/modelo/exceptions/PreexistingEntityException.class
@@ -31,6 +32,7 @@ com/integrador/library_management_system/servicios/ServicioMiembro.class
 com/integrador/library_management_system/controlador/ViewShowLibroController.class
 com/integrador/library_management_system/controlador/ViewCreatePrestamoController.class
 com/integrador/library_management_system/modelo/Prestamo_.class
+com/integrador/library_management_system/controlador/ViewEditPrestamoController.class
 com/integrador/library_management_system/controlador/ViewEditLibroController.class
 com/integrador/library_management_system/controlador/ViewCreateRackController.class
 com/integrador/library_management_system/controlador/ViewEditRackController.class
@@ -40,6 +42,7 @@ com/integrador/library_management_system/controlador/ViewIndexCopiasController.c
 com/integrador/library_management_system/controlador/ViewCreateCopiaLibroController.class
 com/integrador/library_management_system/modelo/Miembro.class
 com/integrador/library_management_system/servicios/ServicioPrestamo.class
+com/integrador/library_management_system/controlador/ViewIndexMultaController.class
 com/integrador/library_management_system/controlador/ViewLibroController.class
 com/integrador/library_management_system/modelo/Miembro_.class
 com/integrador/library_management_system/controlador/ViewDetalleHistorialLibrosController.class

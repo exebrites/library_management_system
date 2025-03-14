@@ -40,6 +40,10 @@ public class ViewPrincipalController implements Initializable {
     private Button btnGestionarRack;
     @FXML
     private Button btnInicio;
+
+    @FXML
+    private Button btnGestionarMulta;
+
     /*NAVEGACION*/
     @FXML
     private Label lbBienvenida;
@@ -85,6 +89,10 @@ public class ViewPrincipalController implements Initializable {
             } else if (evt.equals(btnInicio)) {
                 //loadStage("ViewIndexUsuario", event);
                 loadStage("ViewPrincipal", event);
+
+            } else if (evt.equals(btnGestionarMulta)) {
+                //loadStage("ViewIndexUsuario", event);
+                loadStage("ViewIndexMulta", event);
 
             }
 
