@@ -59,6 +59,8 @@ public class ViewEditRackController implements Initializable {
     private Button btnInicio;
     @FXML
     private Button btnGestionarRack;
+@FXML
+    private Button btnGestionarMulta;
 
     //navegacion
     @FXML
@@ -132,7 +134,9 @@ public class ViewEditRackController implements Initializable {
 
         } else if (evt.equals(btnCancelar)) {
             loadStage("ViewIndexRack", event);
-        }
+        } else if (evt.equals(btnGestionarMulta)) {
+                loadStage("ViewIndexMulta", event);
+            }
     }
 
     private void loadStage(String url, ActionEvent event) throws IOException {

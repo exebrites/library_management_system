@@ -54,6 +54,8 @@ public class ViewIndexUsuarioController implements Initializable {
     private Button btnInicio;
     @FXML
     private Button btnGestionarRack;
+    @FXML
+    private Button btnGestionarMulta;
 
     /*NAVEGACION*/
 
@@ -139,9 +141,9 @@ public class ViewIndexUsuarioController implements Initializable {
                 loadStage("ViewIndexLibro", event);
             } else if (evt.equals(btnGestionarUsuario)) {
                 loadStage("ViewIndexUsuario", event);
-            } else if (evt.equals(btnGestionarPrestamo)) {
+            }  else if (evt.equals(btnGestionarPrestamo)) {
                 loadStage("ViewIndexPrestamo", event);
-            } else if (evt.equals(btnGestionarCopias)) {
+            }  else if (evt.equals(btnGestionarCopias)) {
                 loadStage("ViewIndexCopias", event);
             } else if (evt.equals(btnNuevo)) {
                 loadStage("ViewCreateMiembro", event);
@@ -151,6 +153,8 @@ public class ViewIndexUsuarioController implements Initializable {
 
             } else if (evt.equals(btnGestionarRack)) {
                 loadStage("ViewIndexRack", event);
+            } else if (evt.equals(btnGestionarMulta)) {
+                loadStage("ViewIndexMulta", event);
             } else if (evt.equals(btnShow)) {
                 System.out.println("show....");
 

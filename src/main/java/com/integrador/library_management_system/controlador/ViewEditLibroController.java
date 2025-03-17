@@ -53,9 +53,12 @@ public class ViewEditLibroController implements Initializable {
     private Button btnGestionarCopias;
     @FXML
     private Button btnPrestamo;
-
     @FXML
     private Button btnGestionarRack;
+    @FXML
+    private Button btnGestionarMulta;
+    @FXML
+    private Button btnInicio;
 
     //navegacion
     @FXML
@@ -119,6 +122,10 @@ public class ViewEditLibroController implements Initializable {
             loadStage("ViewIndexCopias", event);
         } else if (evt.equals(btnGestionarRack)) {
             loadStage("ViewIndexRack", event);
+        } else if (evt.equals(btnGestionarMulta)) {
+            loadStage("ViewIndexMulta", event);
+        } else if (evt.equals(btnInicio)) {
+            loadStage("ViewPrincipal", event);
         } else if (evt.equals(btnGuardar)) {
             System.out.println("guardando... ");
 

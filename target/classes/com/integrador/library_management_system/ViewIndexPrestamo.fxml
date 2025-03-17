@@ -6,6 +6,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -35,7 +36,7 @@
                   </TableView>
                </children>
             </VBox>
-            <Button fx:id="btnEditar" layoutX="40.0" layoutY="529.0" mnemonicParsing="false" onAction="#eventAction" prefHeight="44.0" prefWidth="138.0" text="Editar" />
+            <Button fx:id="btnEditar" layoutX="40.0" layoutY="529.0" mnemonicParsing="false" onAction="#eventAction" prefHeight="50.0" prefWidth="200.0" text="Editar" />
          </children>
       </Pane>
    </center>
@@ -73,7 +74,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="400.0" text="Seccion usuarios">
+            <Button fx:id="btnGestionarUsuario" mnemonicParsing="false" onAction="#eventAction" prefHeight="100.0" prefWidth="400.0" text="Seccion usuarios">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
@@ -97,7 +98,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="400.0" text="Seccion copias de libros">
+            <Button fx:id="btnGestionarCopias" mnemonicParsing="false" onAction="#eventAction" prefHeight="100.0" prefWidth="400.0" text="Seccion copias de libros">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
@@ -113,7 +114,18 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
             </Button>
+            <Button fx:id="btnGestionarMulta" mnemonicParsing="false" onAction="#eventAction" prefHeight="100.0" prefWidth="400.0" text="Seccion multa">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+            </Button>
          </children>
       </VBox>
    </left>
+   <bottom>
+      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </bottom>
 </BorderPane>

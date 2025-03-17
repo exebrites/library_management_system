@@ -52,6 +52,8 @@ public class ViewIndexCopiasController implements Initializable {
     private Button btnInicio;
     @FXML
     private Button btnGestionarRack;
+    @FXML
+    private Button btnGestionarMulta;
 
     /*NAVEGACION*/
     @FXML
@@ -147,6 +149,8 @@ public class ViewIndexCopiasController implements Initializable {
             } else if (evt.equals(btnNuevaCopia)) {
                 loadStage("ViewCreateCopiaLibro", event);
 
+            } else if (evt.equals(btnGestionarMulta)) {
+                loadStage("ViewIndexMulta", event);
             } else if (evt.equals(btnShow)) {
 
                 System.out.println("show..");

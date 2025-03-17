@@ -61,6 +61,9 @@ public class ViewCreatePrestamoController implements Initializable {
     @FXML
     private Button btnGestionarRack;
 
+    @FXML
+    private Button btnGestionarMulta;
+
 //create
     @FXML
     private TableView<Miembro> tablaMiembros;
@@ -197,8 +200,6 @@ public class ViewCreatePrestamoController implements Initializable {
                     alert.showAndWait();
                 } else {
 
-                 
-
                     //crear objeto prestamo
                     Prestamo prestamo = new Prestamo(LocalDate.now());
 
@@ -261,6 +262,8 @@ public class ViewCreatePrestamoController implements Initializable {
 
         } else if (evt.equals(btnGestionarRack)) {
             loadStage("ViewIndexRack", event);
+        } else if (evt.equals(btnGestionarMulta)) {
+            loadStage("ViewIndexMulta", event);
         }
     }
 

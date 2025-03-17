@@ -25,53 +25,63 @@
                   <Insets left="10.0" top="10.0" />
                </padding>
             </Label>
-            <VBox layoutX="-1.0" layoutY="75.0" prefHeight="577.0" prefWidth="853.0">
+            <VBox layoutX="-1.0" layoutY="75.0" prefHeight="577.0" prefWidth="1172.0">
                <children>
                   <Label prefHeight="16.0" prefWidth="153.0" text="Tipo de copia" />
                   <ComboBox fx:id="cboxTipo" prefHeight="24.0" prefWidth="209.0" promptText="Seleccionar un Tipo" />
                   <Label prefHeight="16.0" prefWidth="153.0" text="Referencia de libro " />
                   <CheckBox fx:id="checkReferencia" mnemonicParsing="false" prefHeight="18.0" prefWidth="168.0" text="Referencia de libro " />
-                  <Label prefHeight="16.0" prefWidth="153.0" text="Libro" />
-                  <HBox prefHeight="108.0" prefWidth="853.0">
+                  <Label prefHeight="16.0" prefWidth="153.0" text="Libro">
                      <VBox.margin>
-                        <Insets top="100.0" />
-                     </VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin></Label>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="tablaLibros" prefHeight="108.0" prefWidth="864.0">
+                        <TableView fx:id="tablaLibros" prefHeight="99.0" prefWidth="1171.0">
                           <columns>
-                            <TableColumn fx:id="colIsbn" minWidth="-Infinity" prefWidth="75.0" text="isbn" />
-                            <TableColumn fx:id="colTitulo" minWidth="-Infinity" prefWidth="75.0" text="titulo" />
-                              <TableColumn fx:id="colAutores" minWidth="-Infinity" prefWidth="75.0" text="autores" />
-                              <TableColumn fx:id="colCategoria" minWidth="-Infinity" prefWidth="106.0" text="Categoria" />
-                              <TableColumn fx:id="colIdioma" minWidth="-Infinity" prefWidth="73.0" text="Idioma" />
+                            <TableColumn fx:id="colIsbn" minWidth="-Infinity" prefWidth="132.33334350585938" text="isbn" />
+                            <TableColumn fx:id="colTitulo" minWidth="-Infinity" prefWidth="205.0" text="titulo" />
+                              <TableColumn fx:id="colAutores" minWidth="-Infinity" prefWidth="301.0" text="autores" />
+                              <TableColumn fx:id="colCategoria" minWidth="-Infinity" prefWidth="279.333251953125" text="Categoria" />
+                              <TableColumn fx:id="colIdioma" minWidth="-Infinity" prefWidth="256.666748046875" text="Idioma" />
                           </columns>
                         </TableView>
                      </children>
                   </HBox>
                   <Label prefHeight="16.0" prefWidth="216.0" text="Rack">
                      <VBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                        <Insets left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </Label>
                   <TableView fx:id="tablaRacks" prefHeight="200.0" prefWidth="200.0">
                     <columns>
-                      <TableColumn fx:id="colId" prefWidth="153.66665649414062" text="Identificador" />
-                      <TableColumn fx:id="colDescripcion" prefWidth="698.3333435058594" text="Descripcion" />
+                      <TableColumn fx:id="colId" prefWidth="347.3333740234375" text="Identificador" />
+                      <TableColumn fx:id="colDescripcion" prefWidth="823.6666259765625" text="Descripcion" />
                     </columns>
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </TableView>
-                  <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#eventAction" text="Cancelar">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#eventAction" text="Guardar">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Button>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#eventAction" prefHeight="50.0" prefWidth="200.0" text="Cancelar">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#eventAction" prefHeight="50.0" prefWidth="200.0" text="Guardar">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
                </children>
             </VBox>
          </children>
@@ -88,7 +98,7 @@
                   <Insets left="10.0" top="10.0" />
                </padding>
             </Label>
-            <Label fx:id="lbUser" alignment="TOP_RIGHT" layoutX="1052.0" prefHeight="52.0" prefWidth="202.0" text="Nombre de usuario">
+            <Label fx:id="lbUser" alignment="TOP_RIGHT" layoutX="1394.0" prefHeight="52.0" prefWidth="202.0" text="Nombre de usuario">
                <font>
                   <Font size="18.0" />
                </font>
@@ -96,7 +106,7 @@
                   <Insets left="10.0" top="10.0" />
                </padding>
             </Label>
-            <Button layoutX="1164.0" layoutY="40.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Logout" />
+            <Button layoutX="1498.0" layoutY="40.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Logout" />
          </children>
       </Pane>
    </top>
@@ -151,7 +161,18 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
             </Button>
+            <Button fx:id="btnGestionarMulta" mnemonicParsing="false" onAction="#eventAction" prefHeight="100.0" prefWidth="400.0" text="Seccion multa">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+            </Button>
          </children>
       </VBox>
    </left>
+   <bottom>
+      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </bottom>
 </BorderPane>

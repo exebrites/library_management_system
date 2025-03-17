@@ -58,6 +58,10 @@ public class ViewCreateMiembroController implements Initializable {
     private Button btnInicio;
     @FXML
     private Button btnGestionarRack;
+    @FXML
+    private Button btnGestionarMulta;
+    
+    
 
     //navegacion
     @FXML
@@ -107,7 +111,12 @@ public class ViewCreateMiembroController implements Initializable {
 
         } else if (evt.equals(btnGestionarRack)) {
             loadStage("ViewIndexRack", event);
-        } else if (evt.equals(btnGuardar)) {
+        }
+         else if (evt.equals(btnGestionarMulta)) {
+            loadStage("ViewIndexMulta", event);
+        }
+        
+        else if (evt.equals(btnGuardar)) {
             System.out.println("GUARDANDO...");
             System.out.println(txtNombre.getText());
             var nombre = txtNombre.getText();

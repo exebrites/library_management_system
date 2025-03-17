@@ -56,6 +56,8 @@ public class ViewIndexRackController implements Initializable {
     private Button btnInicio;
     @FXML
     private Button btnGestionarRack;
+@FXML
+    private Button btnGestionarMulta;
 
     /*NAVEGACION*/
 
@@ -136,7 +138,9 @@ public class ViewIndexRackController implements Initializable {
 
             } else if (evt.equals(btnGestionarRack)) {
                 loadStage("ViewIndexRack", event);
-            } else if (evt.equals(btnShow)) {
+            }  else if (evt.equals(btnGestionarMulta)) {
+                loadStage("ViewIndexMulta", event);
+            }else if (evt.equals(btnShow)) {
                 System.out.println("show....");
 //Cargar la vista
 

@@ -59,9 +59,19 @@ public class ViewEditPrestamoController implements Initializable {
      */
     //navegacion
     @FXML
+    private Button btnGestionarLibro;
+    @FXML
+    private Button btnGestionarUsuario;
+    @FXML
+    private Button btnGestionarPrestamo;
+    @FXML
+    private Button btnGestionarCopias;
+    @FXML
     private Button btnInicio;
     @FXML
     private Button btnGestionarRack;
+    @FXML
+    private Button btnGestionarMulta;
 
 //create
     /*
@@ -176,6 +186,20 @@ public class ViewEditPrestamoController implements Initializable {
 
         } else if (evt.equals(btnGestionarRack)) {
             loadStage("ViewIndexRack", event);
+        } else if (evt.equals(btnGestionarMulta)) {
+            loadStage("ViewIndexMulta", event);
+        } else if (evt.equals(btnGestionarLibro)) {
+
+            loadStage("ViewIndexLibro", event);
+        } else if (evt.equals(btnGestionarUsuario)) {
+            loadStage("ViewIndexUsuario", event);
+        } else if (evt.equals(btnGestionarPrestamo)) {
+            //loadStage("ViewIndexUsuario", event);
+            loadStage("ViewIndexPrestamo", event);
+        } else if (evt.equals(btnGestionarCopias)) {
+            //loadStage("ViewIndexUsuario", event);
+            loadStage("ViewIndexCopias", event);
+
         }
     }
 

@@ -78,6 +78,8 @@ public class ViewLibroController implements Initializable {
     private Button btnGestionarCopias;
     @FXML
     private Button btnGestionarRack;
+    @FXML
+    private Button btnGestionarMulta;
 
     @FXML
     private Button btnInicio;
@@ -207,6 +209,8 @@ public class ViewLibroController implements Initializable {
                 //loadStage("ViewIndexUsuario", event);
                 loadStage("ViewPrincipal", event);
 
+            } else if (evt.equals(btnGestionarMulta)) {
+                loadStage("ViewIndexMulta", event);
             } else if (evt.equals(btnEditar)) {
                 //Cargar la vista
 

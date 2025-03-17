@@ -59,7 +59,8 @@ public class ViewCreateRackController implements Initializable {
     private Button btnInicio;
     @FXML
     private Button btnGestionarRack;
-
+    @FXML
+    private Button btnGestionarMulta;
     //navegacion
     @FXML
     private Button btnNuevoLibro;
@@ -127,6 +128,8 @@ public class ViewCreateRackController implements Initializable {
 
         } else if (evt.equals(btnCancelar)) {
             loadStage("ViewIndexRack", event);
+        } else if (evt.equals(btnGestionarMulta)) {
+            loadStage("ViewIndexMulta", event);
         }
     }
 

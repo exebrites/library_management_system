@@ -57,6 +57,8 @@ public class ViewIndexPrestamoController implements Initializable {
     private Button btnInicio;
     @FXML
     private Button btnGestionarRack;
+    @FXML
+    private Button btnGestionarMulta;
 
     /*NAVEGACION*/
     @FXML
@@ -171,6 +173,8 @@ public class ViewIndexPrestamoController implements Initializable {
 
             } else if (evt.equals(btnGestionarRack)) {
                 loadStage("ViewIndexRack", event);
+            } else if (evt.equals(btnGestionarMulta)) {
+                loadStage("ViewIndexMulta", event);
             } else if (evt.equals(btnEditar)) {
                 System.out.println("editar");
                 //System.out.println(this.prestamo);

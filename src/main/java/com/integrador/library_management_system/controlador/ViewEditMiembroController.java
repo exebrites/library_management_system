@@ -60,6 +60,9 @@ public class ViewEditMiembroController implements Initializable {
     @FXML
     private Button btnGestionarRack;
 
+    @FXML
+    private Button btnGestionarMulta;
+
     //navegacion
     @FXML
     private Button btnNuevoLibro;
@@ -116,6 +119,8 @@ public class ViewEditMiembroController implements Initializable {
 
         } else if (evt.equals(btnGestionarRack)) {
             loadStage("ViewIndexRack", event);
+        } else if (evt.equals(btnGestionarMulta)) {
+            loadStage("ViewIndexMulta", event);
         } else if (evt.equals(btnGuardar)) {
             System.out.println("GUARDANDO...");
             System.out.println(txtNombre.getText());

@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -13,7 +14,7 @@
    <center>
       <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="TOP_LEFT" contentDisplay="TOP" layoutY="-2.0" prefHeight="82.0" prefWidth="858.0" text="Seccion Detalle Miembro">
+            <Label alignment="TOP_LEFT" contentDisplay="TOP" layoutY="-2.0" prefHeight="82.0" prefWidth="858.0" text="Seccion Detalle Usuario">
                <font>
                   <Font size="48.0" />
                </font>
@@ -41,7 +42,7 @@
                   <Insets left="10.0" top="10.0" />
                </padding>
             </Label>
-            <Label fx:id="lbUser" alignment="TOP_RIGHT" layoutX="1052.0" prefHeight="52.0" prefWidth="202.0" text="Nombre de usuario">
+            <Label fx:id="lbUser" alignment="TOP_RIGHT" layoutX="1397.0" prefHeight="52.0" prefWidth="202.0" text="Nombre de usuario">
                <font>
                   <Font size="18.0" />
                </font>
@@ -49,7 +50,7 @@
                   <Insets left="10.0" top="10.0" />
                </padding>
             </Label>
-            <Button layoutX="1164.0" layoutY="40.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Logout" />
+            <Button layoutX="1498.0" layoutY="40.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Logout" />
          </children>
       </Pane>
    </top>
@@ -104,7 +105,18 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
             </Button>
+            <Button fx:id="btnGestionarMulta" mnemonicParsing="false" onAction="#eventAction" prefHeight="100.0" prefWidth="400.0" text="Seccion multa">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+            </Button>
          </children>
       </VBox>
    </left>
+   <bottom>
+      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </bottom>
 </BorderPane>

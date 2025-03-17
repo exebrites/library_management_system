@@ -6,6 +6,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -22,18 +23,18 @@
                   <Insets left="10.0" top="10.0" />
                </padding>
             </Label>
-            <Button fx:id="btnNuevaCopia" layoutX="14.0" layoutY="88.0" mnemonicParsing="false" onAction="#eventAction" prefHeight="24.0" prefWidth="137.0" text="Nueva copia" />
-            <TableView fx:id="tablaCopias" layoutX="14.0" layoutY="145.0" prefHeight="315.0" prefWidth="833.0">
+            <Button fx:id="btnNuevaCopia" layoutX="14.0" layoutY="88.0" mnemonicParsing="false" onAction="#eventAction" prefHeight="50.0" prefWidth="200.0" text="Nueva copia" />
+            <TableView fx:id="tablaCopias" layoutX="14.0" layoutY="145.0" prefHeight="315.0" prefWidth="1153.0">
               <columns>
-                <TableColumn fx:id="colId" prefWidth="125.0" text="Identificador" />
-                <TableColumn fx:id="colReferencia" prefWidth="182.0" text="Referencia" />
-                  <TableColumn fx:id="colTipo" prefWidth="266.0" text="Tipo" />
-                  <TableColumn fx:id="colEstado" prefWidth="259.0" text="Estado" />
+                <TableColumn fx:id="colId" prefWidth="173.0" text="Identificador" />
+                <TableColumn fx:id="colReferencia" prefWidth="334.0" text="Referencia" />
+                  <TableColumn fx:id="colTipo" prefWidth="353.0" text="Tipo" />
+                  <TableColumn fx:id="colEstado" prefWidth="292.3333740234375" text="Estado" />
               </columns>
             </TableView>
-            <Button fx:id="btnShow" layoutX="14.0" layoutY="480.0" mnemonicParsing="false" onAction="#eventAction" text="ver" />
-            <Button layoutX="120.0" layoutY="480.0" mnemonicParsing="false" text="editar" />
-            <Button layoutX="237.0" layoutY="480.0" mnemonicParsing="false" text="eliminar" />
+            <Button fx:id="btnShow" layoutX="14.0" layoutY="480.0" mnemonicParsing="false" onAction="#eventAction" prefHeight="50.0" prefWidth="200.0" text="Ver" />
+            <Button layoutX="248.0" layoutY="480.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="Editar" />
+            <Button layoutX="490.0" layoutY="480.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="Eliminar" />
          </children>
       </Pane>
    </center>
@@ -48,7 +49,7 @@
                   <Insets left="10.0" top="10.0" />
                </padding>
             </Label>
-            <Label fx:id="lbUser" alignment="TOP_RIGHT" layoutX="1052.0" prefHeight="52.0" prefWidth="202.0" text="Nombre de usuario">
+            <Label fx:id="lbUser" alignment="TOP_RIGHT" layoutX="1391.0" prefHeight="52.0" prefWidth="202.0" text="Nombre de usuario">
                <font>
                   <Font size="18.0" />
                </font>
@@ -56,7 +57,7 @@
                   <Insets left="10.0" top="10.0" />
                </padding>
             </Label>
-            <Button layoutX="1164.0" layoutY="40.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Logout" />
+            <Button layoutX="1495.0" layoutY="40.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Logout" />
          </children>
       </Pane>
    </top>
@@ -71,7 +72,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="400.0" text="Seccion usuarios">
+            <Button fx:id="btnGestionarUsuario" mnemonicParsing="false" onAction="#eventAction" prefHeight="100.0" prefWidth="400.0" text="Seccion usuarios">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
@@ -87,7 +88,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="400.0" text="Seccion prestamos">
+            <Button fx:id="btnGestionarPrestamo" mnemonicParsing="false" onAction="#eventAction" prefHeight="100.0" prefWidth="400.0" text="Seccion prestamos">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
@@ -95,7 +96,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="400.0" text="Seccion copias de libros">
+            <Button fx:id="btnGestionarCopias" mnemonicParsing="false" prefHeight="100.0" prefWidth="400.0" text="Seccion copias de libros">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
@@ -111,7 +112,18 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
             </Button>
+            <Button fx:id="btnGestionarMulta" mnemonicParsing="false" onAction="#eventAction" prefHeight="100.0" prefWidth="400.0" text="Seccion multa">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+            </Button>
          </children>
       </VBox>
    </left>
+   <bottom>
+      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </bottom>
 </BorderPane>
