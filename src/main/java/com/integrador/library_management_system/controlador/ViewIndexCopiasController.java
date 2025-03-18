@@ -161,6 +161,20 @@ public class ViewIndexCopiasController implements Initializable {
 
                 System.out.println("show..");
                 System.out.println(copia.toString());
+                  var fxml = "ViewShowCopiaLibro";
+
+                FXMLLoader loader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+                Parent root = loader.load();
+
+                // Obtener el controlador y pasarle los datos
+                ViewShowCopiaLibroController detalleController = loader.getController();
+                detalleController.setData(copia);
+
+                //ocultar la escena anterior y generar una nueva
+                ((Node) (event.getSource())).getScene().getWindow().hide();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.show();
             } else if (evt.equals(btnEditar)) {
           
                   var fxml = "ViewEditCopiaLibro";

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.integrador.library_management_system.controlador.ViewShowCopiaLibroController">
+   <center>
+      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="TOP_LEFT" contentDisplay="TOP" layoutY="-2.0" prefHeight="82.0" prefWidth="822.0" text="Seccion Copia Libro | Ver copia">
+               <font>
+                  <Font size="41.0" />
+               </font>
+               <padding>
+                  <Insets left="10.0" top="10.0" />
+               </padding>
+            </Label>
+            <VBox layoutX="-6.0" layoutY="80.0" prefHeight="577.0" prefWidth="1172.0">
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="1172.0">
+                     <children>
+                        <VBox prefHeight="85.0" prefWidth="600.0">
+                           <children>
+                              <Label text="identificador" />
+                              <TextField fx:id="txtId" editable="false" prefHeight="24.0" prefWidth="525.0" />
+                              <Label text="Referencia" />
+                              <TextField fx:id="txtReferencia" editable="false" />
+                              <Label text="Libro" />
+                              <TextField fx:id="txtLibro" editable="false">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin></TextField>
+                           </children>
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox prefHeight="85.0" prefWidth="600.0">
+                           <children>
+                              <Label text="Tipo de copia" />
+                              <TextField fx:id="txtTipo" editable="false" />
+                              <Label text="Estado de copia" />
+                              <TextField fx:id="txtEstado" editable="false" />
+                              <Label text="Rack" />
+                              <TextField fx:id="txtRack" editable="false" />
+                           </children>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="1172.0">
+                     <children>
+                        <VBox prefHeight="20.0" prefWidth="221.0" />
+                        <VBox prefHeight="20.0" prefWidth="221.0" />
+                        <VBox prefHeight="61.0" prefWidth="241.0" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0" />
+                  <HBox prefHeight="100.0" prefWidth="200.0" />
+               </children>
+            </VBox>
+         </children>
+      </Pane>
+   </center>
+   <top>
+      <Pane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="TOP_LEFT" contentDisplay="TOP" text="Library Manager System">
+               <font>
+                  <Font size="48.0" />
+               </font>
+               <padding>
+                  <Insets left="10.0" top="10.0" />
+               </padding>
+            </Label>
+            <Label fx:id="lbUser" alignment="TOP_RIGHT" layoutX="1394.0" prefHeight="52.0" prefWidth="202.0" text="Nombre de usuario">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <padding>
+                  <Insets left="10.0" top="10.0" />
+               </padding>
+            </Label>
+            <Button layoutX="1498.0" layoutY="40.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Logout" />
+         </children>
+      </Pane>
+   </top>
+   <left>
+      <VBox spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnInicio" mnemonicParsing="false" onAction="#eventAction" prefHeight="100.0" prefWidth="400.0" text="Inicio">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="btnGestionarUsuario" mnemonicParsing="false" onAction="#eventAction" prefHeight="100.0" prefWidth="400.0" text="Seccion usuarios">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnGestionarLibro" mnemonicParsing="false" onAction="#eventAction" prefHeight="100.0" prefWidth="400.0" text="Seccion libros">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnGestionarPrestamo" mnemonicParsing="false" onAction="#eventAction" prefHeight="100.0" prefWidth="400.0" text="Seccion prestamos">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnGestionarCopias" mnemonicParsing="false" onAction="#eventAction" prefHeight="100.0" prefWidth="400.0" text="Seccion copias de libros">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnGestionarRack" mnemonicParsing="false" onAction="#eventAction" prefHeight="100.0" prefWidth="400.0" text="Seccion rack">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="btnGestionarMulta" mnemonicParsing="false" onAction="#eventAction" prefHeight="100.0" prefWidth="400.0" text="Seccion multa">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+   </left>
+   <bottom>
+      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </bottom>
+</BorderPane>
