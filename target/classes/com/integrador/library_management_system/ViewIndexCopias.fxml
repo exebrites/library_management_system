@@ -33,7 +33,7 @@
               </columns>
             </TableView>
             <Button fx:id="btnShow" layoutX="14.0" layoutY="480.0" mnemonicParsing="false" onAction="#eventAction" prefHeight="50.0" prefWidth="200.0" text="Ver" />
-            <Button layoutX="248.0" layoutY="480.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="Editar" />
+            <Button fx:id="btnEditar" layoutX="248.0" layoutY="480.0" mnemonicParsing="false" onAction="#eventAction" prefHeight="50.0" prefWidth="200.0" text="Editar" />
             <Button layoutX="490.0" layoutY="480.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="Eliminar" />
          </children>
       </Pane>

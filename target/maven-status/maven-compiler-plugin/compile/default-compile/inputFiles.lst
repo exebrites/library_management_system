@@ -34,6 +34,7 @@
 /home/exe/NetBeansProjects/library_management_system/src/main/java/com/integrador/library_management_system/modelo/exceptions/NonexistentEntityException.java
 /home/exe/NetBeansProjects/library_management_system/src/main/java/com/integrador/library_management_system/controlador/ViewShowMiembroController.java
 /home/exe/NetBeansProjects/library_management_system/src/main/java/com/integrador/library_management_system/controlador/ViewEditPrestamoController.java
+/home/exe/NetBeansProjects/library_management_system/src/main/java/com/integrador/library_management_system/controlador/ViewEditCopiaLibroController.java
 /home/exe/NetBeansProjects/library_management_system/src/main/java/com/integrador/library_management_system/util/GestorDatos.java
 /home/exe/NetBeansProjects/library_management_system/src/main/java/com/integrador/library_management_system/modelo/Rack.java
 /home/exe/NetBeansProjects/library_management_system/src/main/java/com/integrador/library_management_system/repositorio/Repositorio.java

@@ -121,4 +121,8 @@ public class CopiaLibro implements Serializable {
         this.rack = rack;
     }
 
+    public Rack getRack() {
+        return rack;
+    }
+
 }
