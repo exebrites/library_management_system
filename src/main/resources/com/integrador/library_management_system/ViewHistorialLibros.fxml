@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
@@ -22,7 +23,7 @@
                   <Insets left="10.0" top="10.0" />
                </padding>
             </Label>
-            <TableView fx:id="tabla" layoutX="14.0" layoutY="109.0" prefHeight="476.0" prefWidth="1156.0">
+            <TableView fx:id="tabla" layoutX="14.0" layoutY="185.0" prefHeight="400.0" prefWidth="1156.0">
               <columns>
                 <TableColumn fx:id="colNombreApellido" prefWidth="163.0" text="Nombre y Apellido" />
                   <TableColumn fx:id="colFechaInicio" prefWidth="238.0" text="Fecha de Inicio del prestamo" />
@@ -31,8 +32,10 @@
                   <TableColumn fx:id="colTituloLibro" prefWidth="224.0" text="Titulo del libro" />
               </columns>
             </TableView>
-            <Label layoutX="20.0" layoutY="83.0" prefHeight="16.0" prefWidth="262.0" text="Lista de miembros con libros" />
+            <Label layoutX="15.0" layoutY="160.0" prefHeight="16.0" prefWidth="262.0" text="Lista de miembros con libros" />
             <Button fx:id="btnShow" layoutX="25.0" layoutY="599.0" mnemonicParsing="false" onAction="#eventAction" prefHeight="24.0" prefWidth="96.0" text="Ver" />
+            <TextField fx:id="txtNombreApellido" layoutX="15.0" layoutY="124.0" prefHeight="24.0" prefWidth="239.0" />
+            <Label layoutX="15.0" layoutY="106.0" text="Filtrar por nombre y apellido" />
          </children>
       </Pane>
    </center>

@@ -31,6 +31,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -98,6 +99,9 @@ public class ViewHistorialLibrosController implements Initializable {
 
     private Object[] fila;
 
+    @FXML
+    private TextField txtNombreApellido;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -152,6 +156,34 @@ public class ViewHistorialLibrosController implements Initializable {
                 fila = (Object[]) newSelection;
             }
         });
+
+        filtrar();
+    }
+
+    private void filtrar() {
+        System.out.println("filtrando ...");
+
+        FilteredList<Object[]> filteredList = new FilteredList<>(lista, u -> true);
+
+        txtNombreApellido.textProperty().addListener((observable, oldValue, newValue) -> {
+            //System.out.println(newValue);
+
+            //si es vacio muestra todo
+            if (newValue.isEmpty()) {
+                filteredList.setPredicate(u -> true);
+            } else {
+                //filtro por el titulo. El filtro tiene encuentra si la cadena esta contenido dentro de los titulos
+
+                //filteredList.setPredicate(u -> u.getTitulo().contains(newValue.toUpperCase()));
+                //1. concatenar nombre y apellido
+                filteredList.setPredicate(u -> {
+                    var fullName = (String) u[0] + " " + (String) u[1];
+
+                    return fullName.contains(newValue.toUpperCase());
+                });
+            }
+        });
+        tabla.setItems(filteredList);
     }
 
     @FXML
