@@ -67,6 +67,7 @@ public class Prestamo implements Serializable {
     }
 
     public void setMiembro(Miembro miembro) {
+     
         this.miembro = miembro;
     }
 

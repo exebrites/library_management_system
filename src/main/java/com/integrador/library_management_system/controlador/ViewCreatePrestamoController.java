@@ -199,25 +199,11 @@ public class ViewCreatePrestamoController implements Initializable {
                     alert.setContentText("Seleccione un MIEMBRO para CONTINUAR");
                     alert.showAndWait();
                 } else {
-
-                    //crear objeto prestamo
-                    Prestamo prestamo = new Prestamo(LocalDate.now());
-
-                    //asociar miembro a prestamo 
-                    copiaLocal.setEstado(EstadoCopiaLibro.PRESTADA);
-                    // cambiar el estado en db
                     Repositorio r = new Repositorio();
-                    ServicioCopiaLibro scopia = new ServicioCopiaLibro(r);
-                    scopia.editarCopiaLibro(copiaLocal);
-                    prestamo.setCopia((CopiaLibro) copiaLocal);
-                    //asociar copia a prestamo
-                    prestamo.setMiembro((Miembro) fila);
-                    //instanciar servicioPrestamo
-
                     ServicioPrestamo sr = new ServicioPrestamo(r);
-
-                    //almacenar prestamo
-                    sr.agregarPrestamo(prestamo);
+                    sr.realizarPrestamo((Miembro) fila, (CopiaLibro) copiaLocal);
+                    var miembro = (Miembro) fila;
+                    System.out.println(sr.contarPrestamosPorMiembro(miembro.getId()));
 
                     System.out.println("prestamo guardado con Exito!");
                     List<Prestamo> prestamos = sr.obtenerTodos();
@@ -246,7 +232,7 @@ public class ViewCreatePrestamoController implements Initializable {
                 Alert alert = new Alert(AlertType.WARNING);
                 alert.setTitle("Miembro");
                 alert.setHeaderText("Seleccionar miembro");
-                alert.setContentText(e.getMessage() + " Ingresa la FECHA para CONTINUAR");
+                alert.setContentText(e.getMessage() + "");
                 alert.showAndWait();
             } catch (IOException e) {
                 System.out.println(e.getMessage());

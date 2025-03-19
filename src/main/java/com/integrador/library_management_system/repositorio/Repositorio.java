@@ -338,4 +338,23 @@ public class Repositorio {
         TypedQuery<Object[]> typedQuery = em.createQuery(query);
         return typedQuery.getResultList();
     }
+
+    public Long contarPrestamosPorMiembro(Long miembroId) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Long> query = cb.createQuery(Long.class);
+        Root<Prestamo> root = query.from(Prestamo.class);
+
+        Join<Prestamo, Miembro> miembroJoin = root.join("miembro");
+
+        // Construcción de condiciones (where)
+        Predicate condicionMiembro = cb.equal(miembroJoin.get("id"), miembroId);
+        Predicate condicionEstado = cb.equal(root.get("estado"), true);
+
+        // SELECT COUNT(*)
+        query.select(cb.count(root))
+                .where(cb.and(condicionMiembro, condicionEstado));
+
+        // Ejecutar la consulta
+        return em.createQuery(query).getSingleResult();
+    }
 }
