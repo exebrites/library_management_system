@@ -78,6 +78,8 @@ public class ViewCreateCopiaLibroController implements Initializable {
     private CheckBox checkReferencia;
 
     @FXML
+    private TextField txtCosto;
+    @FXML
     private Button btnGuardar;
     @FXML
     private Button btnCancelar;
@@ -194,7 +196,7 @@ public class ViewCreateCopiaLibroController implements Initializable {
             //controla el combobox
             var tipoCopia = cboxTipo.getValue();
             var referencia = checkReferencia.isSelected();
-
+            var precio = Float.valueOf(txtCosto.getText());
             try {
                 Repositorio r = new Repositorio();
                 ServicioCopiaLibro scopia = new ServicioCopiaLibro(r);
@@ -204,7 +206,7 @@ public class ViewCreateCopiaLibroController implements Initializable {
                 var librodb = sl.buscarLibro(libroFila);
                 var rackdb = sr.buscarRack(rack);
 
-                CopiaLibro copia = new CopiaLibro(tipoCopia, librodb);
+                CopiaLibro copia = new CopiaLibro(tipoCopia, librodb,precio);
                 copia.setReferenciaLibro(referencia);
                 copia.setLibro(librodb);
                 copia.setRack(rackdb);

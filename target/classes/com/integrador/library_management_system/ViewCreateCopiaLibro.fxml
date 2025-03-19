@@ -7,6 +7,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -27,10 +28,28 @@
             </Label>
             <VBox layoutX="-1.0" layoutY="75.0" prefHeight="577.0" prefWidth="1172.0">
                <children>
-                  <Label prefHeight="16.0" prefWidth="153.0" text="Tipo de copia" />
-                  <ComboBox fx:id="cboxTipo" prefHeight="24.0" prefWidth="209.0" promptText="Seleccionar un Tipo" />
-                  <Label prefHeight="16.0" prefWidth="153.0" text="Referencia de libro " />
-                  <CheckBox fx:id="checkReferencia" mnemonicParsing="false" prefHeight="18.0" prefWidth="168.0" text="Referencia de libro " />
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <VBox prefHeight="85.0" prefWidth="240.0">
+                           <children>
+                              <Label prefHeight="16.0" prefWidth="153.0" text="Tipo de copia" />
+                              <ComboBox fx:id="cboxTipo" prefHeight="24.0" prefWidth="209.0" promptText="Seleccionar un Tipo" />
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="95.0" prefWidth="193.0">
+                           <children>
+                              <Label prefHeight="16.0" prefWidth="153.0" text="Referencia de libro " />
+                              <CheckBox fx:id="checkReferencia" mnemonicParsing="false" prefHeight="18.0" prefWidth="168.0" text="Referencia de libro " />
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="100.0" prefWidth="229.0">
+                           <children>
+                              <Label text="Costo estimado" />
+                              <TextField fx:id="txtCosto" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
                   <Label prefHeight="16.0" prefWidth="153.0" text="Libro">
                      <VBox.margin>
                         <Insets top="10.0" />

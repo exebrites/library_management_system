@@ -7,8 +7,11 @@ package com.integrador.library_management_system.servicios;
 import com.integrador.library_management_system.modelo.CopiaLibro;
 import com.integrador.library_management_system.modelo.Libro;
 import com.integrador.library_management_system.modelo.Multa;
+import com.integrador.library_management_system.modelo.Prestamo;
 import com.integrador.library_management_system.modelo.Rack;
 import com.integrador.library_management_system.repositorio.Repositorio;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 /**
@@ -47,6 +50,26 @@ public class ServicioMulta {
 
     public Multa buscarMulta(Multa multa) {
         return this.repositorio.buscar(Multa.class, multa.getId());
+    }
+
+    public void generarMulta(Prestamo prestamo) {
+        //datos 
+        //1. prestamo
+        //2. copia
+        var copia = prestamo.getCopia();
+        //acciones
+        //1. establecer el costo a cobrar
+        //12. formula cant. dias despues de la fecha de vencimiento X precio estimado de la copia
+        long diferencia = ChronoUnit.DAYS.between(LocalDate.now(), prestamo.getFechaVencimiento());
+        var costo = diferencia * copia.getPrecioEstimado();
+        costo = Math.abs(costo);
+        
+        //2. instanciar la multa
+        Multa multa = new Multa(costo);
+        multa.setPrestamo(prestamo);
+
+        //3. guarda en db
+        this.agregarMulta(multa);
     }
 
 }

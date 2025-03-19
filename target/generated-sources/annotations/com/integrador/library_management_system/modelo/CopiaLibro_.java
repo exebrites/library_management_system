@@ -10,7 +10,7 @@ import javax.persistence.metamodel.SetAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor", date="2025-03-19T11:35:06", comments="EclipseLink-2.7.12.v20230209-rNA")
+@Generated(value="org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor", date="2025-03-19T16:41:00", comments="EclipseLink-2.7.12.v20230209-rNA")
 @StaticMetamodel(CopiaLibro.class)
 public class CopiaLibro_ { 
 
@@ -19,6 +19,7 @@ public class CopiaLibro_ {
     public static volatile SingularAttribute<CopiaLibro, TipoCopiaLibro> tipo;
     public static volatile SingularAttribute<CopiaLibro, EstadoCopiaLibro> estado;
     public static volatile SingularAttribute<CopiaLibro, Rack> rack;
+    public static volatile SingularAttribute<CopiaLibro, Float> precioEstimado;
     public static volatile SingularAttribute<CopiaLibro, Long> id;
     public static volatile SetAttribute<CopiaLibro, Prestamo> prestamos;
 

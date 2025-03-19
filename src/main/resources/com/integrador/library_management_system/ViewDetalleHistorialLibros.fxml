@@ -24,28 +24,117 @@
             </Label>
             <VBox layoutX="23.0" layoutY="107.0" prefHeight="480.0" prefWidth="818.0">
                <children>
-                  <Label prefHeight="16.0" prefWidth="262.0" text="Informacion del miembro" />
+                  <Label prefHeight="16.0" prefWidth="262.0" text="Informacion del miembro">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Label>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <TextField fx:id="txtNombreApellido" editable="false" promptText="nombre y apellido" />
+                        <VBox prefHeight="100.0" prefWidth="210.0">
+                           <children>
+                              <Label text="Nombre y apellido" />
+                              <TextField fx:id="txtNombreApellido" editable="false" promptText="nombre y apellido" />
+                           </children>
+                           <HBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </HBox.margin>
+                        </VBox>
                      </children>
                   </HBox>
-                  <Label prefHeight="16.0" prefWidth="262.0" text="Informacion del prestamo" />
+                  <Label prefHeight="16.0" prefWidth="262.0" text="Informacion del prestamo">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Label>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <TextField fx:id="txtIdPrestamo" editable="false" promptText="id prestamo" />
+                        <VBox prefHeight="100.0" prefWidth="203.0">
+                           <children>
+                              <Label text="Numero de prestamo" />
+                              <TextField fx:id="txtIdPrestamo" editable="false" promptText="id prestamo" />
+                           </children>
+                           <HBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label text="Fecha de Inicio" />
+                              <TextField fx:id="txtFechaInicio" editable="false" promptText="fecha inicio" />
+                           </children>
+                           <HBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox prefHeight="100.0" prefWidth="179.0">
+                           <children>
+                              <Label text="Fecha de vencimiento" />
+                              <TextField fx:id="txtFechaVencimiento" editable="false" promptText="fecha vencimiento" />
+                           </children>
+                           <HBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox prefHeight="100.0" prefWidth="179.0">
+                           <children>
+                              <Label text="Estado" />
+                              <TextField fx:id="txtEstadoPrestamo" editable="false" promptText="estado" />
+                           </children>
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </VBox>
                      </children>
                   </HBox>
-                  <Label prefHeight="16.0" prefWidth="262.0" text="Informacion de la copia" />
+                  <Label prefHeight="16.0" prefWidth="262.0" text="Informacion de la copia">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Label>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <TextField fx:id="txtIdCopia" editable="false" promptText="id copia" />
+                        <VBox prefHeight="100.0" prefWidth="211.0">
+                           <children>
+                              <Label text="Numero de copia" />
+                              <TextField fx:id="txtIdCopia" editable="false" promptText="id copia" />
+                           </children>
+                           <HBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox prefHeight="100.0" prefWidth="192.0">
+                           <children>
+                              <Label text="Tipo" />
+                              <TextField fx:id="txtTipoCopia" editable="false" prefHeight="24.0" prefWidth="159.0" promptText="tipo de copia" />
+                           </children>
+                           <HBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox prefHeight="100.0" prefWidth="220.0">
+                           <children>
+                              <Label text="Estado" />
+                              <TextField fx:id="txtEstadoCopia" editable="false" promptText="estado de copia" />
+                           </children>
+                           <HBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </HBox.margin>
+                        </VBox>
                      </children>
                   </HBox>
-                  <Label prefHeight="16.0" prefWidth="262.0" text="Informacion del libro" />
+                  <Label prefHeight="16.0" prefWidth="262.0" text="Informacion del libro">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Label>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <TextField fx:id="txtIdLibro" editable="false" promptText="titulo libro" />
+                        <VBox prefHeight="90.0" prefWidth="197.0">
+                           <children>
+                              <Label text="Titulo del libro" />
+                              <TextField fx:id="txtTituloLibro" editable="false" promptText="titulo libro" />
+                           </children>
+                           <HBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </HBox.margin>
+                        </VBox>
                      </children>
                   </HBox>
                </children>
@@ -80,6 +169,14 @@
    <left>
       <VBox spacing="10.0" BorderPane.alignment="CENTER">
          <children>
+            <Button fx:id="btnInicio" mnemonicParsing="false" onAction="#eventAction" prefHeight="100.0" prefWidth="400.0" text="Inicio">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+            </Button>
             <Button fx:id="btnGestionarUsuario" mnemonicParsing="false" onAction="#eventAction" prefHeight="100.0" prefWidth="400.0" text="Seccion usuarios">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -120,7 +217,18 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
             </Button>
+            <Button fx:id="btnGestionarMulta" mnemonicParsing="false" onAction="#eventAction" prefHeight="100.0" prefWidth="400.0" text="Seccion multa">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+            </Button>
          </children>
       </VBox>
    </left>
+   <bottom>
+      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </bottom>
 </BorderPane>

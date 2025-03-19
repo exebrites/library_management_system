@@ -95,6 +95,8 @@ public class ViewShowCopiaLibroController implements Initializable {
 
     @FXML
     private TextField txtEstado;
+    @FXML
+    private TextField txtPrecio;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -116,7 +118,8 @@ public class ViewShowCopiaLibroController implements Initializable {
         //System.out.println(copia.getLibro().getTitulo());
         txtLibro.setText(copia.getLibro().getTitulo());
         txtRack.setText(copia.getRack().getId().toString());
-
+        var precio = copia.getPrecioEstimado().toString();
+        txtPrecio.setText(precio);
     }
 
     @FXML

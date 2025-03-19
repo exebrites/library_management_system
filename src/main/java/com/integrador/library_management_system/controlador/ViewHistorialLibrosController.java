@@ -70,7 +70,11 @@ public class ViewHistorialLibrosController implements Initializable {
     @FXML
     private Button btnGestionarCopias;
     @FXML
-    private Button btnPrestamo;
+    private Button btnInicio;
+    @FXML
+    private Button btnGestionarMulta;
+    @FXML
+    private Button btnGestionarRack;
     /*NAVEGACION LATERAL*/
 
     @FXML
@@ -201,6 +205,14 @@ public class ViewHistorialLibrosController implements Initializable {
         } else if (evt.equals(btnGestionarCopias)) {
             //loadStage("ViewIndexUsuario", event);
             loadStage("ViewIndexCopias", event);
+        } else if (evt.equals(btnInicio)) {
+            //loadStage("ViewIndexUsuario", event);
+            loadStage("ViewPrincipal", event);
+
+        } else if (evt.equals(btnGestionarMulta)) {
+            loadStage("ViewIndexMulta", event);
+        } else if (evt.equals(btnGestionarRack)) {
+            loadStage("ViewIndexRack", event);
         } else if (evt.equals(btnShow)) {
 
             var fxml = "ViewDetalleHistorialLibros";

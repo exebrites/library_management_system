@@ -227,7 +227,7 @@ public class ViewShowPrestamoController implements Initializable {
     private void loadStage(String url, ActionEvent event) throws IOException {
         ((Node) (event.getSource())).getScene().getWindow().hide();
 
-        Scene scene = new Scene(loadFXML(url), 1280, 800);
+        Scene scene = new Scene(loadFXML(url), 1600, 900);
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.setTitle("Library Manager System");

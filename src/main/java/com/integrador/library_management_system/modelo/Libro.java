@@ -42,6 +42,8 @@ public class Libro implements Serializable {
     private String isbn;
     @Column
     private String idioma;
+    
+   
 
     @NotBlank(message = "El título es obligatorio")
     @Size(max = 255, message = "El título no puede superar los 255 caracteres")

@@ -36,6 +36,8 @@ public class CopiaLibro implements Serializable {
 
     @Column
     private boolean referenciaLibro = false;
+    @Column
+    private Float precioEstimado;
 
     @Enumerated(EnumType.STRING)  // Almacena como texto en la BD
     private TipoCopiaLibro tipo;
@@ -57,12 +59,19 @@ public class CopiaLibro implements Serializable {
     public CopiaLibro() {
     }
 
-    public CopiaLibro(TipoCopiaLibro tipo, Libro libro) {
+    public CopiaLibro(TipoCopiaLibro tipo, Libro libro, Float precio) {
 
+        if (precio.isNaN()) {
+            throw new IllegalArgumentException("El precio se debe cargar");
+        }
+        if (precio <= 0) {
+            throw new IllegalArgumentException("El precio no puede ser un valor negativo");
+
+        }
         this.tipo = tipo;
         this.libro = libro;
+        this.precioEstimado = precio;
     }
-    
 
     public Set<Prestamo> getPrestamos() {
         return prestamos;
@@ -123,6 +132,21 @@ public class CopiaLibro implements Serializable {
 
     public Rack getRack() {
         return rack;
+    }
+
+    public Float getPrecioEstimado() {
+        return precioEstimado;
+    }
+
+    public void setPrecioEstimado(Float precioEstimado) {
+        if (precioEstimado.isNaN()) {
+            throw new IllegalArgumentException("El precio se debe cargar");
+        }
+        if (precioEstimado <= 0) {
+            throw new IllegalArgumentException("El precio no puede ser un valor negativo");
+
+        }
+        this.precioEstimado = precioEstimado;
     }
 
 }

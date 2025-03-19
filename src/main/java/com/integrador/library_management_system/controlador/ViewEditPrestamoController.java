@@ -110,9 +110,9 @@ public class ViewEditPrestamoController implements Initializable {
     private TextField txtTipo;*/
     @FXML
     private Label lbUser;
-    
+
     private Prestamo prestamo;
-    
+
     @FXML
     private DatePicker dataInicio;
     @FXML
@@ -121,19 +121,20 @@ public class ViewEditPrestamoController implements Initializable {
     private TextField txtId;
     @FXML
     private TextField txtEstado;
-    
+
     @FXML
     private Button btnGuardar;
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
         //NOMBRE USER
         Miembro miembro = (Miembro) GestorDatos.obtenerDato("miembroAuth");
         lbUser.setText(miembro.getNombre());
-        
+
+        //desasctivar el btnGuardar segun el estado de prestamo
     }
-    
+
     public void setData(Object data) {
         /*
         copiaLocal = (CopiaLibro) data;
@@ -144,61 +145,74 @@ public class ViewEditPrestamoController implements Initializable {
         txtTipo.setText(copiaLocal.getTipo().toString());
          */
         prestamo = (Prestamo) data;
-        
+
         System.out.println(prestamo);
         txtId.setText(prestamo.getId().toString());
         dataInicio.setValue(prestamo.getFechaPrestamo());
         dataVencimiento.setValue(prestamo.getFechaVencimiento());
         var formato = prestamo.isEstado() ? "ACTIVO" : "NO ACTIVO";
         txtEstado.setText(formato);
+        boton();
     }
-    
+
+    public void boton() {
+        if (!prestamo.isEstado()) {
+            btnGuardar.setDisable(false); // Ocultar el botón
+        }
+    }
+
     @FXML
     private void eventAction(ActionEvent event) throws IOException {
         Object evt = event.getSource();
-        
-        if (evt.equals(btnGuardar)) {
-            
-            Repositorio r = new Repositorio();
-            ServicioPrestamo sr = new ServicioPrestamo(r);
-            var prestamodb = sr.buscarPrestamo(prestamo);
-            var estado = false; //Controlar la fecha de vencimiento y generar multa
-            System.out.println("hoy a hace diez dias sacaste el libro (?");
-            //System.out.println(estado);
-            if (prestamodb.hanPasadoDiezDias()) {
-                System.out.println("Generar multa");
-                Alert alert = new Alert(AlertType.WARNING);
-                alert.setTitle("Generacion de multa");
-                //generarr multa. REalizar en el servicio
-                var costo = 1;
-                Multa multa = new Multa(costo);
-                multa.setPrestamo(prestamodb);
-                ServicioMulta sm = new ServicioMulta(r);
-                sm.agregarMulta(multa);
-            }
-            //1. recuperar la copia
-            var copia = prestamodb.getCopia();
-            System.out.println(copia);
-            ServicioCopiaLibro scopia = new ServicioCopiaLibro(r);
-            var copiadb = scopia.buscarCopia(copia);
 
-            //2. cambiar a Disponible
-            copiadb.setEstado(EstadoCopiaLibro.DISPONIBLE);
-            //3. modificar en db
-            scopia.editarCopiaLibro(copiadb);
-            prestamodb.setEstado(estado);
-            sr.editarPrestamo(prestamodb);
-            loadStage("ViewIndexPrestamo", event);
+        if (evt.equals(btnGuardar)) {
+            if (prestamo.isEstado()) {
+
+                Repositorio r = new Repositorio();
+                ServicioPrestamo sr = new ServicioPrestamo(r);
+                var prestamodb = sr.buscarPrestamo(prestamo);
+                var estado = false; //Controlar la fecha de vencimiento y generar multa
+                System.out.println("hoy a hace diez dias sacaste el libro (?");
+                //System.out.println(estado);
+                if (prestamodb.hanPasadoDiezDias()) {
+                    System.out.println("Generar multa");
+                    Alert alert = new Alert(AlertType.WARNING);
+                    alert.setTitle("Generacion de multa");
+                    alert.setHeaderText("Su prestamo ha expirado. Se generará una multa en cuestion...");
+                    alert.showAndWait();
+                    //generarr multa. REalizar en el servicio
+                    ServicioMulta sm = new ServicioMulta(r);
+                    sm.generarMulta(prestamo);
+                }
+                //1. recuperar la copia
+                var copia = prestamodb.getCopia();
+                System.out.println(copia);
+                ServicioCopiaLibro scopia = new ServicioCopiaLibro(r);
+                var copiadb = scopia.buscarCopia(copia);
+
+                //2. cambiar a Disponible
+                copiadb.setEstado(EstadoCopiaLibro.DISPONIBLE);
+                //3. modificar en db
+                scopia.editarCopiaLibro(copiadb);
+                prestamodb.setEstado(estado);
+                sr.editarPrestamo(prestamodb);
+                loadStage("ViewIndexPrestamo", event);
+            } else {
+                Alert alert = new Alert(AlertType.WARNING);
+                alert.setTitle("Accion devolver");
+                alert.setHeaderText("Este prestamo ya ha sido devuelto.");
+                alert.showAndWait();
+            }
         } else if (evt.equals(btnInicio)) {
             //loadStage("ViewIndexUsuario", event);
             loadStage("ViewPrincipal", event);
-            
+
         } else if (evt.equals(btnGestionarRack)) {
             loadStage("ViewIndexRack", event);
         } else if (evt.equals(btnGestionarMulta)) {
             loadStage("ViewIndexMulta", event);
         } else if (evt.equals(btnGestionarLibro)) {
-            
+
             loadStage("ViewIndexLibro", event);
         } else if (evt.equals(btnGestionarUsuario)) {
             loadStage("ViewIndexUsuario", event);
@@ -208,18 +222,18 @@ public class ViewEditPrestamoController implements Initializable {
         } else if (evt.equals(btnGestionarCopias)) {
             //loadStage("ViewIndexUsuario", event);
             loadStage("ViewIndexCopias", event);
-            
+
         }
     }
-    
+
     private void loadStage(String url, ActionEvent event) throws IOException {
         ((Node) (event.getSource())).getScene().getWindow().hide();
-        
+
         Scene scene = new Scene(loadFXML(url));
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.setTitle("Library Manager System");
         stage.show();
     }
-    
+
 }

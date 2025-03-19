@@ -10,6 +10,7 @@ import com.integrador.library_management_system.repositorio.Repositorio;
 import com.integrador.library_management_system.servicios.ServicioCopiaLibro;
 import com.integrador.library_management_system.servicios.ServicioLibro;
 import com.integrador.library_management_system.servicios.ServicioMiembro;
+import com.integrador.library_management_system.servicios.ServicioMulta;
 import com.integrador.library_management_system.servicios.ServicioPrestamo;
 import com.integrador.library_management_system.servicios.ServicioRack;
 import javafx.application.Application;
@@ -42,6 +43,24 @@ public class App extends Application {
         // Crear Repositorio
         //  Repositorio repo = new Repositorio();
 //-------------------------------------------------------------------------------------
+        /*
+
+   Repositorio r = new Repositorio();
+        ServicioPrestamo sp = new ServicioPrestamo(r);
+        ServicioCopiaLibro scopia = new ServicioCopiaLibro(r);
+        ServicioMiembro sm = new ServicioMiembro(r);
+        Miembro m = new Miembro();
+        m.setId(Long.valueOf(1));
+        var miembrodb = sm.buscarMiembro(m);
+        CopiaLibro c = new CopiaLibro();
+        c.setId(Long.valueOf(1));
+        var copiadb = scopia.buscarCopia(c);
+        LocalDate fechaDada = LocalDate.of(2025, 3, 1); // 1 de marzo de 2025
+        Prestamo prestamo = new Prestamo(fechaDada);
+        prestamo.setCopia(copiadb);
+        prestamo.setMiembro(miembrodb);
+        sp.agregarPrestamo(prestamo);
+         */
 //-------------------------------------------------------------------------------------
         scene = new Scene(loadFXML("ViewLogin"), 1600, 900);
         stage.setScene(scene);

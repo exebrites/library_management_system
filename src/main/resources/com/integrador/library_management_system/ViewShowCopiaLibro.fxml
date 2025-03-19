@@ -32,6 +32,8 @@
                               <TextField fx:id="txtId" editable="false" prefHeight="24.0" prefWidth="525.0" />
                               <Label text="Referencia" />
                               <TextField fx:id="txtReferencia" editable="false" />
+                              <Label text="Precio estimado" />
+                              <TextField fx:id="txtPrecio" editable="false" />
                               <Label text="Libro" />
                               <TextField fx:id="txtLibro" editable="false">
                                  <VBox.margin>

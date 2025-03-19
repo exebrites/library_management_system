@@ -20,6 +20,7 @@ import com.integrador.library_management_system.servicios.ServicioRack;
 import com.integrador.library_management_system.util.GestorDatos;
 import java.io.IOException;
 import java.net.URL;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -65,6 +66,13 @@ public class ViewDetalleHistorialLibrosController implements Initializable {
     private Button btnGestionarCopias;
     @FXML
     private Button btnPrestamo;
+
+    @FXML
+    private Button btnInicio;
+    @FXML
+    private Button btnGestionarMulta;
+    @FXML
+    private Button btnGestionarRack;
     //navegacion
 
     @FXML
@@ -80,7 +88,18 @@ public class ViewDetalleHistorialLibrosController implements Initializable {
     @FXML
     private TextField txtIdCopia;
     @FXML
-    private TextField txtIdLibro;
+    private TextField txtTituloLibro;
+    @FXML
+    private TextField txtFechaInicio;
+    @FXML
+    private TextField txtFechaVencimiento;
+    @FXML
+    private TextField txtTipoCopia;
+    @FXML
+    private TextField txtEstadoCopia;
+
+    @FXML
+    private TextField txtEstadoPrestamo;
 
     private Prestamo prestamo;
 
@@ -97,7 +116,6 @@ public class ViewDetalleHistorialLibrosController implements Initializable {
         fila = data;
 
         System.out.println(Arrays.toString(fila));
-        txtNombreApellido.setText((String) fila[0] + " " + (String) fila[1]);
 
         Repositorio r = new Repositorio();
         ServicioPrestamo sp = new ServicioPrestamo(r);
@@ -122,10 +140,17 @@ public class ViewDetalleHistorialLibrosController implements Initializable {
         var libro = sl.buscarLibro(l);
 
         //VISUALIZAR DATOS|
+        txtNombreApellido.setText((String) fila[0] + " " + (String) fila[1]);
         txtIdPrestamo.setText(prestamo.getId().toString());
         txtIdCopia.setText(copia.getId().toString());
-        txtIdLibro.setText(libro.getId().toString());
-
+        txtTituloLibro.setText(libro.getTitulo());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        txtFechaInicio.setText(prestamo.getFechaPrestamo().format(formatter));
+        txtFechaVencimiento.setText(prestamo.getFechaVencimiento().format(formatter));
+        txtTipoCopia.setText(copia.getTipo().toString());
+        txtEstadoCopia.setText(copia.getEstado().toString());
+        var estado = prestamo.isEstado() ? "Activo" : "No activo";
+        txtEstadoPrestamo.setText(estado);
     }
 
     @FXML
@@ -143,6 +168,14 @@ public class ViewDetalleHistorialLibrosController implements Initializable {
         } else if (evt.equals(btnGestionarCopias)) {
             //loadStage("ViewIndexUsuario", event);
             loadStage("ViewIndexCopias", event);
+        } else if (evt.equals(btnInicio)) {
+            //loadStage("ViewIndexUsuario", event);
+            loadStage("ViewPrincipal", event);
+
+        } else if (evt.equals(btnGestionarMulta)) {
+            loadStage("ViewIndexMulta", event);
+        } else if (evt.equals(btnGestionarRack)) {
+            loadStage("ViewIndexRack", event);
         } else if (evt.equals(btnPrestamo)) {
             //loadStage("ViewIndexUsuario", event);
             System.out.println("prestamo...");
