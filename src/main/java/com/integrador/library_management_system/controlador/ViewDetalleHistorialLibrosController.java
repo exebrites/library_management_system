@@ -4,6 +4,7 @@
  */
 package com.integrador.library_management_system.controlador;
 
+import com.integrador.library_management_system.App;
 import static com.integrador.library_management_system.App.loadFXML;
 import com.integrador.library_management_system.modelo.CopiaLibro;
 import com.integrador.library_management_system.modelo.Libro;
@@ -27,8 +28,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -79,6 +82,8 @@ public class ViewDetalleHistorialLibrosController implements Initializable {
     @FXML
     private TextField txtIdLibro;
 
+    private Prestamo prestamo;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //System.out.println(TipoCopiaLibro.values());
@@ -102,7 +107,7 @@ public class ViewDetalleHistorialLibrosController implements Initializable {
         Long idPrestamo = (Long) fila[6];
         Prestamo p = new Prestamo();
         p.setId(idPrestamo);
-        var prestamo = sp.buscarPrestamo(p);
+        prestamo = sp.buscarPrestamo(p);
 
         //COPIA
         Long idCopia = (Long) fila[3];
@@ -138,6 +143,26 @@ public class ViewDetalleHistorialLibrosController implements Initializable {
         } else if (evt.equals(btnGestionarCopias)) {
             //loadStage("ViewIndexUsuario", event);
             loadStage("ViewIndexCopias", event);
+        } else if (evt.equals(btnPrestamo)) {
+            //loadStage("ViewIndexUsuario", event);
+            System.out.println("prestamo...");
+            System.out.println(prestamo);
+
+            var fxml = "ViewEditPrestamo";
+
+            FXMLLoader loader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+            Parent root = loader.load();
+
+            // Obtener el controlador y pasarle los datos
+            ViewEditPrestamoController detalleController = loader.getController();
+            detalleController.setData(prestamo);
+
+            //ocultar la escena anterior y generar una nueva
+            ((Node) (event.getSource())).getScene().getWindow().hide();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+
         }
     }
 

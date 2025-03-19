@@ -86,6 +86,8 @@ public class ViewHistorialLibrosController implements Initializable {
     @FXML
     private TableColumn<Object[], String> colNombreApellido;
     @FXML
+    private TableColumn<Object[], String> colFechaInicio;
+    @FXML
     private TableColumn<Object[], String> colFechaVencimiento;
     @FXML
     private TableColumn<Object[], Long> colNroCopia;
@@ -107,7 +109,13 @@ public class ViewHistorialLibrosController implements Initializable {
             Object[] row = cellData.getValue();
             return new javafx.beans.property.SimpleStringProperty((String) row[0] + " " + (String) row[1]);
         });
-
+        colFechaInicio.setCellValueFactory(cellData -> {
+            Object[] row = cellData.getValue();
+            var fecha = (LocalDate) row[8];
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            var fechaFormateada = fecha.format(formatter);
+            return new javafx.beans.property.SimpleObjectProperty<>(fechaFormateada);
+        });
         colFechaVencimiento.setCellValueFactory(cellData -> {
             Object[] row = cellData.getValue();
             var fecha = (LocalDate) row[2];

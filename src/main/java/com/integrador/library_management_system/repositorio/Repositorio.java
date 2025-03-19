@@ -331,7 +331,8 @@ public class Repositorio {
                 libro.get("titulo"),
                 miembro.get("id"),
                 prestamo.get("id"),
-                libro.get("id")
+                libro.get("id"),
+                prestamo.get("fechaPrestamo")
         );
 
 // Ejecutar la consulta

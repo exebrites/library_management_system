@@ -110,9 +110,9 @@ public class ViewEditPrestamoController implements Initializable {
     private TextField txtTipo;*/
     @FXML
     private Label lbUser;
-
+    
     private Prestamo prestamo;
-
+    
     @FXML
     private DatePicker dataInicio;
     @FXML
@@ -121,19 +121,19 @@ public class ViewEditPrestamoController implements Initializable {
     private TextField txtId;
     @FXML
     private TextField txtEstado;
-
+    
     @FXML
     private Button btnGuardar;
-
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
         //NOMBRE USER
         Miembro miembro = (Miembro) GestorDatos.obtenerDato("miembroAuth");
         lbUser.setText(miembro.getNombre());
-
+        
     }
-
+    
     public void setData(Object data) {
         /*
         copiaLocal = (CopiaLibro) data;
@@ -144,7 +144,7 @@ public class ViewEditPrestamoController implements Initializable {
         txtTipo.setText(copiaLocal.getTipo().toString());
          */
         prestamo = (Prestamo) data;
-
+        
         System.out.println(prestamo);
         txtId.setText(prestamo.getId().toString());
         dataInicio.setValue(prestamo.getFechaPrestamo());
@@ -152,13 +152,13 @@ public class ViewEditPrestamoController implements Initializable {
         var formato = prestamo.isEstado() ? "ACTIVO" : "NO ACTIVO";
         txtEstado.setText(formato);
     }
-
+    
     @FXML
     private void eventAction(ActionEvent event) throws IOException {
         Object evt = event.getSource();
-
+        
         if (evt.equals(btnGuardar)) {
-
+            
             Repositorio r = new Repositorio();
             ServicioPrestamo sr = new ServicioPrestamo(r);
             var prestamodb = sr.buscarPrestamo(prestamo);
@@ -176,20 +176,29 @@ public class ViewEditPrestamoController implements Initializable {
                 ServicioMulta sm = new ServicioMulta(r);
                 sm.agregarMulta(multa);
             }
+            //1. recuperar la copia
+            var copia = prestamodb.getCopia();
+            System.out.println(copia);
+            ServicioCopiaLibro scopia = new ServicioCopiaLibro(r);
+            var copiadb = scopia.buscarCopia(copia);
 
+            //2. cambiar a Disponible
+            copiadb.setEstado(EstadoCopiaLibro.DISPONIBLE);
+            //3. modificar en db
+            scopia.editarCopiaLibro(copiadb);
             prestamodb.setEstado(estado);
             sr.editarPrestamo(prestamodb);
             loadStage("ViewIndexPrestamo", event);
         } else if (evt.equals(btnInicio)) {
             //loadStage("ViewIndexUsuario", event);
             loadStage("ViewPrincipal", event);
-
+            
         } else if (evt.equals(btnGestionarRack)) {
             loadStage("ViewIndexRack", event);
         } else if (evt.equals(btnGestionarMulta)) {
             loadStage("ViewIndexMulta", event);
         } else if (evt.equals(btnGestionarLibro)) {
-
+            
             loadStage("ViewIndexLibro", event);
         } else if (evt.equals(btnGestionarUsuario)) {
             loadStage("ViewIndexUsuario", event);
@@ -199,18 +208,18 @@ public class ViewEditPrestamoController implements Initializable {
         } else if (evt.equals(btnGestionarCopias)) {
             //loadStage("ViewIndexUsuario", event);
             loadStage("ViewIndexCopias", event);
-
+            
         }
     }
-
+    
     private void loadStage(String url, ActionEvent event) throws IOException {
         ((Node) (event.getSource())).getScene().getWindow().hide();
-
+        
         Scene scene = new Scene(loadFXML(url));
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.setTitle("Library Manager System");
         stage.show();
     }
-
+    
 }
