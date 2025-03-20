@@ -7,6 +7,8 @@ package com.integrador.library_management_system.controlador;
 import static com.integrador.library_management_system.App.loadFXML;
 import com.integrador.library_management_system.modelo.Libro;
 import com.integrador.library_management_system.modelo.Miembro;
+import com.integrador.library_management_system.modelo.TipoCopiaLibro;
+import com.integrador.library_management_system.modelo.TipoMiembro;
 import com.integrador.library_management_system.repositorio.Repositorio;
 import com.integrador.library_management_system.servicios.ServicioLibro;
 import com.integrador.library_management_system.servicios.ServicioMiembro;
@@ -26,6 +28,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -60,8 +63,6 @@ public class ViewCreateMiembroController implements Initializable {
     private Button btnGestionarRack;
     @FXML
     private Button btnGestionarMulta;
-    
-    
 
     //navegacion
     @FXML
@@ -76,6 +77,9 @@ public class ViewCreateMiembroController implements Initializable {
     private TextField txtPass;
 
     @FXML
+    private ComboBox<TipoMiembro> comboTipoMiembro;
+
+    @FXML
     private Button btnGuardar;
     @FXML
     private Button btnCancelar;
@@ -88,6 +92,9 @@ public class ViewCreateMiembroController implements Initializable {
 
         Miembro miembro = (Miembro) GestorDatos.obtenerDato("miembroAuth");
         lbUser.setText(miembro.getNombre());
+
+        //1. setear combo box
+        comboTipoMiembro.getItems().addAll(TipoMiembro.values());
     }
 
     @FXML
@@ -111,12 +118,9 @@ public class ViewCreateMiembroController implements Initializable {
 
         } else if (evt.equals(btnGestionarRack)) {
             loadStage("ViewIndexRack", event);
-        }
-         else if (evt.equals(btnGestionarMulta)) {
+        } else if (evt.equals(btnGestionarMulta)) {
             loadStage("ViewIndexMulta", event);
-        }
-        
-        else if (evt.equals(btnGuardar)) {
+        } else if (evt.equals(btnGuardar)) {
             System.out.println("GUARDANDO...");
             System.out.println(txtNombre.getText());
             var nombre = txtNombre.getText();
@@ -124,11 +128,17 @@ public class ViewCreateMiembroController implements Initializable {
             var apellido = txtApellido.getText();
             System.out.println(txtPass.getText());
             var pass = txtPass.getText();
+            //2. extraer valor del combobox
+            var tipo = comboTipoMiembro.getValue();
+            
             //crear objeto
             Miembro miembro = new Miembro();
             miembro.setNombre(nombre);
             miembro.setApellido(apellido);
             miembro.setClave(pass);
+            miembro.setTipoMiembro(tipo);
+
+            //3. setear el tipo miembro
             //almacenar miembro
             Repositorio r = new Repositorio();
             ServicioMiembro sm = new ServicioMiembro(r);

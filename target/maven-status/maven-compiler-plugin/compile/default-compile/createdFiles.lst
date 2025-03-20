@@ -24,8 +24,10 @@ com/integrador/library_management_system/modelo/exceptions/PreexistingEntityExce
 com/integrador/library_management_system/App.class
 com/integrador/library_management_system/controlador/ViewIndexPrestamoController.class
 com/integrador/library_management_system/controlador/ViewHistorialLibrosController.class
+com/integrador/library_management_system/controlador/ViewUsuarioLibroController.class
 com/integrador/library_management_system/modelo/exceptions/IllegalOrphanException.class
 com/integrador/library_management_system/controlador/ViewShowPrestamoController.class
+com/integrador/library_management_system/controlador/ViewUsuarioController.class
 com/integrador/library_management_system/modelo/Libro.class
 com/integrador/library_management_system/controlador/ViewEditMiembroController.class
 com/integrador/library_management_system/repositorio/Repositorio.class
@@ -42,6 +44,7 @@ com/integrador/library_management_system/controlador/ViewShowCopiaLibroControlle
 com/integrador/library_management_system/servicios/ServicioCopiaLibro.class
 com/integrador/library_management_system/controlador/ViewIndexCopiasController.class
 com/integrador/library_management_system/controlador/ViewCreateCopiaLibroController.class
+com/integrador/library_management_system/modelo/TipoMiembro.class
 com/integrador/library_management_system/modelo/Miembro.class
 com/integrador/library_management_system/servicios/ServicioPrestamo.class
 com/integrador/library_management_system/controlador/ViewIndexMultaController.class

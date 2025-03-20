@@ -9,6 +9,8 @@ import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -35,6 +37,8 @@ public class Miembro implements Serializable {
     private String nombre;
     @Column
     private String apellido;
+    @Enumerated(EnumType.STRING)  // Almacena como texto en la BD
+    private TipoMiembro tipoMiembro;
 
     @OneToMany(mappedBy = "miembro")
     private Set<Prestamo> prestamos;
@@ -105,6 +109,14 @@ public class Miembro implements Serializable {
 
     public void setPrestamos(Set<Prestamo> prestamos) {
         this.prestamos = prestamos;
+    }
+
+    public TipoMiembro getTipoMiembro() {
+        return tipoMiembro;
+    }
+
+    public void setTipoMiembro(TipoMiembro tipoMiembro) {
+        this.tipoMiembro = tipoMiembro;
     }
 
 }

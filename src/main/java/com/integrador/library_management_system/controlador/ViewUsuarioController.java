@@ -26,7 +26,7 @@ import javafx.stage.Stage;
  *
  * @author exe
  */
-public class ViewPrincipalController implements Initializable {
+public class ViewUsuarioController implements Initializable {
 
     @FXML
     private Button btnGestionarLibro;
@@ -75,39 +75,24 @@ public class ViewPrincipalController implements Initializable {
 
             if (evt.equals(btnGestionarLibro)) {
 
-                loadStage("ViewIndexLibro", event);
-            } else if (evt.equals(btnGestionarUsuario)) {
-                loadStage("ViewIndexUsuario", event);
-            } else if (evt.equals(btnGestionarPrestamo)) {
-                //loadStage("ViewIndexUsuario", event);
-                loadStage("ViewIndexPrestamo", event);
-            } else if (evt.equals(btnGestionarCopias)) {
-                //loadStage("ViewIndexUsuario", event);
-                loadStage("ViewIndexCopias", event);
-            } else if (evt.equals(btnGestionarRack)) {
-                //loadStage("ViewIndexUsuario", event);
-                loadStage("ViewIndexRack", event);
-
+                loadStage("ViewUsuarioLibro", event);
             } else if (evt.equals(btnInicio)) {
                 //loadStage("ViewIndexUsuario", event);
-                loadStage("ViewPrincipal", event);
-
-            } else if (evt.equals(btnGestionarMulta)) {
-                //loadStage("ViewIndexUsuario", event);
-                loadStage("ViewIndexMulta", event);
+                loadStage("ViewUsuario", event);
 
             } else if (evt.equals(btnLogout)) {
                 loadStage("ViewLogin", event);
             }
 
         } catch (IOException ex) {
-            Logger.getLogger(ViewPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ViewUsuarioController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
 
     @FXML
     private void eventDash(ActionEvent event) throws IOException {
+        /*
         try {
             Object evt = event.getSource();
             if (evt.equals(btnHistorialLibro)) {
@@ -121,6 +106,7 @@ public class ViewPrincipalController implements Initializable {
         } catch (Exception e) {
             System.out.println(e.getMessage() + "e");
         }
+         */
 
     }
 

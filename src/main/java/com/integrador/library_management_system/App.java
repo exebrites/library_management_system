@@ -5,6 +5,7 @@ import com.integrador.library_management_system.modelo.Libro;
 import com.integrador.library_management_system.modelo.Miembro;
 import com.integrador.library_management_system.modelo.Prestamo;
 import com.integrador.library_management_system.modelo.Rack;
+import com.integrador.library_management_system.modelo.TipoMiembro;
 
 import com.integrador.library_management_system.repositorio.Repositorio;
 import com.integrador.library_management_system.servicios.ServicioCopiaLibro;
@@ -41,7 +42,16 @@ public class App extends Application {
         //  EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.integradorLMS_PU");
 
         // Crear Repositorio
-        //  Repositorio repo = new Repositorio();
+        /*
+         Repositorio r = new Repositorio();
+        //crear un miembro
+        ServicioMiembro sm = new ServicioMiembro(r);
+        Miembro m = new Miembro("biblitecario", "1", true);
+        m.setTipoMiembro(TipoMiembro.BIBLIOTECARIO);
+        m.setClave("123");
+        m.setId(Long.valueOf(1));
+        sm.agregarUsuario(m);
+         */
 //-------------------------------------------------------------------------------------
         /*
 

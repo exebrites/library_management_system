@@ -9,9 +9,7 @@ package com.integrador.library_management_system.modelo;
  *
  * @author exe
  */
-public enum TipoCopiaLibro {
-    TAPADURA,
-    RUSTICA,
-    AUDIOLIBRO,
-    ELECTRONICO
+public enum TipoMiembro {
+    BIBLIOTECARIO,
+    USUARIO
 }

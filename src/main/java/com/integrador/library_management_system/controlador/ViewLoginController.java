@@ -5,6 +5,7 @@
 package com.integrador.library_management_system.controlador;
 
 import static com.integrador.library_management_system.App.loadFXML;
+import com.integrador.library_management_system.modelo.TipoMiembro;
 import com.integrador.library_management_system.repositorio.Repositorio;
 import com.integrador.library_management_system.servicios.ServicioMiembro;
 import com.integrador.library_management_system.util.GestorDatos;
@@ -74,10 +75,22 @@ public class ViewLoginController implements Initializable {
                 var miembro = su.login(identificador, contrasenia);
                 if (!miembro.isEmpty()) {
                     System.out.print("usuario logueado exitosamente");
+                    var miembroAuth = miembro.get(0);
+                    GestorDatos.guardarDato("miembroAuth", miembroAuth);
 
-                    GestorDatos.guardarDato("miembroAuth", miembro.get(0));
+                    /*
+                    SI miembro es bibliotecario ENTONCES viewprincipal
+                    SINO ENTONCES viewUsuario
+                    
+                    
+                     */
+                    if (miembroAuth.getTipoMiembro().equals(TipoMiembro.BIBLIOTECARIO)) {
+                        loadStage("ViewPrincipal", event);
+                    } else if (miembroAuth.getTipoMiembro().equals(TipoMiembro.USUARIO)) {
 
-                    loadStage("ViewPrincipal", event);
+                        System.out.println("USUARIO");
+                        loadStage("ViewUsuario", event);
+                    }
                 } else {
                     Alert alert = new Alert(AlertType.ERROR);
                     alert.setTitle("Información");
