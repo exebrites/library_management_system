@@ -340,6 +340,29 @@ public class Repositorio {
         return typedQuery.getResultList();
     }
 
+    public List<Object[]> consultarMiembrosSegunLibro(Long libroId) {
+
+        //datos
+        //1. de entrada el libro 
+        //2. de salida los miebros y demas info
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Object[]> query = cb.createQuery(Object[].class);
+
+        Root<Libro> libro = query.from(Libro.class);
+        Join<Libro, CopiaLibro> copiaLibro = libro.join("copias");
+        Join<CopiaLibro, Prestamo> prestamo = copiaLibro.join("prestamos");
+        Join<Prestamo, Miembro> miembro = prestamo.join("miembro");
+
+        query.multiselect(libro.get("id"), copiaLibro.get("id"), prestamo.get("id"), miembro.get("nombre"), miembro.get("apellido"))
+                .where(
+                        cb.equal(libro.get("id"), libroId),
+                        cb.equal(prestamo.get("estado"), true)
+                );
+
+        TypedQuery<Object[]> typedQuery = em.createQuery(query);
+        return typedQuery.getResultList();
+    }
+
     public Long contarPrestamosPorMiembro(Long miembroId) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Long> query = cb.createQuery(Long.class);

@@ -1,5 +1,5 @@
-com/integrador/library_management_system/controlador/ViewIndexCopiasController$1.class
 com/integrador/library_management_system/modelo/Prestamo.class
+com/integrador/library_management_system/controlador/ViewIndexCopiasController$1.class
 com/integrador/library_management_system/modelo/exceptions/NonexistentEntityException.class
 com/integrador/library_management_system/modelo/CopiaLibro_.class
 com/integrador/library_management_system/controlador/ViewLoginController.class
@@ -8,8 +8,8 @@ com/integrador/library_management_system/controlador/ViewShowMiembroController.c
 com/integrador/library_management_system/controlador/ViewIndexUsuarioController.class
 com/integrador/library_management_system/servicios/ServicioRack.class
 com/integrador/library_management_system/modelo/Multa_.class
-com/integrador/library_management_system/controlador/ViewEditCopiaLibroController.class
 com/integrador/library_management_system/modelo/Multa.class
+com/integrador/library_management_system/controlador/ViewEditCopiaLibroController.class
 com/integrador/library_management_system/controlador/ViewPrincipalController.class
 com/integrador/library_management_system/controlador/ViewCreateMiembroController.class
 com/integrador/library_management_system/controlador/ViewShowRackController.class
@@ -26,9 +26,9 @@ com/integrador/library_management_system/controlador/ViewIndexPrestamoController
 com/integrador/library_management_system/controlador/ViewHistorialLibrosController.class
 com/integrador/library_management_system/controlador/ViewUsuarioLibroController.class
 com/integrador/library_management_system/modelo/exceptions/IllegalOrphanException.class
+com/integrador/library_management_system/modelo/Libro.class
 com/integrador/library_management_system/controlador/ViewShowPrestamoController.class
 com/integrador/library_management_system/controlador/ViewUsuarioController.class
-com/integrador/library_management_system/modelo/Libro.class
 com/integrador/library_management_system/controlador/ViewEditMiembroController.class
 com/integrador/library_management_system/repositorio/Repositorio.class
 com/integrador/library_management_system/servicios/ServicioMiembro.class
@@ -38,8 +38,8 @@ com/integrador/library_management_system/modelo/Prestamo_.class
 com/integrador/library_management_system/controlador/ViewEditPrestamoController.class
 com/integrador/library_management_system/controlador/ViewEditLibroController.class
 com/integrador/library_management_system/controlador/ViewCreateRackController.class
-com/integrador/library_management_system/controlador/ViewEditRackController.class
 com/integrador/library_management_system/controlador/ViewCreateLibroController.class
+com/integrador/library_management_system/controlador/ViewEditRackController.class
 com/integrador/library_management_system/controlador/ViewShowCopiaLibroController.class
 com/integrador/library_management_system/servicios/ServicioCopiaLibro.class
 com/integrador/library_management_system/controlador/ViewIndexCopiasController.class
@@ -51,7 +51,8 @@ com/integrador/library_management_system/controlador/ViewIndexMultaController.cl
 com/integrador/library_management_system/controlador/ViewLibroController.class
 com/integrador/library_management_system/modelo/Miembro_.class
 com/integrador/library_management_system/controlador/ViewDetalleHistorialLibrosController.class
+com/integrador/library_management_system/controlador/ViewLibroPrestamosMiembrosController.class
 com/integrador/library_management_system/modelo/Rack.class
-com/integrador/library_management_system/controlador/ViewShowLibroController$1.class
 com/integrador/library_management_system/controlador/ViewIndexUsuarioController$1.class
+com/integrador/library_management_system/controlador/ViewShowLibroController$1.class
 com/integrador/library_management_system/util/GestorDatos.class

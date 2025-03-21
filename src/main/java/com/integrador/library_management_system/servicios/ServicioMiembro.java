@@ -5,6 +5,7 @@
 package com.integrador.library_management_system.servicios;
 
 import com.integrador.library_management_system.modelo.Miembro;
+import com.integrador.library_management_system.modelo.Prestamo;
 import com.integrador.library_management_system.repositorio.Repositorio;
 import java.util.List;
 import javax.persistence.NoResultException;
@@ -67,4 +68,19 @@ public class ServicioMiembro {
         return this.repositorio.consultaHistorialLibrosMiembro();
     }
 
+    //regla 3 
+    /*
+        obtener al menos un prestamo activo cuyo vencimiento ha sido superado. 
+     */
+    public int prestamosVencidos(Miembro miembro) {
+        var prestamos = miembro.getPrestamos();
+        int sumar = 0;
+        for (Prestamo prestamo : prestamos) {
+            if (prestamo.isEstado() && prestamo.hanPasadoDiezDias()) {
+                System.out.println(prestamo);
+                sumar++;
+            }
+        }
+        return sumar;
+    }
 }

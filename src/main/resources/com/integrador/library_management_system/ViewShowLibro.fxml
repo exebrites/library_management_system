@@ -46,6 +46,7 @@
             <TextField fx:id="txtIdioma" disable="true" layoutX="802.0" layoutY="174.0" prefWidth="350.0" />
             <Label layoutX="806.0" layoutY="155.0" text="Idioma" />
             <Label layoutX="17.0" layoutY="201.0" prefHeight="16.0" prefWidth="258.0" text="Listado de copias" />
+            <Button fx:id="btnPrestado" layoutX="49.0" layoutY="617.0" mnemonicParsing="false" onAction="#eventAction" prefHeight="50.0" prefWidth="200.0" text="Prestado" />
          </children>
       </Pane>
    </center>

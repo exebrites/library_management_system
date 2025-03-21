@@ -105,6 +105,9 @@ public class ViewShowLibroController implements Initializable {
     @FXML
     private Label lbUser;
 
+    @FXML
+    private Button btnPrestado;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -236,6 +239,23 @@ public class ViewShowLibroController implements Initializable {
                     stage.setScene(new Scene(root));
                     stage.show();
                 }
+            } else if (evt.equals(btnPrestado)) {
+
+                var fxml = "ViewLibroPrestamosMiembro";
+
+                FXMLLoader loader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+                Parent root = loader.load();
+
+                // Obtener el controlador y pasarle los datos
+                ViewLibroPrestamosMiembrosController controller = loader.getController();
+                controller.setData(libro1);
+
+                //ocultar la escena anterior y generar una nueva
+                ((Node) (event.getSource())).getScene().getWindow().hide();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.show();
+
             }
 
         } catch (IOException ex) {

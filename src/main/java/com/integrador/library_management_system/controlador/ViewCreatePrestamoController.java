@@ -199,31 +199,49 @@ public class ViewCreatePrestamoController implements Initializable {
                     alert.setContentText("Seleccione un MIEMBRO para CONTINUAR");
                     alert.showAndWait();
                 } else {
+
+                    //establecer regla 3 : adeuda un prestamo 
+                    /*
+                    SI el numero de prestamos activos vencidos >= 1 ENTONCES
+                    notificar al usuario y denegar el prestamo
+                    SINO 
+                    almacenar el prestamo
+                     */
                     Repositorio r = new Repositorio();
                     ServicioPrestamo sr = new ServicioPrestamo(r);
-                    sr.realizarPrestamo((Miembro) fila, (CopiaLibro) copiaLocal);
+                    ServicioMiembro sm = new ServicioMiembro(r);
                     var miembro = (Miembro) fila;
-                    System.out.println(sr.contarPrestamosPorMiembro(miembro.getId()));
+                    if (sm.prestamosVencidos(miembro) == 0) {
 
-                    System.out.println("prestamo guardado con Exito!");
-                    List<Prestamo> prestamos = sr.obtenerTodos();
-                    var prestamodb = prestamos.get(prestamos.size() - 1);
+                        sr.realizarPrestamo(miembro, (CopiaLibro) copiaLocal);
 
-                    //cargar controlador y pasar a la vista el prestamo
-                    var fxml = "ViewShowPrestamo";
+                        System.out.println(sr.contarPrestamosPorMiembro(miembro.getId()));
 
-                    FXMLLoader loader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
-                    Parent root = loader.load();
+                        System.out.println("prestamo guardado con Exito!");
+                        List<Prestamo> prestamos = sr.obtenerTodos();
+                        var prestamodb = prestamos.get(prestamos.size() - 1);
 
-                    // Obtener el controlador y pasarle los datos
-                    ViewShowPrestamoController controller = loader.getController();
-                    controller.setData(prestamodb);
+                        //cargar controlador y pasar a la vista el prestamo
+                        var fxml = "ViewShowPrestamo";
 
-                    //ocultar la escena anterior y generar una nueva
-                    ((Node) (event.getSource())).getScene().getWindow().hide();
-                    Stage stage = new Stage();
-                    stage.setScene(new Scene(root));
-                    stage.show();
+                        FXMLLoader loader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+                        Parent root = loader.load();
+
+                        // Obtener el controlador y pasarle los datos
+                        ViewShowPrestamoController controller = loader.getController();
+                        controller.setData(prestamodb);
+
+                        //ocultar la escena anterior y generar una nueva
+                        ((Node) (event.getSource())).getScene().getWindow().hide();
+                        Stage stage = new Stage();
+                        stage.setScene(new Scene(root));
+                        stage.show();
+                    } else {
+                        Alert alert = new Alert(AlertType.INFORMATION);
+                        alert.setTitle("Guardar Prestamo");
+                        alert.setHeaderText("El miembro adeuda un prestamo");
+                        alert.showAndWait();
+                    }
                 }
 
             } catch (IllegalArgumentException e) {
