@@ -207,22 +207,26 @@ public class ViewShowLibroController implements Initializable {
                 //Cargar la vista
 
                 if (copia == null) {
-                    Alert alert = new Alert(AlertType.WARNING);
-                    alert.setTitle("Copia");
-                    alert.setHeaderText("Seleccione una COPIA para continuar");
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Selección de Copia");
+                    alert.setHeaderText("Es necesario seleccionar una copia para continuar.");
+                    alert.setContentText("Por favor, elija una copia de la lista para proceder con la acción.");
                     alert.showAndWait();
+
                 } else if (copia.isReferenciaLibro()) {
-                    Alert alert2 = new Alert(AlertType.WARNING);
-                    alert2.setTitle("Copia selecciona");
-                    alert2.setHeaderText("COPIA DE REFERENCIA");
-                    alert2.setContentText("La copia seleccionada es una copia de REFERENCIA. Elija otra copia para CONTINUAR");
+                    Alert alert2 = new Alert(Alert.AlertType.WARNING);
+                    alert2.setTitle("Selección Incorrecta");
+                    alert2.setHeaderText("Copia de Referencia Seleccionada");
+                    alert2.setContentText("La copia seleccionada es una copia de referencia y no puede ser prestada. Por favor, seleccione otra copia para continuar.");
                     alert2.showAndWait();
+
                 } else if (copia.getEstado().equals(EstadoCopiaLibro.PRESTADA)) {
-                    Alert alert2 = new Alert(AlertType.WARNING);
-                    alert2.setTitle("Copia selecciona");
-                    alert2.setHeaderText("COPIA DE PRESTADA");
-                    alert2.setContentText("La copia seleccionada es una copia de PRESTADA. Elija otra copia para CONTINUAR");
+                    Alert alert2 = new Alert(Alert.AlertType.WARNING);
+                    alert2.setTitle("Copia en Préstamo");
+                    alert2.setHeaderText("Copia ya prestada");
+                    alert2.setContentText("La copia seleccionada ya está prestada. Por favor, elija otra copia disponible para continuar.");
                     alert2.showAndWait();
+
                 } else {
                     var fxml = "ViewCreatePrestamo";
 

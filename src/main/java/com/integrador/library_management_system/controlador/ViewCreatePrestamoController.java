@@ -58,9 +58,20 @@ public class ViewCreatePrestamoController implements Initializable {
     //navegacion
     @FXML
     private Button btnInicio;
+
+    @FXML
+    private Button btnGestionarUsuario;//colocar secciones abajo
+    @FXML
+    private Button btnGestionarLibro;
+
+    @FXML
+    private Button btnGestionarPrestamo;
+
+    @FXML
+    private Button btnGestionarCopias;
+
     @FXML
     private Button btnGestionarRack;
-
     @FXML
     private Button btnGestionarMulta;
 
@@ -193,11 +204,12 @@ public class ViewCreatePrestamoController implements Initializable {
 
             try {
                 if (fila == null) {
-                    Alert alert = new Alert(AlertType.WARNING);
-                    alert.setTitle("Miembro");
-                    alert.setHeaderText("Seleccionar miembro");
-                    alert.setContentText("Seleccione un MIEMBRO para CONTINUAR");
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Selección de Miembro");
+                    alert.setHeaderText("Por favor, seleccione un miembro");
+                    alert.setContentText("Para continuar, seleccione un miembro de la lista disponible.");
                     alert.showAndWait();
+
                 } else {
 
                     //establecer regla 3 : adeuda un prestamo 
@@ -237,20 +249,23 @@ public class ViewCreatePrestamoController implements Initializable {
                         stage.setScene(new Scene(root));
                         stage.show();
                     } else {
-                        Alert alert = new Alert(AlertType.INFORMATION);
-                        alert.setTitle("Guardar Prestamo");
-                        alert.setHeaderText("El miembro adeuda un prestamo");
+
+                        Alert alert = new Alert(Alert.AlertType.WARNING);
+                        alert.setTitle("Solicitud de Préstamo");
+                        alert.setHeaderText("No es posible procesar la solicitud.");
+                        alert.setContentText("El miembro tiene un préstamo pendiente y no puede solicitar otro hasta que regularice su deuda. Para más información, consulte con el administrador.");
                         alert.showAndWait();
                     }
                 }
 
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
-
+                var mensaje = e.getMessage();
+                String[] partes = mensaje.split("\\|");
                 Alert alert = new Alert(AlertType.WARNING);
-                alert.setTitle("Miembro");
-                alert.setHeaderText("Seleccionar miembro");
-                alert.setContentText(e.getMessage() + "");
+                alert.setTitle(partes[0]);
+                alert.setHeaderText(partes[1]);
+                alert.setContentText(partes[2]);
                 alert.showAndWait();
             } catch (IOException e) {
                 System.out.println(e.getMessage());
@@ -268,6 +283,17 @@ public class ViewCreatePrestamoController implements Initializable {
             loadStage("ViewIndexRack", event);
         } else if (evt.equals(btnGestionarMulta)) {
             loadStage("ViewIndexMulta", event);
+        } else if (evt.equals(btnGestionarLibro)) {
+
+            loadStage("ViewIndexLibro", event);
+        } else if (evt.equals(btnGestionarUsuario)) {
+            loadStage("ViewIndexUsuario", event);
+        } else if (evt.equals(btnGestionarPrestamo)) {
+            //loadStage("ViewIndexUsuario", event);
+            loadStage("ViewIndexPrestamo", event);
+        } else if (evt.equals(btnGestionarCopias)) {
+            //loadStage("ViewIndexUsuario", event);
+            loadStage("ViewIndexCopias", event);
         }
     }
 

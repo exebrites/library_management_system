@@ -75,28 +75,42 @@ public class ViewLoginController implements Initializable {
                 var miembro = su.login(identificador, contrasenia);
                 if (!miembro.isEmpty()) {
                     System.out.print("usuario logueado exitosamente");
-                    var miembroAuth = miembro.get(0);
-                    GestorDatos.guardarDato("miembroAuth", miembroAuth);
 
-                    /*
+                    var miembroAuth = miembro.get(0);
+                    if (!miembroAuth.isEstadoMiembro()) {// tomarlo como bajamiembro
+                        System.out.println("estado del user: " + miembroAuth.isEstadoMiembro());
+                        GestorDatos.guardarDato("miembroAuth", miembroAuth);
+
+                        /*
                     SI miembro es bibliotecario ENTONCES viewprincipal
                     SINO ENTONCES viewUsuario
                     
                     
-                     */
-                    if (miembroAuth.getTipoMiembro().equals(TipoMiembro.BIBLIOTECARIO)) {
-                        loadStage("ViewPrincipal", event);
-                    } else if (miembroAuth.getTipoMiembro().equals(TipoMiembro.USUARIO)) {
+                         */
+                        if (miembroAuth.getTipoMiembro().equals(TipoMiembro.BIBLIOTECARIO)) {
+                            loadStage("ViewPrincipal", event);
+                        } else if (miembroAuth.getTipoMiembro().equals(TipoMiembro.USUARIO)) {
 
-                        System.out.println("USUARIO");
-                        loadStage("ViewUsuario", event);
+                            System.out.println("USUARIO");
+                            loadStage("ViewUsuario", event);
+                        }
+                    } else {
+
+                        Alert alert = new Alert(Alert.AlertType.WARNING);
+                        alert.setTitle("Cuenta Inactiva");
+                        alert.setHeaderText("Acceso no permitido");
+                        alert.setContentText("La cuenta con la que intenta ingresar ha sido dada de baja. Por favor, contacte al administrador para más información.");
+                        alert.showAndWait();
+
                     }
+
                 } else {
-                    Alert alert = new Alert(AlertType.ERROR);
-                    alert.setTitle("Información");
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error de Autenticación");
                     alert.setHeaderText("Credenciales incorrectas");
-                    alert.setContentText("El Identificador o Contraseña del usuario con coinciden con los usuarios registrados.VUELVA A INTERNAR NUEVAMENTE");
+                    alert.setContentText("El identificador o la contraseña ingresados no coinciden con ningún usuario registrado. Por favor, verifique sus datos e inténtelo nuevamente.");
                     alert.showAndWait();
+
                 }
                 // desde aca se va a realizar el login al menos un true o false para continuar 
                 //System.out.print(identificador);

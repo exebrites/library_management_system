@@ -215,8 +215,10 @@ public class ViewLibroController implements Initializable {
                 //Cargar la vista
 
                 if (libroFila == null) {
-                    Alert alert = new Alert(AlertType.WARNING);
-                    alert.setTitle("Seleccione un Libro");
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Selección de Libro");
+                    alert.setHeaderText("Por favor, seleccione un libro");
+                    alert.setContentText("Para continuar, elija un libro de la lista disponible.");
                     alert.showAndWait();
                 } else {
                     var fxml = "ViewEditLibro";
@@ -247,9 +249,10 @@ public class ViewLibroController implements Initializable {
     private void eventShow(ActionEvent event) throws IOException {
 
         if (libroFila == null) {
-            Alert alert = new Alert(AlertType.WARNING);
-            alert.setTitle("Seleccione un libro");
-            alert.setContentText("Para continuar debe seleccionar un libro");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Selección de Libro");
+            alert.setHeaderText("Por favor, seleccione un libro");
+            alert.setContentText("Para continuar, elija un libro de la lista disponible.");
             alert.showAndWait();
         } else {
             //Cargar la vista
@@ -283,15 +286,17 @@ public class ViewLibroController implements Initializable {
             ServicioLibro sl = new ServicioLibro(r);
             //sl.findLibro()
             // eliminarlo de la db
+           
             if (libroFila != null) {
 
                 //controlar la eliminacion
                 //si tiene copias asociadas avisar al usuario
                 // el usuario confirma la eliminacion
-                Alert alertConfirmacion = new Alert(AlertType.CONFIRMATION);
-                alertConfirmacion.setTitle("ELIMINAR LIBRO");
-                alertConfirmacion.setHeaderText("Al eliminar un libro se eliminan TODAS LAS COPIAS DEL LIBRO ¿Desea continuar?");
-                alertConfirmacion.setContentText("Elige una opción:");
+                Alert alertConfirmacion = new Alert(Alert.AlertType.CONFIRMATION);
+                alertConfirmacion.setTitle("Confirmación de Eliminación");
+                alertConfirmacion.setHeaderText("Confirmación de eliminación de libro");
+                alertConfirmacion.setContentText("Al eliminar este libro, todas sus copias también serán eliminadas. ¿Está seguro de que desea continuar?");
+                alertConfirmacion.showAndWait();
 
                 Optional<ButtonType> result = alertConfirmacion.showAndWait(); // Muestra la alerta y espera a que el usuario la cierre
                 Alert alert = new Alert(AlertType.INFORMATION);

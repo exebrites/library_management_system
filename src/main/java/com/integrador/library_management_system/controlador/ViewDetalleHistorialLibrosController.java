@@ -179,7 +179,7 @@ public class ViewDetalleHistorialLibrosController implements Initializable {
         } else if (evt.equals(btnPrestamo)) {
             //loadStage("ViewIndexUsuario", event);
             System.out.println("prestamo...");
-            System.out.println(prestamo);
+       
 
             var fxml = "ViewEditPrestamo";
 

@@ -101,10 +101,9 @@ public class ViewEditPrestamoController implements Initializable {
     }
 
     public void setData(Object data) {
-
         prestamo = (Prestamo) data;
 
-        System.out.println(prestamo);
+        // System.out.println(prestamo);
         txtId.setText(prestamo.getId().toString());
 
         //1. formatear fecha
@@ -116,7 +115,6 @@ public class ViewEditPrestamoController implements Initializable {
 
         var formato = prestamo.isEstado() ? "ACTIVO" : "NO ACTIVO";
         txtEstado.setText(formato);
-
     }
 
     @FXML
@@ -157,11 +155,14 @@ public class ViewEditPrestamoController implements Initializable {
                 prestamodb.setEstado(estado);
                 sr.editarPrestamo(prestamodb);
                 loadStage("ViewIndexPrestamo", event);
+
             } else {
-                Alert alert = new Alert(AlertType.WARNING);
-                alert.setTitle("Accion devolver");
-                alert.setHeaderText("Este prestamo ya ha sido devuelto.");
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Devolución de Préstamo");
+                alert.setHeaderText("Préstamo ya devuelto");
+                alert.setContentText("Este préstamo ya ha sido registrado como devuelto.");
                 alert.showAndWait();
+
             }
         } else if (evt.equals(btnInicio)) {
             //loadStage("ViewIndexUsuario", event);

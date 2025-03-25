@@ -95,6 +95,9 @@ public class ViewHistorialLibrosController implements Initializable {
     @FXML
     private TableColumn<Object[], String> colFechaVencimiento;
     @FXML
+    private TableColumn<Object[], Long> colNroPrestamo;
+
+    @FXML
     private TableColumn<Object[], Long> colNroCopia;
     @FXML
     private TableColumn<Object[], String> colTituloLibro;
@@ -105,6 +108,9 @@ public class ViewHistorialLibrosController implements Initializable {
 
     @FXML
     private TextField txtNombreApellido;
+
+    @FXML
+    private TextField txtIdPrestamo;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -132,6 +138,10 @@ public class ViewHistorialLibrosController implements Initializable {
             return new javafx.beans.property.SimpleObjectProperty<>(fechaFormateada);
         });
 
+        colNroPrestamo.setCellValueFactory(cellData -> {
+            Object[] row = cellData.getValue();
+            return new javafx.beans.property.SimpleLongProperty((Long) row[6]).asObject();
+        });
         colNroCopia.setCellValueFactory(cellData -> {
             Object[] row = cellData.getValue();
             return new javafx.beans.property.SimpleLongProperty((Long) row[3]).asObject();
@@ -187,6 +197,26 @@ public class ViewHistorialLibrosController implements Initializable {
                 });
             }
         });
+
+        txtIdPrestamo.textProperty().addListener((observable, oldValue, newValue) -> {
+            //System.out.println(newValue);
+
+            if (newValue.isEmpty()) {
+                filteredList.setPredicate(u -> true);
+            } else {
+                try {
+                    Long idFiltrar = Long.valueOf(newValue);
+                    filteredList.setPredicate(u -> {
+
+                        return u[6] == idFiltrar;
+                    }
+                    );
+                } catch (NumberFormatException e) {
+                    filteredList.setPredicate(u -> false); // Si no es número, no muestra nada
+                }
+            }
+        });
+
         tabla.setItems(filteredList);
     }
 

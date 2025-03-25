@@ -109,11 +109,13 @@ public class ServicioPrestamo {
         // 1. verificar que el miembro sea un miembro activo, de lo contrario cancelar el prestamo
         /*SI NO es activo ENTONCES exception*/
         if (miembro.isEstadoMiembro()) {
-            throw new IllegalArgumentException("El miembro no esta activo");
+            throw new IllegalArgumentException("Estado de miembro inactivo|El miembro no esta activo.|No es posible realizar esta acción porque el miembro tiene un estado inactivo.");
         }
         //2. verificar que el numero de prestamo activos sea menor o igual a 5. De lo contrario cancelar prestamo
         if (this.contarPrestamosPorMiembro(miembro.getId()) >= 5) {
-            throw new IllegalArgumentException("El miembro  tiene mas 5 copias prestadas");
+            //este tambien
+            throw new IllegalArgumentException("Límite de Préstamos Alcanzado.|El miembro ha alcanzado el límite de copias prestadas.|Un miembro no puede tener más de 5 copias prestadas al mismo tiempo. Por favor, devuelva una copia antes de realizar un nuevo préstamo.");
+
         }
         // acciones
         // 1. instanciar un prestamo
