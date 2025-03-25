@@ -41,7 +41,9 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         //  EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.integradorLMS_PU");
 
-        // Crear Repositorio
+        /*
+        
+                // Crear Repositorio
         Repositorio r = new Repositorio();
         //crear un miembro
         ServicioMiembro sm = new ServicioMiembro(r);
@@ -52,10 +54,10 @@ public class App extends Application {
         // sm.agregarUsuario(m);
         var miembrob = sm.buscarMiembro(m);
         sm.prestamosVencidos(miembrob);
+         */
 //-------------------------------------------------------------------------------------
-
-
-        /*
+      
+/*
  Repositorio r = new Repositorio();
         ServicioPrestamo sp = new ServicioPrestamo(r);
         ServicioCopiaLibro scopia = new ServicioCopiaLibro(r);
@@ -71,7 +73,9 @@ public class App extends Application {
         prestamo.setCopia(copiadb);
         prestamo.setMiembro(miembrodb);
         sp.agregarPrestamo(prestamo);
-         */
+
+*/
+         
 //---------------------------------------------------------------------------   ----------
         scene = new Scene(loadFXML("ViewLogin"), 1600, 900);
         stage.setScene(scene);

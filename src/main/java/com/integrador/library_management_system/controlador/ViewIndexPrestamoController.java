@@ -64,15 +64,7 @@ public class ViewIndexPrestamoController implements Initializable {
     @FXML
     private Label lbUser;
 
-    /*Info User*/
- /*
-    
-    definir tabla prestamos
-    
-    definir columnas
-    definir la listaprestamos 
-    definir el prestamo fila
-     */
+ 
     @FXML
     private TableView<Prestamo> tablaPrestamos;
     @FXML
@@ -89,7 +81,7 @@ public class ViewIndexPrestamoController implements Initializable {
     private Prestamo prestamo;
     /*Gestionar prestamos*/
     @FXML
-    private Button btnEditar;
+    private Button btnShow;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -97,21 +89,7 @@ public class ViewIndexPrestamoController implements Initializable {
         /*DATOS DE USUARIO*/
         Miembro miembro = (Miembro) GestorDatos.obtenerDato("miembroAuth");
         lbUser.setText(miembro.getNombre());
-
-        /*PRESTAMOS*/
- /*
-        
-        settear columnas
-                
-        obtener prestamos
-        inicializar listaprestamos
-        settear tabla prestamos
-                
-        establacer el formato para estado prestamos ACTIVO - NO ACTIVO
-        establecer el formato de fechas dd/mm/yyyy
-                
-        implementar el listener para seleccionar
-         */
+ 
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colFechaInicio.setCellValueFactory(
                 cellData -> {
@@ -175,11 +153,13 @@ public class ViewIndexPrestamoController implements Initializable {
                 loadStage("ViewIndexRack", event);
             } else if (evt.equals(btnGestionarMulta)) {
                 loadStage("ViewIndexMulta", event);
-            } else if (evt.equals(btnEditar)) {
-                System.out.println("editar");
+            } else if (evt.equals(btnShow)) {
+                System.out.println("Ver..");
                 //System.out.println(this.prestamo);
                 //configurar vista y envio a vista;
 
+                
+                //1.ADVERTENCIA seleccionar un fila
                 var fxml = "ViewEditPrestamo";
 
                 FXMLLoader loader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));

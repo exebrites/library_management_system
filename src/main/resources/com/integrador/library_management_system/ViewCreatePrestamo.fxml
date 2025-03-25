@@ -24,7 +24,7 @@
                   <Insets left="10.0" top="10.0" />
                </padding>
             </Label>
-            <TextField fx:id="txtId" editable="false" layoutX="24.0" layoutY="96.0" prefWidth="350.0" />
+            <TextField fx:id="txtId" editable="false" layoutX="45.0" layoutY="119.0" prefWidth="350.0" />
             <TableView fx:id="tablaMiembros" layoutX="24.0" layoutY="271.0" prefHeight="228.0" prefWidth="1136.0">
               <columns>
                 <TableColumn fx:id="colIdentificador" prefWidth="310.0" text="Identificador" />
@@ -35,16 +35,17 @@
             <Button fx:id="btnGuardar" layoutX="1018.0" layoutY="592.0" mnemonicParsing="false" onAction="#eventAction" prefHeight="44.0" prefWidth="134.0" text="Guardar" />
             <TextField fx:id="txtFiltro" layoutX="26.0" layoutY="205.0" />
             <Label layoutX="26.0" layoutY="175.0" prefHeight="16.0" prefWidth="161.0" text="Filtro por identificador" />
-            <Label layoutX="25.0" layoutY="80.0" text="Identificador" />
-            <TextField fx:id="txtEstado" editable="false" layoutX="419.0" layoutY="97.0" prefWidth="350.0" />
-            <Label layoutX="415.0" layoutY="81.0" text="Estado" />
-            <TextField fx:id="txtTipo" editable="false" layoutX="802.0" layoutY="98.0" prefWidth="350.0" />
-            <Label layoutX="798.0" layoutY="82.0" text="Tipo" />
+            <Label layoutX="46.0" layoutY="103.0" text="Identificador" />
+            <TextField fx:id="txtEstado" editable="false" layoutX="417.0" layoutY="120.0" prefWidth="350.0" />
+            <Label layoutX="413.0" layoutY="104.0" text="Estado" />
+            <TextField fx:id="txtTipo" editable="false" layoutX="800.0" layoutY="121.0" prefWidth="350.0" />
+            <Label layoutX="796.0" layoutY="105.0" text="Tipo" />
             <TextField fx:id="txtfiltroNombre" layoutX="273.0" layoutY="206.0" />
             <Label layoutX="270.0" layoutY="176.0" prefHeight="16.0" prefWidth="191.0" text="Filtro por nombre " />
             <TextField fx:id="txtfiltroApellido" layoutX="498.0" layoutY="207.0" />
             <Label layoutX="495.0" layoutY="177.0" prefHeight="16.0" prefWidth="191.0" text="Filtro por apellido" />
             <Label layoutX="25.0" layoutY="255.0" prefHeight="16.0" prefWidth="171.0" text="Listado de miembros" />
+            <Label layoutX="28.0" layoutY="84.0" text="Informacion de la copia" />
          </children>
       </Pane>
    </center>

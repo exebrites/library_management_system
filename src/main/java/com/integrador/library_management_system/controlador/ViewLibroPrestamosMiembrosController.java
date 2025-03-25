@@ -105,6 +105,19 @@ public class ViewLibroPrestamosMiembrosController implements Initializable {
 
     private Libro libro;
 
+    @FXML
+    private TextField txtIsbn;
+    @FXML
+    private TextField txtTitulo;
+    @FXML
+    private TextField txtCategoria;
+
+    @FXML
+    private TextField txtFullName;
+
+    @FXML
+    private Button btn;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -112,65 +125,20 @@ public class ViewLibroPrestamosMiembrosController implements Initializable {
         lbUser.setText(miembro.getNombre());
         //setear columnas
 
-        /*
-        
-        colNombreApellido.setCellValueFactory(cellData -> {
-            Object[] row = cellData.getValue();
-            return new javafx.beans.property.SimpleStringProperty((String) row[0] + " " + (String) row[1]);
-        });
-        colFechaInicio.setCellValueFactory(cellData -> {
-            Object[] row = cellData.getValue();
-            var fecha = (LocalDate) row[8];
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            var fechaFormateada = fecha.format(formatter);
-            return new javafx.beans.property.SimpleObjectProperty<>(fechaFormateada);
-        });
-        colFechaVencimiento.setCellValueFactory(cellData -> {
-            Object[] row = cellData.getValue();
-            var fecha = (LocalDate) row[2];
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            var fechaFormateada = fecha.format(formatter);
-            return new javafx.beans.property.SimpleObjectProperty<>(fechaFormateada);
-        });
-
-        colNroCopia.setCellValueFactory(cellData -> {
-            Object[] row = cellData.getValue();
-            return new javafx.beans.property.SimpleLongProperty((Long) row[3]).asObject();
-        });
-
-        colTituloLibro.setCellValueFactory(cellData -> {
-            Object[] row = cellData.getValue();
-            return new javafx.beans.property.SimpleStringProperty((String) row[4]);
-        });
-        // colNroCopia.setCellValueFactory(new PropertyValueFactory<>(""));
-        //obtneer datos
-        Repositorio r = new Repositorio();
-        ServicioMiembro sm = new ServicioMiembro(r);
-
-        var resultados = sm.consultaHistorialLibrosMiembro();
-
-        //setear lista
-        lista = FXCollections.observableArrayList(resultados);
-
-        //setear tabla
-        tabla.setItems(lista);
-
         //listener seleccionar 
-        tabla.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            if (newSelection != null) {
-                fila = (Object[]) newSelection;
-            }
-        });
+        if (fila != null) {
+            filtrar();
 
-        filtrar();
+        }
 
-         */
     }
 
     public void setData(Object data) {
 
         libro = (Libro) data;
-        txtLibro.setText(libro.getTitulo());
+        txtIsbn.setText(libro.getIsbn());
+        txtTitulo.setText(libro.getTitulo());
+        txtCategoria.setText(libro.getCategoriaTematica());
         Repositorio r = new Repositorio();
         ServicioLibro sl = new ServicioLibro(r);
         var miembrosLibro = sl.consultarMiembrosSegunLibro(libro);
@@ -196,15 +164,21 @@ public class ViewLibroPrestamosMiembrosController implements Initializable {
 
         lista = FXCollections.observableArrayList(miembrosLibro);
         tablaMiembrosLibro.setItems(lista);
+        tablaMiembrosLibro.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                fila = (Object[]) newSelection;
+            }
+        });
     }
 
     private void filtrar() {
-        /*
-        System.out.println("filtrando ...");
+
+      /*
+          System.out.println("filtrando ...");
 
         FilteredList<Object[]> filteredList = new FilteredList<>(lista, u -> true);
 
-        txtNombreApellido.textProperty().addListener((observable, oldValue, newValue) -> {
+        txtFullName.textProperty().addListener((observable, oldValue, newValue) -> {
             //System.out.println(newValue);
 
             //si es vacio muestra todo
@@ -216,14 +190,15 @@ public class ViewLibroPrestamosMiembrosController implements Initializable {
                 //filteredList.setPredicate(u -> u.getTitulo().contains(newValue.toUpperCase()));
                 //1. concatenar nombre y apellido
                 filteredList.setPredicate(u -> {
-                    var fullName = (String) u[0] + " " + (String) u[1];
+                    var fullName = (String) u[3] + " " + (String) u[4];
 
                     return fullName.contains(newValue.toUpperCase());
                 });
             }
         });
-        tabla.setItems(filteredList);
-         */
+        tablaMiembrosLibro.setItems(filteredList);
+        */
+
     }
 
     @FXML
@@ -267,6 +242,9 @@ public class ViewLibroPrestamosMiembrosController implements Initializable {
             stage.setScene(new Scene(root));
             stage.show();
              */
+        } else if (evt.equals(btn)) {
+            System.out.println("asdadsas");
+            System.out.println(Arrays.toString(fila));
         }
 
     }

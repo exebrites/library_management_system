@@ -67,6 +67,7 @@ public class Multa implements Serializable {
     public String toString() {
         return "Multa{" + "id=" + id + ", costo=" + costo + ", prestamo=" + prestamo + '}';
     }
+
     
 
 }

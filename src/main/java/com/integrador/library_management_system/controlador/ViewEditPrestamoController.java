@@ -21,6 +21,7 @@ import com.integrador.library_management_system.servicios.ServicioPrestamo;
 import com.integrador.library_management_system.util.GestorDatos;
 import java.io.IOException;
 import java.net.URL;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -73,54 +74,19 @@ public class ViewEditPrestamoController implements Initializable {
     @FXML
     private Button btnGestionarMulta;
 
-//create
-    /*
-    @FXML
-    private TableView<Miembro> tablaMiembros;
-    @FXML
-    private TableColumn<Miembro, Long> colIdentificador;
-    @FXML
-    private TableColumn<Miembro, String> colNombre;
-    @FXML
-    private TableColumn<Miembro, String> colApellido;
-    @FXML
-    private ObservableList<Miembro> listaMiembros;
-
-    private Object fila;
-    private CopiaLibro copiaLocal;
-  
-    @FXML
-    private Button btnCancelar;
-
-    @FXML
-    private TextField txtFiltro;
-    @FXML
-    private TextField txtfiltroNombre;
-    @FXML
-    private TextField txtfiltroApellido;
-
-     */
-    //Campos de copia
-    /*
-      @FXML
-    private TextField txtId;
-    @FXML
-    private TextField txtEstado;
-    @FXML
-    private TextField txtTipo;*/
     @FXML
     private Label lbUser;
 
     private Prestamo prestamo;
 
     @FXML
-    private DatePicker dataInicio;
-    @FXML
-    private DatePicker dataVencimiento;
-    @FXML
     private TextField txtId;
     @FXML
     private TextField txtEstado;
+    @FXML
+    private TextField txtFechaInicio;
+    @FXML
+    private TextField txtFechaVencimiento;
 
     @FXML
     private Button btnGuardar;
@@ -132,33 +98,25 @@ public class ViewEditPrestamoController implements Initializable {
         Miembro miembro = (Miembro) GestorDatos.obtenerDato("miembroAuth");
         lbUser.setText(miembro.getNombre());
 
-        //desasctivar el btnGuardar segun el estado de prestamo
     }
 
     public void setData(Object data) {
-        /*
-        copiaLocal = (CopiaLibro) data;
-        txtId.setText(copiaLocal.getId().toString());
 
-        txtEstado.setText(copiaLocal.getEstado().toString());
-
-        txtTipo.setText(copiaLocal.getTipo().toString());
-         */
         prestamo = (Prestamo) data;
 
         System.out.println(prestamo);
         txtId.setText(prestamo.getId().toString());
-        dataInicio.setValue(prestamo.getFechaPrestamo());
-        dataVencimiento.setValue(prestamo.getFechaVencimiento());
+
+        //1. formatear fecha
+        //2. setear txt
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        txtFechaInicio.setText(prestamo.getFechaPrestamo().format(formatter));
+        txtFechaVencimiento.setText(prestamo.getFechaVencimiento().format(formatter));
+
         var formato = prestamo.isEstado() ? "ACTIVO" : "NO ACTIVO";
         txtEstado.setText(formato);
-        boton();
-    }
 
-    public void boton() {
-        if (!prestamo.isEstado()) {
-            btnGuardar.setDisable(false); // Ocultar el botón
-        }
     }
 
     @FXML
@@ -177,8 +135,10 @@ public class ViewEditPrestamoController implements Initializable {
                 if (prestamodb.hanPasadoDiezDias()) {
                     System.out.println("Generar multa");
                     Alert alert = new Alert(AlertType.WARNING);
-                    alert.setTitle("Generacion de multa");
-                    alert.setHeaderText("Su prestamo ha expirado. Se generará una multa en cuestion...");
+                    alert.setTitle("Generación de multa");
+                    alert.setHeaderText("El período de devolución de su préstamo ha expirado.");
+                    alert.setContentText("Se aplicará una multa por retraso en la devolución. Para más detalles, consulte las condiciones del préstamo.");
+
                     alert.showAndWait();
                     //generarr multa. REalizar en el servicio
                     ServicioMulta sm = new ServicioMulta(r);

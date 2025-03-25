@@ -129,6 +129,7 @@ public class Prestamo implements Serializable {
     public String toString() {
         return "Prestamo{" + "id=" + id + ", fechaPrestamo=" + fechaPrestamo + ", fechaVencimiento=" + fechaVencimiento + ", estado=" + estado + ", miembro=" + miembro + ", copia=" + copia + ", multa=" + multa + '}';
     }
+ 
 
     public boolean hanPasadoDiezDias() {
         return ChronoUnit.DAYS.between(fechaPrestamo, LocalDate.now()) >= 10;
