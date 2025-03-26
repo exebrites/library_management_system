@@ -63,7 +63,7 @@
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="1172.0">
                      <children>
-                        <VBox prefHeight="20.0" prefWidth="221.0">
+                        <VBox prefHeight="66.0" prefWidth="221.0">
                            <children>
                               <Label prefHeight="16.0" prefWidth="153.0" text="Tipo de copia" />
                               <ComboBox fx:id="cboxTipo" prefHeight="24.0" prefWidth="209.0" promptText="Seleccionar un Tipo" />
@@ -83,10 +83,16 @@
                               </ComboBox>
                            </children>
                         </VBox>
-                        <VBox prefHeight="61.0" prefWidth="241.0">
+                        <VBox prefHeight="86.0" prefWidth="191.0">
                            <children>
                               <Label prefHeight="16.0" prefWidth="153.0" text="Referencia de libro " />
                               <CheckBox fx:id="checkReferencia" mnemonicParsing="false" prefHeight="18.0" prefWidth="168.0" text="Referencia de libro " />
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="61.0" prefWidth="241.0">
+                           <children>
+                              <Label text="Precio estimado" />
+                              <TextField fx:id="txtPrecio" />
                            </children>
                         </VBox>
                      </children>
@@ -97,7 +103,7 @@
                      </VBox.margin></Label>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="tablaLibros" prefHeight="100.0" prefWidth="1171.0">
+                        <TableView fx:id="tablaLibros" prefHeight="109.0" prefWidth="1164.0">
                           <columns>
                             <TableColumn fx:id="colIsbn" minWidth="-Infinity" prefWidth="132.33334350585938" text="isbn" />
                             <TableColumn fx:id="colTitulo" minWidth="-Infinity" prefWidth="205.0" text="titulo" />

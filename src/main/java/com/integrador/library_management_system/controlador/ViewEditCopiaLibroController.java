@@ -19,6 +19,7 @@ import com.integrador.library_management_system.servicios.ServicioRack;
 import com.integrador.library_management_system.util.GestorDatos;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -140,6 +141,11 @@ public class ViewEditCopiaLibroController implements Initializable {
     @FXML
     private TextField txtEstado;
 
+    @FXML
+    private TextField txtPrecioEstimado;
+    @FXML
+    private TextField txtPrecio;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //System.out.println(TipoCopiaLibro.values());
@@ -204,12 +210,37 @@ public class ViewEditCopiaLibroController implements Initializable {
         txtEstado.setText(copia.getEstado().toString());
         //System.out.println(copia.getLibro().getTitulo());
         txtLibro.setText(copia.getLibro().getTitulo());
+        var libro = copia.getLibro();
         txtRack.setText(copia.getRack().getId().toString());
-
+        var rack = copia.getRack();
         //set comboboxs
         cboxTipo.setValue(copia.getTipo()); // Establecer valor actual
         cboxEstado.setValue(copia.getEstado());
         checkReferencia.setSelected(copia.isReferenciaLibro());
+        txtPrecio.setText(copia.getPrecioEstimado().toString());
+
+        seleccionarLibro(libro.getId(), listaLibros);
+        seleccionarRack(rack.getId(), listaRacks);
+    }
+
+    private void seleccionarLibro(Long idLibro, ObservableList<Libro> libros) {
+        for (Libro libro : libros) {
+            if (Objects.equals(libro.getId(), idLibro)) {
+                tablaLibros.getSelectionModel().select(libro);
+                tablaLibros.scrollTo(libro);
+                break;
+            }
+        }
+    }
+
+    private void seleccionarRack(Long idRack, ObservableList<Rack> racks) {
+        for (Rack rack : racks) {
+            if (Objects.equals(rack.getId(), idRack)) {
+                tablaRacks.getSelectionModel().select(rack);
+                tablaRacks.scrollTo(rack);
+                break;
+            }
+        }
     }
 
     @FXML
@@ -244,9 +275,12 @@ public class ViewEditCopiaLibroController implements Initializable {
             var tipo = cboxTipo.getValue();
             var estado = cboxEstado.getValue();
             var ref = checkReferencia.isSelected();
-            System.out.println(rack);
-            System.out.println(libroFila);
             try {
+                var precio = Float.valueOf(txtPrecio.getText());
+
+                System.out.println(rack);
+                System.out.println(libroFila);
+
                 //1. recuperar la copia de db
                 Repositorio r = new Repositorio();
                 ServicioCopiaLibro scopia = new ServicioCopiaLibro(r);
@@ -256,6 +290,7 @@ public class ViewEditCopiaLibroController implements Initializable {
                 copiadb.setTipo(tipo);
                 copiadb.setEstado(estado);
                 copiadb.setReferenciaLibro(ref);
+                copiadb.setPrecioEstimado(precio);
                 //modificar libro y rack
                 copiadb.setRack(rack);
                 copiadb.setLibro(libroFila);
@@ -264,40 +299,14 @@ public class ViewEditCopiaLibroController implements Initializable {
                 scopia.editarCopiaLibro(copiadb);
                 //4. redirigir al index
                 loadStage("ViewIndexCopias", event);
-            } catch (IOException e) {
+            } catch (NumberFormatException e) {
                 System.out.println(e.getMessage());
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
-            /*
-            
-            //controla el combobox
-            var tipoCopia = cboxTipo.getValue();
-            var referencia = checkReferencia.isSelected();
-
-            try {
-                Repositorio r = new Repositorio();
-                ServicioCopiaLibro scopia = new ServicioCopiaLibro(r);
-                ServicioLibro sl = new ServicioLibro(r);
-                ServicioRack sr = new ServicioRack(r);
-
-                var librodb = sl.buscarLibro(libroFila);
-                var rackdb = sr.buscarRack(rack);
-
-                CopiaLibro copia = new CopiaLibro(tipoCopia, librodb);
-                copia.setReferenciaLibro(referencia);
-                copia.setLibro(librodb);
-                copia.setRack(rackdb);
-
-                scopia.agregarCopiaLibro(copia);
-                loadStage("ViewIndexCopias", event);
             } catch (IOException e) {
                 System.out.println(e.getMessage());
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
 
-             */
         } else if (evt.equals(btnCancelar)) {
             loadStage("ViewIndexCopias", event);
         }
