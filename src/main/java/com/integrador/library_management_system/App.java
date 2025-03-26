@@ -56,14 +56,13 @@ public class App extends Application {
         sm.prestamosVencidos(miembrob);
          */
 //-------------------------------------------------------------------------------------
-      
-/*
- Repositorio r = new Repositorio();
+        /*
+    Repositorio r = new Repositorio();
         ServicioPrestamo sp = new ServicioPrestamo(r);
         ServicioCopiaLibro scopia = new ServicioCopiaLibro(r);
         ServicioMiembro sm = new ServicioMiembro(r);
         Miembro m = new Miembro();
-        m.setId(Long.valueOf(1));
+        m.setId(Long.valueOf(3401));
         var miembrodb = sm.buscarMiembro(m);
         CopiaLibro c = new CopiaLibro();
         c.setId(Long.valueOf(1));
@@ -73,9 +72,7 @@ public class App extends Application {
         prestamo.setCopia(copiadb);
         prestamo.setMiembro(miembrodb);
         sp.agregarPrestamo(prestamo);
-
-*/
-         
+         */
 //---------------------------------------------------------------------------   ----------
         scene = new Scene(loadFXML("ViewLogin"), 1600, 900);
         stage.setScene(scene);

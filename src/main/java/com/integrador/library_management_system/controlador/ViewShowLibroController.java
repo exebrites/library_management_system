@@ -227,6 +227,14 @@ public class ViewShowLibroController implements Initializable {
                     alert2.setContentText("La copia seleccionada ya está prestada. Por favor, elija otra copia disponible para continuar.");
                     alert2.showAndWait();
 
+                } else if (copia.getEstado().equals(EstadoCopiaLibro.PERDIDA)) {
+
+                    Alert alert2 = new Alert(Alert.AlertType.WARNING);
+                    alert2.setTitle("Copia en Préstamo");
+                    alert2.setHeaderText("Copia perdida");
+                    alert2.setContentText("La copia seleccionada ya está perdida. Por favor, elija otra copia disponible para continuar.");
+                    alert2.showAndWait();
+
                 } else {
                     var fxml = "ViewCreatePrestamo";
 
