@@ -16,6 +16,7 @@ import com.integrador.library_management_system.repositorio.Repositorio;
 import com.integrador.library_management_system.servicios.ServicioCopiaLibro;
 import com.integrador.library_management_system.servicios.ServicioLibro;
 import com.integrador.library_management_system.servicios.ServicioMiembro;
+import com.integrador.library_management_system.servicios.ServicioPrestamo;
 import com.integrador.library_management_system.servicios.ServicioRack;
 import com.integrador.library_management_system.util.GestorDatos;
 import java.io.IOException;
@@ -118,6 +119,9 @@ public class ViewLibroPrestamosMiembrosController implements Initializable {
     @FXML
     private Button btn;
 
+    @FXML
+    private Button btnIrPrestamo;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -173,7 +177,7 @@ public class ViewLibroPrestamosMiembrosController implements Initializable {
 
     private void filtrar() {
 
-      /*
+        /*
           System.out.println("filtrando ...");
 
         FilteredList<Object[]> filteredList = new FilteredList<>(lista, u -> true);
@@ -197,8 +201,7 @@ public class ViewLibroPrestamosMiembrosController implements Initializable {
             }
         });
         tablaMiembrosLibro.setItems(filteredList);
-        */
-
+         */
     }
 
     @FXML
@@ -245,6 +248,31 @@ public class ViewLibroPrestamosMiembrosController implements Initializable {
         } else if (evt.equals(btn)) {
             System.out.println("asdadsas");
             System.out.println(Arrays.toString(fila));
+        } else if (evt.equals(btnIrPrestamo)) {
+            System.out.println(Arrays.toString(fila));
+            var p = fila[2];
+
+            System.out.println(p);
+            Prestamo prestamo = new Prestamo();
+            prestamo.setId((Long) p);
+            Repositorio r = new Repositorio();
+            ServicioPrestamo sp = new ServicioPrestamo(r);
+            var prestamodb = sp.buscarPrestamo(prestamo);
+
+            var fxml = "ViewEditPrestamo";
+
+            FXMLLoader loader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+            Parent root = loader.load();
+
+            // Obtener el controlador y pasarle los datos
+            ViewEditPrestamoController detalleController = loader.getController();
+            detalleController.setData(prestamodb);
+
+            //ocultar la escena anterior y generar una nueva
+            ((Node) (event.getSource())).getScene().getWindow().hide();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
         }
 
     }

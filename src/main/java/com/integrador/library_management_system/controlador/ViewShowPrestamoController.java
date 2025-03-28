@@ -58,6 +58,8 @@ public class ViewShowPrestamoController implements Initializable {
     private Button btnInicio;
     @FXML
     private Button btnGestionarRack;
+    @FXML
+    private Button btnGestionarMulta;
 
     /*NAVEGACION*/
     @FXML
@@ -197,7 +199,10 @@ public class ViewShowPrestamoController implements Initializable {
                 loadStage("ViewIndexRack", event);
             } else if (evt.equals(btnNuevoPrestamo)) {
                 loadStage("ViewCreatePrestamo", event);
+            } else if (evt.equals(btnGestionarMulta)) {
+                loadStage("ViewIndexMulta", event);
             }
+
             //Cargar la vista
             /*
                  var fxml = "ViewCreatePrestamo";
@@ -216,7 +221,6 @@ public class ViewShowPrestamoController implements Initializable {
                 stage.show();
                 
              */
-
             //}
         } catch (IOException ex) {
             Logger.getLogger(ViewShowPrestamoController.class.getName()).log(Level.SEVERE, null, ex);
