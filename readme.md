@@ -46,6 +46,9 @@ El sistema permite la gestión de una biblioteca con las siguientes característ
     
 - 💰 **Gestión de multas**: Control de sanciones por devolución tardía
     
+## Imagenes del proyecto 
+### Gestion de libros
+![Gestion de libros](<Captura desde 2025-03-28 12-12-06.png>)
 
 ## 🛠️ Instalación y Configuración
 
