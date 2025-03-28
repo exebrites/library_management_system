@@ -52,8 +52,8 @@ El sistema permite la gestión de una biblioteca con las siguientes característ
 1. **Clonar el repositorio:**
     
     ```bash
-    git clone https://github.com/tu-usuario/tu-repositorio.git
-    cd tu-repositorio
+    git clone https://github.com/exebrites/library_management_system.git
+    cd library_management_system
     ```
     
 2. **Configurar la base de datos en PostgreSQL:**
