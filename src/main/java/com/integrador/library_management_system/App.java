@@ -39,41 +39,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        //  EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.integradorLMS_PU");
-
-        /*
-        
-                // Crear Repositorio
-        Repositorio r = new Repositorio();
-        //crear un miembro
-        ServicioMiembro sm = new ServicioMiembro(r);
-        Miembro m = new Miembro("biblitecario", "1", true);
-        m.setTipoMiembro(TipoMiembro.BIBLIOTECARIO);
-        m.setClave("123");
-        m.setId(Long.valueOf(1));
-        // sm.agregarUsuario(m);
-        var miembrob = sm.buscarMiembro(m);
-        sm.prestamosVencidos(miembrob);
-         */
-//-------------------------------------------------------------------------------------
-        /*
-    Repositorio r = new Repositorio();
-        ServicioPrestamo sp = new ServicioPrestamo(r);
-        ServicioCopiaLibro scopia = new ServicioCopiaLibro(r);
-        ServicioMiembro sm = new ServicioMiembro(r);
-        Miembro m = new Miembro();
-        m.setId(Long.valueOf(3401));
-        var miembrodb = sm.buscarMiembro(m);
-        CopiaLibro c = new CopiaLibro();
-        c.setId(Long.valueOf(1));
-        var copiadb = scopia.buscarCopia(c);
-        LocalDate fechaDada = LocalDate.of(2025, 3, 1); // 1 de marzo de 2025
-        Prestamo prestamo = new Prestamo(fechaDada);
-        prestamo.setCopia(copiadb);
-        prestamo.setMiembro(miembrodb);
-        sp.agregarPrestamo(prestamo);
-         */
-//---------------------------------------------------------------------------   ----------
+  
         scene = new Scene(loadFXML("ViewLogin"), 1600, 900);
         stage.setScene(scene);
         stage.setTitle("Library Manager System");
